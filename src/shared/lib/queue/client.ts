@@ -34,10 +34,15 @@ export const notificationQueue = new Queue('notifications', {
   connection: getQueueConnection(),
 });
 
+export const proactiveMessagingQueue = new Queue('proactive-messaging', {
+  connection: getQueueConnection(),
+});
+
 export async function closeQueueConnections(): Promise<void> {
   await memoryConsolidationQueue.close();
   await embeddingQueue.close();
   await notificationQueue.close();
+  await proactiveMessagingQueue.close();
   if (connection) {
     connection.disconnect();
     connection = null;

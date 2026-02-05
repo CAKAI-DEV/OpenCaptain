@@ -14,8 +14,9 @@ import { invitationRoutes } from './features/invitations';
 import { startMemoryConsolidationWorker } from './features/memory';
 import { metricsRoutes } from './features/metrics';
 import { notificationsRoutes } from './features/notifications';
-// Import worker to start it on app startup
+// Import workers to start them on app startup
 import './features/notifications/notifications.worker';
+import './features/messaging/messaging.worker';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { tasksRoutes } from './features/tasks';
