@@ -2,6 +2,7 @@ import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 import { z } from 'zod';
 import { authMiddleware } from '../auth/auth.middleware';
+import { visibilityMiddleware } from '../visibility/visibility.middleware';
 import { assignRole, getProjectMembers, getUserRoles, removeFromProject } from './roles.service';
 
 const roles = new Hono();
@@ -13,8 +14,9 @@ const assignRoleSchema = z.object({
   reportsToUserId: z.string().uuid().optional(),
 });
 
-// All routes require authentication
+// All routes require authentication and visibility
 roles.use('*', authMiddleware);
+roles.use('*', visibilityMiddleware);
 
 // POST /api/v1/projects/:projectId/members - Assign role to user
 roles.post('/projects/:projectId/members', zValidator('json', assignRoleSchema), async (c) => {

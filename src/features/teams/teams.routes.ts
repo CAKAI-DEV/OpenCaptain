@@ -2,6 +2,7 @@ import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 import { z } from 'zod';
 import { authMiddleware } from '../auth/auth.middleware';
+import { visibilityMiddleware } from '../visibility/visibility.middleware';
 import {
   addSquadMember,
   createSquad,
@@ -32,8 +33,9 @@ const addMemberSchema = z.object({
   userId: z.string().uuid(),
 });
 
-// All routes require authentication
+// All routes require authentication and visibility
 teams.use('*', authMiddleware);
+teams.use('*', visibilityMiddleware);
 
 // POST /api/v1/squads - Create squad
 teams.post('/', zValidator('json', createSquadSchema), async (c) => {

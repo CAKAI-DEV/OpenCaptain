@@ -3,9 +3,14 @@ import { Hono } from 'hono';
 import { z } from 'zod';
 import { ApiError } from '../../shared/middleware/error-handler';
 import { authMiddleware } from '../auth/auth.middleware';
+import { visibilityMiddleware } from '../visibility/visibility.middleware';
 import { createProject, getProjectById, getProjectsByOrg } from './projects.service';
 
 const projects = new Hono();
+
+// All routes require authentication and visibility
+projects.use('*', authMiddleware);
+projects.use('*', visibilityMiddleware);
 
 // Validation schemas
 const createProjectSchema = z.object({
@@ -13,8 +18,8 @@ const createProjectSchema = z.object({
   description: z.string().max(1000).optional(),
 });
 
-// POST /projects - Create project (auth required)
-projects.post('/', authMiddleware, zValidator('json', createProjectSchema), async (c) => {
+// POST /projects - Create project
+projects.post('/', zValidator('json', createProjectSchema), async (c) => {
   const { name, description } = c.req.valid('json');
   const user = c.get('user');
 
@@ -27,15 +32,15 @@ projects.post('/', authMiddleware, zValidator('json', createProjectSchema), asyn
   return c.json(project, 201);
 });
 
-// GET /projects - List projects for org (auth required)
-projects.get('/', authMiddleware, async (c) => {
+// GET /projects - List projects for org
+projects.get('/', async (c) => {
   const user = c.get('user');
   const projectList = await getProjectsByOrg(user.org);
   return c.json(projectList);
 });
 
-// GET /projects/:id - Get project by ID (auth required)
-projects.get('/:id', authMiddleware, async (c) => {
+// GET /projects/:id - Get project by ID
+projects.get('/:id', async (c) => {
   const id = c.req.param('id');
   const user = c.get('user');
 
