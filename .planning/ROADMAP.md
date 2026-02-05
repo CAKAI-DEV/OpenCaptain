@@ -65,12 +65,14 @@ Plans:
   1. Admin can configure which LLM model to use (Claude, GPT, local models via LiteLLM)
   2. Agent maintains knowledge of project context and history across conversations
   3. Agent memory persists across sessions (episodic and semantic memory working)
-**Plans**: 3 plans
+**Plans**: 5 plans (3 original + 2 gap closure)
 
 Plans:
-- [ ] 03-01-PLAN.md - LiteLLM proxy setup, OpenAI SDK client, organization model preference
-- [ ] 03-02-PLAN.md - pgvector extension, embeddings schema, RAG pipeline with visibility
-- [ ] 03-03-PLAN.md - Conversation storage, hierarchical memory, BullMQ consolidation worker
+- [x] 03-01-PLAN.md - LiteLLM proxy setup, OpenAI SDK client, organization model preference
+- [x] 03-02-PLAN.md - pgvector extension, embeddings schema, RAG pipeline with visibility
+- [x] 03-03-PLAN.md - Conversation storage, hierarchical memory, BullMQ consolidation worker
+- [ ] 03-04-PLAN.md - Gap closure: Conversations service + routes wiring RAG/memory/LLM
+- [ ] 03-05-PLAN.md - Gap closure: Explicit pgvector extension migration
 
 ### Phase 4: Tasks & Deliverables
 **Goal**: Users can create, manage, and track tasks and deliverables
@@ -170,7 +172,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 |-------|----------------|--------|-----------|
 | 1. Core Infrastructure | 3/3 | Complete | 2026-02-05 |
 | 2. Team & Access | 4/4 | Complete | 2026-02-05 |
-| 3. LLM Infrastructure | 0/3 | Planned | - |
+| 3. LLM Infrastructure | 3/5 | In Progress (gap closure) | - |
 | 4. Tasks & Deliverables | 0/3 | Not started | - |
 | 5. Messaging Channels | 0/4 | Not started | - |
 | 6. Check-ins & Escalations | 0/3 | Not started | - |
