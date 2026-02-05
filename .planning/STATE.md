@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 1 of 8 (Core Infrastructure)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-05 - Completed 01-01-PLAN.md
+Last activity: 2026-02-05 - Completed 01-02-PLAN.md
 
-Progress: [█░░░░░░░░░] 4%
+Progress: [██░░░░░░░░] 8%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 5 min
-- Total execution time: 0.08 hours
+- Total plans completed: 2
+- Average duration: 6 min
+- Total execution time: 0.2 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-core-infrastructure | 1 | 5 min | 5 min |
+| 01-core-infrastructure | 2 | 12 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (5m)
-- Trend: N/A (first plan)
+- Last 5 plans: 01-01 (5m), 01-02 (7m)
+- Trend: Stable
 
 *Updated after each plan completion*
 
@@ -45,6 +45,9 @@ Recent decisions affecting current work:
 - Port 5433 for PostgreSQL to avoid local server conflicts
 - Redis npm package instead of Bun native Redis for stable API
 - Structured JSON logs to stdout for container-native logging
+- Hono onError handler for global error handling (not middleware)
+- Check error.name for ApiError detection across module boundaries
+- ContentfulStatusCode type for ApiError status (Hono type compatibility)
 
 ### Pending Todos
 
@@ -56,6 +59,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-05T05:58:30Z
-Stopped at: Completed 01-01-PLAN.md (Project Foundation)
+Last session: 2026-02-05T06:08:55Z
+Stopped at: Completed 01-02-PLAN.md (Authentication System)
 Resume file: None
