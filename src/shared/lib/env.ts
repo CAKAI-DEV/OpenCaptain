@@ -10,6 +10,12 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(3000),
   CORS_ORIGIN: z.string().url().default('http://localhost:3000'),
   APP_URL: z.string().url().default('http://localhost:3000'),
+  // LiteLLM configuration
+  LITELLM_URL: z.string().url().default('http://localhost:4010'),
+  LITELLM_API_KEY: z.string().min(1, 'LITELLM_API_KEY is required'),
+  // Provider API keys (optional - users may only configure one provider)
+  OPENAI_API_KEY: z.string().optional(),
+  ANTHROPIC_API_KEY: z.string().optional(),
 });
 
 export const env = envSchema.parse(Bun.env);
