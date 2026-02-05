@@ -10,6 +10,7 @@ import { invitationRoutes } from './features/invitations';
 import { startMemoryConsolidationWorker } from './features/memory';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
+import { tasksRoutes } from './features/tasks';
 import { teamsRoutes } from './features/teams';
 import { visibilityRoutes } from './features/visibility';
 import {
@@ -87,6 +88,7 @@ app.route('/api/v1/health', healthRoutes);
 app.route('/api/v1/invitations', invitationRoutes);
 app.route('/api/v1/projects', projectRoutes);
 app.route('/api/v1/squads', teamsRoutes);
+app.route('/api/v1/tasks', tasksRoutes);
 app.route('/api/v1/visibility', visibilityRoutes);
 app.route('/api/v1/conversations', conversationRoutes);
 app.route('/api/v1', rolesRoutes);
