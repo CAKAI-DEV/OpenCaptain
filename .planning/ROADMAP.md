@@ -14,8 +14,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Core Infrastructure** - Database, auth, API gateway, deployment foundation ✓
 - [x] **Phase 2: Team & Access** - Users, organizations, roles, squads, visibility rules ✓
-- [ ] **Phase 3: LLM Infrastructure** - Model abstraction, memory persistence, RAG pipeline
-- [ ] **Phase 4: Tasks & Deliverables** - Core PM data structures and CRUD operations
+- [x] **Phase 3: LLM Infrastructure** - Model abstraction, memory persistence, RAG pipeline ✓
+- [x] **Phase 4: Tasks & Deliverables** - Core PM data structures and CRUD operations ✓
 - [ ] **Phase 5: Messaging Channels** - WhatsApp and Telegram bot interfaces
 - [ ] **Phase 6: Check-ins & Escalations** - Scheduled prompts, alerts, and escalation chains
 - [ ] **Phase 7: Web UI & Analytics** - Dashboard, task views, analytics at all levels
@@ -71,8 +71,8 @@ Plans:
 - [x] 03-01-PLAN.md - LiteLLM proxy setup, OpenAI SDK client, organization model preference
 - [x] 03-02-PLAN.md - pgvector extension, embeddings schema, RAG pipeline with visibility
 - [x] 03-03-PLAN.md - Conversation storage, hierarchical memory, BullMQ consolidation worker
-- [ ] 03-04-PLAN.md - Gap closure: Conversations service + routes wiring RAG/memory/LLM
-- [ ] 03-05-PLAN.md - Gap closure: Explicit pgvector extension migration
+- [x] 03-04-PLAN.md - Gap closure: Conversations service + routes wiring RAG/memory/LLM
+- [x] 03-05-PLAN.md - Gap closure: Explicit pgvector extension migration
 
 ### Phase 4: Tasks & Deliverables
 **Goal**: Users can create, manage, and track tasks and deliverables
@@ -87,10 +87,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 04-01-PLAN.md - Tasks schema with 2-level nesting, priority, and CRUD endpoints
-- [ ] 04-02-PLAN.md - Deliverable types with status flows, preset templates, and deliverables CRUD
-- [ ] 04-03-PLAN.md - Cross-type dependencies with cycle detection, custom field definitions
-- [ ] 04-04-PLAN.md - S3 file uploads with presigned URLs, output metrics and burndown
+- [x] 04-01-PLAN.md - Tasks schema with 2-level nesting, priority, and CRUD endpoints
+- [x] 04-02-PLAN.md - Deliverable types with status flows, preset templates, and deliverables CRUD
+- [x] 04-03-PLAN.md - Cross-type dependencies with cycle detection, custom field definitions
+- [x] 04-04-PLAN.md - S3 file uploads with presigned URLs, output metrics and burndown
 
 ### Phase 5: Messaging Channels
 **Goal**: Users can interact with agent via WhatsApp and Telegram
@@ -173,8 +173,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 |-------|----------------|--------|-----------|
 | 1. Core Infrastructure | 3/3 | Complete | 2026-02-05 |
 | 2. Team & Access | 4/4 | Complete | 2026-02-05 |
-| 3. LLM Infrastructure | 3/5 | In Progress (gap closure) | - |
-| 4. Tasks & Deliverables | 0/4 | Not started | - |
+| 3. LLM Infrastructure | 5/5 | Complete | 2026-02-05 |
+| 4. Tasks & Deliverables | 4/4 | Complete | 2026-02-06 |
 | 5. Messaging Channels | 0/4 | Not started | - |
 | 6. Check-ins & Escalations | 0/3 | Not started | - |
 | 7. Web UI & Analytics | 0/3 | Not started | - |

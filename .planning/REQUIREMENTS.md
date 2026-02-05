@@ -9,12 +9,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Task Management
 
-- [ ] **TASK-01**: User can create tasks with title, description, assignee, and due date
-- [ ] **TASK-02**: User can edit and delete tasks they have permission to modify
-- [ ] **TASK-03**: User can set task priority (low, medium, high, urgent)
-- [ ] **TASK-04**: Admin can define custom status flows per deliverable type
-- [ ] **TASK-05**: User can create subtasks under parent tasks
-- [ ] **TASK-06**: User can define task dependencies (X blocks Y)
+- [x] **TASK-01**: User can create tasks with title, description, assignee, and due date
+- [x] **TASK-02**: User can edit and delete tasks they have permission to modify
+- [x] **TASK-03**: User can set task priority (low, medium, high, urgent)
+- [x] **TASK-04**: Admin can define custom status flows per deliverable type
+- [x] **TASK-05**: User can create subtasks under parent tasks
+- [x] **TASK-06**: User can define task dependencies (X blocks Y)
 - [ ] **TASK-07**: User can create tasks via natural language in chat ("create a task to fix the login bug")
 - [ ] **TASK-08**: Agent automatically detects actionable items in conversation and creates tasks
 
@@ -30,12 +30,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Deliverables
 
-- [ ] **DELV-01**: Admin can create deliverable block types with custom fields
-- [ ] **DELV-02**: Deliverable blocks support field types: text, select, date, number, file, URL
-- [ ] **DELV-03**: Admin can define status flows per deliverable type (e.g., ideation → production → review → done)
-- [ ] **DELV-04**: User can upload proof files attached to deliverables
-- [ ] **DELV-05**: System tracks deliverable metrics (count per person, per squad, per time period)
-- [ ] **DELV-06**: User can view their deliverable output metrics
+- [x] **DELV-01**: Admin can create deliverable block types with custom fields
+- [x] **DELV-02**: Deliverable blocks support field types: text, select, date, number, file, URL
+- [x] **DELV-03**: Admin can define status flows per deliverable type (e.g., ideation → production → review → done)
+- [x] **DELV-04**: User can upload proof files attached to deliverables
+- [x] **DELV-05**: System tracks deliverable metrics (count per person, per squad, per time period)
+- [x] **DELV-06**: User can view their deliverable output metrics
 
 ### Check-ins & Communication
 
@@ -175,21 +175,21 @@ Which phases cover which requirements. Updated during roadmap creation.
 | VISB-03 | Phase 2 | Complete |
 | VISB-04 | Phase 2 | Complete |
 | VISB-05 | Phase 2 | Complete |
-| AI-01 | Phase 3 | Pending |
-| AI-02 | Phase 3 | Pending |
-| AI-03 | Phase 3 | Pending |
-| TASK-01 | Phase 4 | Pending |
-| TASK-02 | Phase 4 | Pending |
-| TASK-03 | Phase 4 | Pending |
-| TASK-04 | Phase 4 | Pending |
-| TASK-05 | Phase 4 | Pending |
-| TASK-06 | Phase 4 | Pending |
-| DELV-01 | Phase 4 | Pending |
-| DELV-02 | Phase 4 | Pending |
-| DELV-03 | Phase 4 | Pending |
-| DELV-04 | Phase 4 | Pending |
-| DELV-05 | Phase 4 | Pending |
-| DELV-06 | Phase 4 | Pending |
+| AI-01 | Phase 3 | Complete |
+| AI-02 | Phase 3 | Complete |
+| AI-03 | Phase 3 | Complete |
+| TASK-01 | Phase 4 | Complete |
+| TASK-02 | Phase 4 | Complete |
+| TASK-03 | Phase 4 | Complete |
+| TASK-04 | Phase 4 | Complete |
+| TASK-05 | Phase 4 | Complete |
+| TASK-06 | Phase 4 | Complete |
+| DELV-01 | Phase 4 | Complete |
+| DELV-02 | Phase 4 | Complete |
+| DELV-03 | Phase 4 | Complete |
+| DELV-04 | Phase 4 | Complete |
+| DELV-05 | Phase 4 | Complete |
+| DELV-06 | Phase 4 | Complete |
 | MSG-01 | Phase 5 | Pending |
 | MSG-02 | Phase 5 | Pending |
 | MSG-03 | Phase 5 | Pending |
