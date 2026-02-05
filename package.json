@@ -45,6 +45,7 @@
     "@langchain/textsplitters": "^1.0.1",
     "@node-rs/argon2": "^2.0.2",
     "bullmq": "^5.67.2",
+    "dayjs": "^1.11.19",
     "drizzle-orm": "^0.45.1",
     "hono": "^4.11.7",
     "ioredis": "^5.9.2",
