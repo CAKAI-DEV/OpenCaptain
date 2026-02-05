@@ -9,9 +9,16 @@ export { getAvailableProjects, getUserContext, switchProject } from './messaging
 // Intent detection
 export { detectIntent } from './messaging.intents';
 
+// Proactive messaging
+export {
+  generateDailyCheckin,
+  generateOverdueAlert,
+  generateWeeklyRecap,
+  getOverdueTasks,
+  getUpcomingTasks,
+} from './messaging.proactive';
 // Message processing
 export { processMessage } from './messaging.service';
-
 // Types
 export type {
   Entities,
@@ -20,3 +27,9 @@ export type {
   MessageContext,
   ProcessedMessage,
 } from './messaging.types';
+export {
+  proactiveMessagingQueue,
+  proactiveMessagingWorker,
+  queueOverdueAlert,
+  scheduleAllProactiveMessages,
+} from './messaging.worker';

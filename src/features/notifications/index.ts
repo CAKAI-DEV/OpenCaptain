@@ -1,3 +1,4 @@
+export { getActivityFeed, getUserActivityFeed } from './activity-feed.service';
 export { default as notificationsRoutes } from './notifications.routes';
 export {
   getUnreadCount,
