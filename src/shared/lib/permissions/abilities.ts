@@ -1,4 +1,4 @@
-import { AbilityBuilder, PureAbility, type SubjectRawRule } from '@casl/ability';
+import { PureAbility, type SubjectRawRule } from '@casl/ability';
 
 type Actions = 'create' | 'read' | 'update' | 'delete' | 'manage';
 type Subjects = 'Project' | 'Squad' | 'User' | 'WorkItem' | 'all';
