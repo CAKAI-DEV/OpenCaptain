@@ -1,5 +1,8 @@
 services:
   postgres:
+    # Uses pgvector/pgvector image which has the vector extension pre-installed
+    # The init-pgvector.sql script enables the extension in the database
+    # Required for embeddings table vector(1536) column and HNSW index
     image: pgvector/pgvector:pg16
     container_name: blockbot-postgres
     environment:
@@ -8,6 +11,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devpassword}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres:/docker-entrypoint-initdb.d:ro
     ports:
       - "5433:5432"
     healthcheck:
