@@ -32,12 +32,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User can configure LLM API tokens via environment variables
   3. System runs stable on minimum specs (8GB RAM, 4 CPU cores)
   4. API endpoints respond with proper authentication/rejection
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Database and cache setup (PostgreSQL, Redis, migrations)
-- [ ] 01-02: Authentication and API gateway
-- [ ] 01-03: Docker deployment and documentation
+- [ ] 01-01-PLAN.md - Database, cache, and project foundation (PostgreSQL, Redis, Drizzle ORM)
+- [ ] 01-02-PLAN.md - JWT authentication with password login and magic links
+- [ ] 01-03-PLAN.md - Rate limiting, health checks, Docker deployment, documentation
 
 ### Phase 2: Team & Access
 **Goal**: Admins can create organizations, invite users, assign roles, and configure visibility
@@ -167,7 +167,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Infrastructure | 0/3 | Not started | - |
+| 1. Core Infrastructure | 0/3 | Planned | - |
 | 2. Team & Access | 0/3 | Not started | - |
 | 3. LLM Infrastructure | 0/3 | Not started | - |
 | 4. Tasks & Deliverables | 0/3 | Not started | - |
