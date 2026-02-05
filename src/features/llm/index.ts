@@ -7,7 +7,7 @@
 // Client
 export { createLLMClient } from './llm.client';
 // Service
-export { chatCompletion, generateEmbedding } from './llm.service';
+export { chatCompletion, chatCompletionForOrg, generateEmbedding } from './llm.service';
 // Types
 export type {
   ChatCompletionOptions,

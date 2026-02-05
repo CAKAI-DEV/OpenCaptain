@@ -4,6 +4,9 @@
  * Uses LiteLLM proxy for model abstraction, allowing switching between
  * OpenAI, Anthropic, and other providers without code changes.
  */
+import { eq } from 'drizzle-orm';
+import { db } from '../../shared/db';
+import { organizations } from '../../shared/db/schema/organizations';
 import { createLLMClient } from './llm.client';
 import type {
   ChatCompletionOptions,
@@ -103,4 +106,74 @@ export async function generateEmbedding(text: string, model?: string): Promise<E
     model: response.model,
     dimensions: embedding.length,
   };
+}
+
+/**
+ * Performs a chat completion using an organization's model preference.
+ *
+ * Uses the organization's configured llmModel as primary, with automatic
+ * fallback to llmFallbackModel on non-retryable errors.
+ *
+ * @param organizationId - Organization ID to look up model preference
+ * @param messages - Conversation messages
+ * @param options - Optional configuration (overrides org model if provided)
+ * @returns Chat completion result with content, model used, and usage stats
+ *
+ * @example
+ * ```ts
+ * const result = await chatCompletionForOrg('org-123', [
+ *   { role: 'user', content: 'Hello' },
+ * ]);
+ * console.log(result.model); // "gpt-4o" or "claude-3-5-sonnet" (fallback)
+ * ```
+ */
+export async function chatCompletionForOrg(
+  organizationId: string,
+  messages: ChatMessage[],
+  options?: ChatCompletionOptions
+): Promise<ChatCompletionResult> {
+  // Fetch organization's model preferences
+  const org = await db
+    .select({
+      llmModel: organizations.llmModel,
+      llmFallbackModel: organizations.llmFallbackModel,
+    })
+    .from(organizations)
+    .where(eq(organizations.id, organizationId))
+    .limit(1)
+    .then((rows) => rows[0]);
+
+  if (!org) {
+    throw new Error(`Organization not found: ${organizationId}`);
+  }
+
+  // Use org's model preference, falling back to default if not set
+  const primaryModel = options?.model ?? org.llmModel ?? DEFAULT_CHAT_MODEL;
+  const fallbackModel = org.llmFallbackModel ?? 'claude-3-5-sonnet';
+
+  try {
+    // Try primary model first
+    return await chatCompletion(messages, { ...options, model: primaryModel });
+  } catch (error) {
+    // Check if this is a non-retryable error that warrants fallback
+    // Non-retryable: model not found, invalid request, auth errors
+    // Retryable: rate limits, timeouts, server errors - should NOT fallback
+    const isNonRetryable =
+      error instanceof Error &&
+      (error.message.includes('model') ||
+        error.message.includes('invalid') ||
+        error.message.includes('not found') ||
+        error.message.includes('400') ||
+        error.message.includes('401') ||
+        error.message.includes('403') ||
+        error.message.includes('404'));
+
+    if (isNonRetryable && primaryModel !== fallbackModel) {
+      // Try fallback model once
+      return await chatCompletion(messages, { ...options, model: fallbackModel });
+    }
+
+    // Re-throw for retryable errors or if fallback is same as primary
+    throw error;
+  }
 }
