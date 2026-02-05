@@ -50,6 +50,13 @@
       "when": 1770299990072,
       "tag": "0006_chilly_wendigo",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1770300333877,
+      "tag": "0007_sharp_chimera",
+      "breakpoints": true
     }
   ]
 }
