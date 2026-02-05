@@ -3,6 +3,7 @@ import { compress } from 'hono/compress';
 import { cors } from 'hono/cors';
 import { HTTPException } from 'hono/http-exception';
 import { authRoutes } from './features/auth';
+import { conversationRoutes } from './features/conversations';
 import { docsRoutes } from './features/docs';
 import { healthRoutes } from './features/health';
 import { invitationRoutes } from './features/invitations';
@@ -87,6 +88,7 @@ app.route('/api/v1/invitations', invitationRoutes);
 app.route('/api/v1/projects', projectRoutes);
 app.route('/api/v1/squads', teamsRoutes);
 app.route('/api/v1/visibility', visibilityRoutes);
+app.route('/api/v1/conversations', conversationRoutes);
 app.route('/api/v1', rolesRoutes);
 
 // API Documentation (Swagger UI)
