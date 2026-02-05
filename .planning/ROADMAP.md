@@ -49,12 +49,12 @@ Plans:
   3. Admin can create squads and assign squad leads who see their members
   4. Users can hold multiple roles across different projects
   5. All data queries respect visibility rules (squad-scoped by default, cross-squad by grant)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: Organization and user management
-- [ ] 02-02: Role blocks and hierarchies
-- [ ] 02-03: Squads and visibility blocks
+- [ ] 02-01-PLAN.md - Projects, invitations (email + shareable links), accept flow
+- [ ] 02-02-PLAN.md - Role hierarchy, squads, squad membership with 1-level nesting
+- [ ] 02-03-PLAN.md - Visibility grants, CASL abilities, middleware enforcement
 
 ### Phase 3: LLM Infrastructure
 **Goal**: Agent has persistent memory and can use swappable LLM models
@@ -168,7 +168,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Infrastructure | 0/3 | Planned | - |
-| 2. Team & Access | 0/3 | Not started | - |
+| 2. Team & Access | 0/3 | Planned | - |
 | 3. LLM Infrastructure | 0/3 | Not started | - |
 | 4. Tasks & Deliverables | 0/3 | Not started | - |
 | 5. Messaging Channels | 0/4 | Not started | - |
