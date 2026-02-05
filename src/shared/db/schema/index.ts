@@ -10,5 +10,6 @@ export * from './projects';
 export * from './refresh-tokens';
 export * from './squad-members';
 export * from './squads';
+export * from './tasks';
 export * from './users';
 export * from './visibility-grants';
