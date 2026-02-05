@@ -21,6 +21,13 @@ const envSchema = z.object({
   S3_SECRET_ACCESS_KEY: z.string().optional(),
   S3_BUCKET: z.string().optional(),
   S3_ENDPOINT: z.string().optional(),
+  // Telegram Bot (optional - messaging disabled if not configured)
+  TELEGRAM_BOT_TOKEN: z.string().optional(),
+  // WhatsApp Cloud API (optional - messaging disabled if not configured)
+  WHATSAPP_ACCESS_TOKEN: z.string().optional(),
+  WHATSAPP_PHONE_NUMBER_ID: z.string().optional(),
+  WHATSAPP_VERIFY_TOKEN: z.string().optional(),
+  WHATSAPP_APP_SECRET: z.string().optional(),
 });
 
 export const env = envSchema.parse(Bun.env);
