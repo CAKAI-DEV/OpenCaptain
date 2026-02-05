@@ -29,7 +29,7 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/drizzle.config.ts ./
-COPY --from=builder /app/src/db ./src/db
+COPY --from=builder /app/src/shared/db ./src/shared/db
 
 # Switch to non-root user
 USER blockbot
