@@ -1,4 +1,6 @@
+export * from './attachments';
 export * from './conversations';
+export * from './custom-fields';
 export * from './deliverable-types';
 export * from './deliverables';
 export * from './dependencies';
