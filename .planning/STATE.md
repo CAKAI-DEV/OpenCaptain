@@ -10,27 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 2 of 8 (Team & Access)
-Plan: 0 of 3 in current phase
-Status: Ready to execute
-Last activity: 2026-02-05 - Completed Phase 1
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-05 - Completed 02-01-PLAN.md
 
-Progress: [███░░░░░░░] 12%
+Progress: [████░░░░░░] 16%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 7 min
-- Total execution time: 0.35 hours
+- Total plans completed: 4
+- Average duration: 6 min
+- Total execution time: 0.42 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-core-infrastructure | 3 | 20 min | 7 min |
+| 02-team-access | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (5m), 01-02 (7m), 01-03 (8m)
+- Last 5 plans: 01-01 (5m), 01-02 (7m), 01-03 (8m), 02-01 (4m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -52,6 +53,9 @@ Recent decisions affecting current work:
 - Fail-open rate limiting for high availability
 - Multi-stage Docker build with non-root user for security
 - Traefik v3 for reverse proxy with auto SSL
+- Argon2 for invitation token hashing (same as auth tokens)
+- Auto-add existing users when invited (per RESEARCH recommendation)
+- Timing attack prevention via dummy hash comparison on failed lookups
 
 ### Pending Todos
 
@@ -59,10 +63,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 1 complete and verified.
+None - 02-01 complete and verified.
 
 ## Session Continuity
 
-Last session: 2026-02-05T08:30:00Z
-Stopped at: Completed Phase 1 (Core Infrastructure) - verified and approved
+Last session: 2026-02-05T10:59:00Z
+Stopped at: Completed 02-01-PLAN.md (Projects and Invitations)
 Resume file: None
