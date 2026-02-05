@@ -5,6 +5,7 @@ import { env } from './lib/env.ts';
 import { logger } from './lib/logger.ts';
 import { connectRedis } from './lib/redis.ts';
 import { ApiError, type ProblemDetails } from './middleware/error-handler.ts';
+import { apiRateLimiter, authRateLimiter } from './middleware/rate-limit.ts';
 import routes from './routes/index.ts';
 
 const app = new Hono();
@@ -47,10 +48,16 @@ app.onError((err, c) => {
   return c.json(problem, 500);
 });
 
-// Health check (unprotected)
+// Health check (unprotected, no rate limiting)
 app.get('/health', async (c) => {
   return c.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+// Auth routes with stricter rate limiting
+app.use('/api/v1/auth/*', authRateLimiter);
+
+// All API routes with standard rate limiting
+app.use('/api/v1/*', apiRateLimiter);
 
 // API routes
 app.route('/api/v1', routes);
