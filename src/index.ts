@@ -7,6 +7,8 @@ import { docsRoutes } from './features/docs';
 import { healthRoutes } from './features/health';
 import { invitationRoutes } from './features/invitations';
 import { projectRoutes } from './features/projects';
+import { rolesRoutes } from './features/roles';
+import { teamsRoutes } from './features/teams';
 import {
   type ApiError,
   apiRateLimiter,
@@ -80,6 +82,8 @@ app.route('/api/v1/auth', authRoutes);
 app.route('/api/v1/health', healthRoutes);
 app.route('/api/v1/invitations', invitationRoutes);
 app.route('/api/v1/projects', projectRoutes);
+app.route('/api/v1/squads', teamsRoutes);
+app.route('/api/v1', rolesRoutes);
 
 // API Documentation (Swagger UI)
 app.route('/docs', docsRoutes);
