@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 5 - Messaging Channels (IN PROGRESS)
+**Current focus:** Phase 5 - Messaging Channels (COMPLETE)
 
 ## Current Position
 
 Phase: 5 of 8 (Messaging Channels)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-02-05 - Completed 05-03-PLAN.md (WhatsApp Integration)
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-02-05 - Completed 05-04-PLAN.md (Comments API)
 
-Progress: [████████████████░░] 87%
+Progress: [█████████████████░░] 91%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
+- Total plans completed: 21
 - Average duration: 6 min
-- Total execution time: 1.9 hours
+- Total execution time: 2.0 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [████████████████░░] 87%
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
 | 04-tasks-deliverables | 4 | 26 min | 7 min |
-| 05-messaging-channels | 2 | 6 min | 3 min |
+| 05-messaging-channels | 4 | 9 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-03 (6m), 04-04 (6m), 05-01 (2m), 05-03 (4m)
+- Last 5 plans: 04-04 (6m), 05-01 (2m), 05-03 (4m), 05-04 (3m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -99,6 +99,8 @@ Recent decisions affecting current work:
 - WhatsApp SDK: @great-detail/whatsapp for Cloud API integration
 - WhatsApp webhook signature verification via HMAC SHA256 with x-hub-signature-256
 - Always return 200 OK to Meta webhooks (per Meta requirement)
+- @mentions resolved by email within organization scope
+- buildVisibilityContext pattern for routes needing visibleProjectIds
 
 ### Pending Todos
 
@@ -106,10 +108,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 05 in progress.
+None - Phase 05 complete, ready for Phase 06 (Dashboard).
 
 ## Session Continuity
 
-Last session: 2026-02-05T19:34:00Z
-Stopped at: Completed 05-03-PLAN.md (WhatsApp Integration)
+Last session: 2026-02-05T19:34:11Z
+Stopped at: Completed 05-04-PLAN.md (Comments API)
 Resume file: None
