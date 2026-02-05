@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 5 of 8 (Messaging Channels)
-Plan: 5 of 7 in current phase
+Plan: 6 of 7 in current phase
 Status: In progress
-Last activity: 2026-02-05 - Completed 05-05-PLAN.md (Notifications System)
+Last activity: 2026-02-05 - Completed 05-06-PLAN.md (Natural Language Understanding)
 
 Progress: [██████████████████░] 96%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 22
+- Total plans completed: 23
 - Average duration: 6 min
-- Total execution time: 2.1 hours
+- Total execution time: 2.2 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [██████████████████░] 96%
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
 | 04-tasks-deliverables | 4 | 26 min | 7 min |
-| 05-messaging-channels | 5 | 13 min | 3 min |
+| 05-messaging-channels | 6 | 18 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (2m), 05-03 (4m), 05-04 (3m), 05-05 (4m)
+- Last 5 plans: 05-03 (4m), 05-04 (3m), 05-05 (4m), 05-06 (5m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -104,6 +104,9 @@ Recent decisions affecting current work:
 - Telegram bot uses getQueueConnection() for Redis sessions (same ioredis as BullMQ)
 - Deep link format connect_{userId} for Telegram account linking
 - queueNotification function abstracts BullMQ queue.add for clean separation
+- Intent detection via LLM function calling (gpt-4o-mini for speed/cost)
+- User context persistence via userMessaging.lastProjectId
+- Complex queries (create_task, etc.) route to conversation service
 
 ### Pending Todos
 
@@ -111,10 +114,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - continuing Phase 05 (05-06, 05-07 remain).
+None - continuing Phase 05 (05-07 remains).
 
 ## Session Continuity
 
-Last session: 2026-02-05T19:41:00Z
-Stopped at: Completed 05-05-PLAN.md (Notifications System)
+Last session: 2026-02-05T19:41:23Z
+Stopped at: Completed 05-06-PLAN.md (Natural Language Understanding)
 Resume file: None
