@@ -84,12 +84,13 @@ Plans:
   3. Admin can create deliverable blocks with custom fields (text, select, date, number, file, URL)
   4. Admin can define custom status flows per deliverable type
   5. User can view their deliverable output metrics (count per person, per squad, per time period)
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 04-01: Task data model and CRUD operations
-- [ ] 04-02: Deliverable blocks and custom fields
-- [ ] 04-03: Status flows and metrics tracking
+- [ ] 04-01-PLAN.md - Tasks schema with 2-level nesting, priority, and CRUD endpoints
+- [ ] 04-02-PLAN.md - Deliverable types with status flows, preset templates, and deliverables CRUD
+- [ ] 04-03-PLAN.md - Cross-type dependencies with cycle detection, custom field definitions
+- [ ] 04-04-PLAN.md - S3 file uploads with presigned URLs, output metrics and burndown
 
 ### Phase 5: Messaging Channels
 **Goal**: Users can interact with agent via WhatsApp and Telegram
@@ -173,7 +174,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 1. Core Infrastructure | 3/3 | Complete | 2026-02-05 |
 | 2. Team & Access | 4/4 | Complete | 2026-02-05 |
 | 3. LLM Infrastructure | 3/5 | In Progress (gap closure) | - |
-| 4. Tasks & Deliverables | 0/3 | Not started | - |
+| 4. Tasks & Deliverables | 0/4 | Not started | - |
 | 5. Messaging Channels | 0/4 | Not started | - |
 | 6. Check-ins & Escalations | 0/3 | Not started | - |
 | 7. Web UI & Analytics | 0/3 | Not started | - |
