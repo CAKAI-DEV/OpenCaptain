@@ -39,10 +39,12 @@ export async function errorHandler(c: Context, next: Next) {
   } catch (err) {
     const instance = c.req.path;
 
-    if (err instanceof ApiError) {
+    // Check for ApiError by name property (more reliable across module boundaries)
+    if (err instanceof Error && err.name === 'ApiError') {
+      const apiErr = err as ApiError;
       logger.warn({ err, path: instance }, 'API error');
       c.header('Content-Type', 'application/problem+json');
-      return c.json(err.toProblemDetails(instance), err.status);
+      return c.json(apiErr.toProblemDetails(instance), apiErr.status);
     }
 
     if (err instanceof HTTPException) {
