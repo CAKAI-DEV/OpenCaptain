@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 5 - Messaging Channels (IN PROGRESS)
+**Current focus:** Phase 5 - Messaging Channels (COMPLETE)
 
 ## Current Position
 
 Phase: 5 of 8 (Messaging Channels)
-Plan: 6 of 7 in current phase
-Status: In progress
-Last activity: 2026-02-05 - Completed 05-06-PLAN.md (Natural Language Understanding)
+Plan: 7 of 7 in current phase
+Status: Phase complete
+Last activity: 2026-02-05 - Completed 05-07-PLAN.md (Proactive Messaging and Activity Feed)
 
-Progress: [██████████████████░] 96%
+Progress: [███████████████████] 100% of Phase 5
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 23
+- Total plans completed: 24
 - Average duration: 6 min
-- Total execution time: 2.2 hours
+- Total execution time: 2.3 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [██████████████████░] 96%
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
 | 04-tasks-deliverables | 4 | 26 min | 7 min |
-| 05-messaging-channels | 6 | 18 min | 3 min |
+| 05-messaging-channels | 7 | 22 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-03 (4m), 05-04 (3m), 05-05 (4m), 05-06 (5m)
+- Last 5 plans: 05-04 (3m), 05-05 (4m), 05-06 (5m), 05-07 (4m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -107,6 +107,9 @@ Recent decisions affecting current work:
 - Intent detection via LLM function calling (gpt-4o-mini for speed/cost)
 - User context persistence via userMessaging.lastProjectId
 - Complex queries (create_task, etc.) route to conversation service
+- Proactive messages respect user preferences (dailyCheckinEnabled, weeklyRecapEnabled)
+- Messages delivered via both Telegram and WhatsApp if both verified
+- BullMQ repeatable jobs for scheduled proactive messaging (9 AM daily, 9 AM Monday)
 
 ### Pending Todos
 
@@ -114,10 +117,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - continuing Phase 05 (05-07 remains).
+None - Phase 5 complete. Ready for Phase 6.
 
 ## Session Continuity
 
-Last session: 2026-02-05T19:41:23Z
-Stopped at: Completed 05-06-PLAN.md (Natural Language Understanding)
+Last session: 2026-02-05T19:47:30Z
+Stopped at: Completed 05-07-PLAN.md (Proactive Messaging and Activity Feed)
 Resume file: None
