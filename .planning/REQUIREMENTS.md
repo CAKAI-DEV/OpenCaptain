@@ -109,11 +109,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Deployment & Self-Hosting
 
-- [ ] **DEPLOY-01**: System can be deployed via Docker/Docker Compose
-- [ ] **DEPLOY-02**: Users provide their own LLM API tokens (BYOT)
-- [ ] **DEPLOY-03**: System is configured via environment variables
-- [ ] **DEPLOY-04**: Documentation covers VPS deployment with root access
-- [ ] **DEPLOY-05**: System runs on minimum 8GB RAM, 4 CPU cores
+- [x] **DEPLOY-01**: System can be deployed via Docker/Docker Compose
+- [x] **DEPLOY-02**: Users provide their own LLM API tokens (BYOT)
+- [x] **DEPLOY-03**: System is configured via environment variables
+- [x] **DEPLOY-04**: Documentation covers VPS deployment with root access
+- [x] **DEPLOY-05**: System runs on minimum 8GB RAM, 4 CPU cores
 
 ## v2 Requirements
 
@@ -158,11 +158,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DEPLOY-01 | Phase 1 | Pending |
-| DEPLOY-02 | Phase 1 | Pending |
-| DEPLOY-03 | Phase 1 | Pending |
-| DEPLOY-04 | Phase 1 | Pending |
-| DEPLOY-05 | Phase 1 | Pending |
+| DEPLOY-01 | Phase 1 | Complete |
+| DEPLOY-02 | Phase 1 | Complete |
+| DEPLOY-03 | Phase 1 | Complete |
+| DEPLOY-04 | Phase 1 | Complete |
+| DEPLOY-05 | Phase 1 | Complete |
 | TEAM-01 | Phase 2 | Pending |
 | TEAM-02 | Phase 2 | Pending |
 | TEAM-03 | Phase 2 | Pending |
@@ -241,4 +241,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-05 after roadmap creation*
+*Last updated: 2026-02-05 after Phase 1 completion*

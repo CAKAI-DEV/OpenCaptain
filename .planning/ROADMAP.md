@@ -12,7 +12,7 @@ BlockBot is a self-hosted project management agent built on a building blocks ar
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Core Infrastructure** - Database, auth, API gateway, deployment foundation
+- [x] **Phase 1: Core Infrastructure** - Database, auth, API gateway, deployment foundation ✓
 - [ ] **Phase 2: Team & Access** - Users, organizations, roles, squads, visibility rules
 - [ ] **Phase 3: LLM Infrastructure** - Model abstraction, memory persistence, RAG pipeline
 - [ ] **Phase 4: Tasks & Deliverables** - Core PM data structures and CRUD operations
@@ -35,9 +35,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md - Database, cache, and project foundation (PostgreSQL, Redis, Drizzle ORM)
-- [ ] 01-02-PLAN.md - JWT authentication with password login and magic links
-- [ ] 01-03-PLAN.md - Rate limiting, health checks, Docker deployment, documentation
+- [x] 01-01-PLAN.md - Database, cache, and project foundation (PostgreSQL, Redis, Drizzle ORM)
+- [x] 01-02-PLAN.md - JWT authentication with password login and magic links
+- [x] 01-03-PLAN.md - Rate limiting, health checks, Docker deployment, documentation
 
 ### Phase 2: Team & Access
 **Goal**: Admins can create organizations, invite users, assign roles, and configure visibility
@@ -167,7 +167,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Infrastructure | 0/3 | Planned | - |
+| 1. Core Infrastructure | 3/3 | Complete | 2026-02-05 |
 | 2. Team & Access | 0/3 | Planned | - |
 | 3. LLM Infrastructure | 0/3 | Not started | - |
 | 4. Tasks & Deliverables | 0/3 | Not started | - |
