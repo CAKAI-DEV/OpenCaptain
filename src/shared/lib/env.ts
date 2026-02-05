@@ -12,7 +12,7 @@ const envSchema = z.object({
   APP_URL: z.string().url().default('http://localhost:3000'),
   // LiteLLM configuration
   LITELLM_URL: z.string().url().default('http://localhost:4010'),
-  LITELLM_API_KEY: z.string().min(1, 'LITELLM_API_KEY is required'),
+  LITELLM_API_KEY: z.string().default('sk-test-key-for-development'),
   // Provider API keys (optional - users may only configure one provider)
   OPENAI_API_KEY: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
