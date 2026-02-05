@@ -1,2 +1,2 @@
 [run]
-preload = ["./src/lib/env.ts"]
+preload = ["./src/shared/lib/env.ts"]
