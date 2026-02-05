@@ -13,7 +13,7 @@ BlockBot is a self-hosted project management agent built on a building blocks ar
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Core Infrastructure** - Database, auth, API gateway, deployment foundation ✓
-- [ ] **Phase 2: Team & Access** - Users, organizations, roles, squads, visibility rules (gap closure)
+- [x] **Phase 2: Team & Access** - Users, organizations, roles, squads, visibility rules ✓
 - [ ] **Phase 3: LLM Infrastructure** - Model abstraction, memory persistence, RAG pipeline
 - [ ] **Phase 4: Tasks & Deliverables** - Core PM data structures and CRUD operations
 - [ ] **Phase 5: Messaging Channels** - WhatsApp and Telegram bot interfaces
@@ -55,7 +55,7 @@ Plans:
 - [x] 02-01-PLAN.md - Projects, invitations (email + shareable links), accept flow
 - [x] 02-02-PLAN.md - Role hierarchy, squads, squad membership with 1-level nesting
 - [x] 02-03-PLAN.md - Visibility grants, CASL abilities, middleware enforcement
-- [ ] 02-04-PLAN.md - Gap closure: Apply visibility middleware to data routes (VISB-05)
+- [x] 02-04-PLAN.md - Gap closure: Apply visibility middleware to data routes (VISB-05)
 
 ### Phase 3: LLM Infrastructure
 **Goal**: Agent has persistent memory and can use swappable LLM models
@@ -169,7 +169,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Infrastructure | 3/3 | Complete | 2026-02-05 |
-| 2. Team & Access | 3/4 | Gap closure | 2026-02-05 |
+| 2. Team & Access | 4/4 | Complete | 2026-02-05 |
 | 3. LLM Infrastructure | 0/3 | Not started | - |
 | 4. Tasks & Deliverables | 0/3 | Not started | - |
 | 5. Messaging Channels | 0/4 | Not started | - |

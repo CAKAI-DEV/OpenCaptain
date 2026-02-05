@@ -20,13 +20,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Team & Roles
 
-- [ ] **TEAM-01**: Admin can invite users to organization via email
-- [ ] **TEAM-02**: Admin can assign users to projects with specific roles
-- [ ] **TEAM-03**: Admin can create custom role blocks with configurable capabilities
-- [ ] **TEAM-04**: Roles support hierarchical reporting structure (Creator → Squad Lead → Op Lead → PM)
-- [ ] **TEAM-05**: Users can hold multiple roles across different projects
-- [ ] **TEAM-06**: Admin can create squads and assign squad leads
-- [ ] **TEAM-07**: Squad leads can view and manage their squad members
+- [x] **TEAM-01**: Admin can invite users to organization via email
+- [x] **TEAM-02**: Admin can assign users to projects with specific roles
+- [x] **TEAM-03**: Admin can create custom role blocks with configurable capabilities
+- [x] **TEAM-04**: Roles support hierarchical reporting structure (Creator → Squad Lead → Op Lead → PM)
+- [x] **TEAM-05**: Users can hold multiple roles across different projects
+- [x] **TEAM-06**: Admin can create squads and assign squad leads
+- [x] **TEAM-07**: Squad leads can view and manage their squad members
 
 ### Deliverables
 
@@ -62,11 +62,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Visibility & Access
 
-- [ ] **VISB-01**: Admin can create visibility blocks defining access rules
-- [ ] **VISB-02**: Default visibility is squad-scoped (members see own work, leads see squad)
-- [ ] **VISB-03**: Admin can grant cross-squad access to specific leads
-- [ ] **VISB-04**: PM and admin have project-wide visibility
-- [ ] **VISB-05**: All queries and views respect visibility rules
+- [x] **VISB-01**: Admin can create visibility blocks defining access rules
+- [x] **VISB-02**: Default visibility is squad-scoped (members see own work, leads see squad)
+- [x] **VISB-03**: Admin can grant cross-squad access to specific leads
+- [x] **VISB-04**: PM and admin have project-wide visibility
+- [x] **VISB-05**: All queries and views respect visibility rules
 
 ### Messaging Channels
 
@@ -163,18 +163,18 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DEPLOY-03 | Phase 1 | Complete |
 | DEPLOY-04 | Phase 1 | Complete |
 | DEPLOY-05 | Phase 1 | Complete |
-| TEAM-01 | Phase 2 | Pending |
-| TEAM-02 | Phase 2 | Pending |
-| TEAM-03 | Phase 2 | Pending |
-| TEAM-04 | Phase 2 | Pending |
-| TEAM-05 | Phase 2 | Pending |
-| TEAM-06 | Phase 2 | Pending |
-| TEAM-07 | Phase 2 | Pending |
-| VISB-01 | Phase 2 | Pending |
-| VISB-02 | Phase 2 | Pending |
-| VISB-03 | Phase 2 | Pending |
-| VISB-04 | Phase 2 | Pending |
-| VISB-05 | Phase 2 | Pending |
+| TEAM-01 | Phase 2 | Complete |
+| TEAM-02 | Phase 2 | Complete |
+| TEAM-03 | Phase 2 | Complete |
+| TEAM-04 | Phase 2 | Complete |
+| TEAM-05 | Phase 2 | Complete |
+| TEAM-06 | Phase 2 | Complete |
+| TEAM-07 | Phase 2 | Complete |
+| VISB-01 | Phase 2 | Complete |
+| VISB-02 | Phase 2 | Complete |
+| VISB-03 | Phase 2 | Complete |
+| VISB-04 | Phase 2 | Complete |
+| VISB-05 | Phase 2 | Complete |
 | AI-01 | Phase 3 | Pending |
 | AI-02 | Phase 3 | Pending |
 | AI-03 | Phase 3 | Pending |
