@@ -101,6 +101,8 @@ Recent decisions affecting current work:
 - Always return 200 OK to Meta webhooks (per Meta requirement)
 - @mentions resolved by email within organization scope
 - buildVisibilityContext pattern for routes needing visibleProjectIds
+- Telegram bot uses getQueueConnection() for Redis sessions (same ioredis as BullMQ)
+- Deep link format connect_{userId} for Telegram account linking
 
 ### Pending Todos
 
@@ -112,6 +114,6 @@ None - Phase 05 complete, ready for Phase 06 (Dashboard).
 
 ## Session Continuity
 
-Last session: 2026-02-05T19:34:11Z
-Stopped at: Completed 05-04-PLAN.md (Comments API)
+Last session: 2026-02-05T19:34:53Z
+Stopped at: Completed 05-02-PLAN.md (Telegram Bot Integration) [parallel with 05-03, 05-04]
 Resume file: None
