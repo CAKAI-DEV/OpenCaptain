@@ -12,16 +12,16 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 Phase: 3 of 8 (LLM Infrastructure)
 Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-05 - Completed 03-02-PLAN.md (pgvector RAG Pipeline)
+Last activity: 2026-02-05 - Completed 03-01-PLAN.md (LiteLLM + LLM Client)
 
 Progress: [███████░░░] 32%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 5 min
-- Total execution time: 0.73 hours
+- Total execution time: 0.87 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [███████░░░] 32%
 |-------|-------|-------|----------|
 | 01-core-infrastructure | 3 | 20 min | 7 min |
 | 02-team-access | 4 | 18 min | 5 min |
-| 03-llm-infrastructure | 1 | 6 min | 6 min |
+| 03-llm-infrastructure | 2 | 14 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (7m), 02-03 (4m), 02-04 (3m), 03-02 (6m)
+- Last 5 plans: 02-03 (4m), 02-04 (3m), 03-02 (6m), 03-01 (8m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -70,6 +70,9 @@ Recent decisions affecting current work:
 - 400 character chunks with 50 char overlap for RAG documents
 - Empty visibleProjectIds returns no results (security-first RAG)
 - 0.7 similarity threshold for cosine distance filtering
+- Port 4010 for LiteLLM (4000/4001 already in use by other Docker services)
+- Non-retryable errors (400/401/403/404) trigger fallback, retryable errors re-throw
+- LLM client created per-request (not singleton) for flexibility
 
 ### Pending Todos
 
@@ -77,10 +80,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Plan 03-02 complete.
+None - Plan 03-01 complete.
 
 ## Session Continuity
 
-Last session: 2026-02-05T14:00:59Z
-Stopped at: Completed 03-02-PLAN.md (pgvector RAG Pipeline)
+Last session: 2026-02-05T14:01:29Z
+Stopped at: Completed 03-01-PLAN.md (LiteLLM + LLM Client)
 Resume file: None
