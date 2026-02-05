@@ -102,13 +102,16 @@ Plans:
   3. Agent understands natural language queries ("what's due this week?", "squad status")
   4. User can switch project contexts and agent remembers last used project per user
   5. User can @mention others, comment on tasks, and receive notifications for relevant activity
-**Plans**: TBD
+**Plans**: 7 plans
 
 Plans:
-- [ ] 05-01: Telegram bot with grammY
-- [ ] 05-02: WhatsApp Business API integration
-- [ ] 05-03: Natural language understanding and context management
-- [ ] 05-04: Comments, mentions, and notifications
+- [ ] 05-01-PLAN.md - Database schemas (user_messaging, comments, notifications)
+- [ ] 05-02-PLAN.md - Telegram bot with grammY and Redis sessions
+- [ ] 05-03-PLAN.md - WhatsApp Cloud API integration
+- [ ] 05-04-PLAN.md - Comments with @mention parsing
+- [ ] 05-05-PLAN.md - Notifications system with messaging delivery
+- [ ] 05-06-PLAN.md - Intent detection and context management
+- [ ] 05-07-PLAN.md - Proactive messaging and activity feed
 
 ### Phase 6: Check-ins & Escalations
 **Goal**: Agent proactively reaches out for check-ins and handles escalations
@@ -175,7 +178,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 2. Team & Access | 4/4 | Complete | 2026-02-05 |
 | 3. LLM Infrastructure | 5/5 | Complete | 2026-02-05 |
 | 4. Tasks & Deliverables | 4/4 | Complete | 2026-02-06 |
-| 5. Messaging Channels | 0/4 | Not started | - |
+| 5. Messaging Channels | 0/7 | Planned | - |
 | 6. Check-ins & Escalations | 0/3 | Not started | - |
 | 7. Web UI & Analytics | 0/3 | Not started | - |
 | 8. Workflow Builder & Integrations | 0/5 | Not started | - |
