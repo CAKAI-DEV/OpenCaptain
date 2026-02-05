@@ -1,3 +1,4 @@
+export * from './embeddings';
 export * from './invitations';
 export * from './invite-links';
 export * from './magic-links';
