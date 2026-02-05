@@ -41,7 +41,7 @@ export async function sendWhatsAppMessage(to: string, text: string): Promise<boo
       phoneNumberID: env.WHATSAPP_PHONE_NUMBER_ID!,
       to,
       type: MessageType.Text,
-      text: { body: text },
+      [MessageType.Text]: { body: text },
     });
     return true;
   } catch (err) {
