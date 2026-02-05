@@ -6,6 +6,7 @@ import { authRoutes } from './features/auth';
 import { docsRoutes } from './features/docs';
 import { healthRoutes } from './features/health';
 import { invitationRoutes } from './features/invitations';
+import { startMemoryConsolidationWorker } from './features/memory';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { teamsRoutes } from './features/teams';
@@ -23,6 +24,7 @@ import {
   requestLoggerMiddleware,
   securityHeadersMiddleware,
 } from './shared';
+import { closeAllWorkers, closeQueueConnections } from './shared/lib/queue';
 
 const app = new Hono();
 
@@ -100,6 +102,12 @@ async function shutdown(signal: string) {
   logger.info({ signal }, 'Received shutdown signal, closing connections...');
 
   try {
+    // Close BullMQ workers and connections
+    await closeAllWorkers();
+    logger.info('BullMQ workers closed');
+    await closeQueueConnections();
+    logger.info('BullMQ queue connections closed');
+
     // Close Redis connection
     await disconnectRedis();
     logger.info('Redis connection closed');
@@ -124,6 +132,9 @@ async function main() {
     port: env.PORT,
     fetch: app.fetch,
   });
+
+  // Start background workers
+  startMemoryConsolidationWorker();
 
   logger.info({ port: env.PORT }, 'BlockBot API started');
 
