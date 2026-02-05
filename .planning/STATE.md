@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 5 - Messaging Channels (COMPLETE)
+**Current focus:** Phase 5 - Messaging Channels (IN PROGRESS)
 
 ## Current Position
 
 Phase: 5 of 8 (Messaging Channels)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-02-05 - Completed 05-04-PLAN.md (Comments API)
+Plan: 5 of 7 in current phase
+Status: In progress
+Last activity: 2026-02-05 - Completed 05-05-PLAN.md (Notifications System)
 
-Progress: [█████████████████░░] 91%
+Progress: [██████████████████░] 96%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21
+- Total plans completed: 22
 - Average duration: 6 min
-- Total execution time: 2.0 hours
+- Total execution time: 2.1 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [█████████████████░░] 91%
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
 | 04-tasks-deliverables | 4 | 26 min | 7 min |
-| 05-messaging-channels | 4 | 9 min | 2 min |
+| 05-messaging-channels | 5 | 13 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-04 (6m), 05-01 (2m), 05-03 (4m), 05-04 (3m)
+- Last 5 plans: 05-01 (2m), 05-03 (4m), 05-04 (3m), 05-05 (4m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -103,6 +103,7 @@ Recent decisions affecting current work:
 - buildVisibilityContext pattern for routes needing visibleProjectIds
 - Telegram bot uses getQueueConnection() for Redis sessions (same ioredis as BullMQ)
 - Deep link format connect_{userId} for Telegram account linking
+- queueNotification function abstracts BullMQ queue.add for clean separation
 
 ### Pending Todos
 
@@ -110,10 +111,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 05 complete, ready for Phase 06 (Dashboard).
+None - continuing Phase 05 (05-06, 05-07 remain).
 
 ## Session Continuity
 
-Last session: 2026-02-05T19:34:53Z
-Stopped at: Completed 05-02-PLAN.md (Telegram Bot Integration) [parallel with 05-03, 05-04]
+Last session: 2026-02-05T19:41:00Z
+Stopped at: Completed 05-05-PLAN.md (Notifications System)
 Resume file: None
