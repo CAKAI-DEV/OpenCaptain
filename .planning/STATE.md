@@ -5,33 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 2 - Team & Access
+**Current focus:** Phase 2 - Team & Access (Complete)
 
 ## Current Position
 
 Phase: 2 of 8 (Team & Access)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-05 - Completed 02-02-PLAN.md
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-02-05 - Completed 02-03-PLAN.md
 
-Progress: [█████░░░░░] 20%
+Progress: [██████░░░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 6 min
-- Total execution time: 0.53 hours
+- Total plans completed: 6
+- Average duration: 5 min
+- Total execution time: 0.58 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-core-infrastructure | 3 | 20 min | 7 min |
-| 02-team-access | 2 | 11 min | 6 min |
+| 02-team-access | 3 | 15 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (7m), 01-03 (8m), 02-01 (4m), 02-02 (7m)
+- Last 5 plans: 01-03 (8m), 02-01 (4m), 02-02 (7m), 02-03 (4m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -60,6 +60,9 @@ Recent decisions affecting current work:
 - Squad nesting limit enforced at service layer, not database constraint
 - Role assignment uses upsert pattern (update if exists, insert if not)
 - Default reportsTo computed by finding closest higher-tier member
+- Default visibility is project-wide (unrestricted users see all)
+- CASL PureAbility with raw rules for flexible authorization conditions
+- Empty visibleSquadIds array means "all visible" for admin/PM/unrestricted
 
 ### Pending Todos
 
@@ -67,10 +70,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - 02-02 complete and verified.
+None - Phase 02 complete and verified.
 
 ## Session Continuity
 
-Last session: 2026-02-05T11:02:00Z
-Stopped at: Completed 02-02-PLAN.md (Role Hierarchy and Squad Management)
+Last session: 2026-02-05T11:10:47Z
+Stopped at: Completed 02-03-PLAN.md (Visibility Rules)
 Resume file: None
