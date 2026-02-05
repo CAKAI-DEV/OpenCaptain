@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 4 of 8 (Tasks & Deliverables)
-Plan: 1 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-06 - Completed 04-01-PLAN.md (Tasks Schema & CRUD)
+Last activity: 2026-02-06 - Completed 04-02-PLAN.md (Deliverable Types & Deliverables)
 
-Progress: [████████░░] 43%
+Progress: [████████░░] 46%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 15
+- Total plans completed: 16
 - Average duration: 6 min
-- Total execution time: 1.4 hours
+- Total execution time: 1.5 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [████████░░] 43%
 | 01-core-infrastructure | 3 | 20 min | 7 min |
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
-| 04-tasks-deliverables | 1 | 6 min | 6 min |
+| 04-tasks-deliverables | 2 | 14 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (6m), 03-03 (8m), 03-04 (8m), 03-05 (3m), 04-01 (6m)
+- Last 5 plans: 03-03 (8m), 03-04 (8m), 03-05 (3m), 04-01 (6m), 04-02 (8m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -82,6 +82,9 @@ Recent decisions affecting current work:
 - MAX_DEPTH=2 for task nesting (0=task, 1=subtask, 2=sub-subtask)
 - Status transitions: todo<->in_progress<->done (bidirectional within flow)
 - Auto-set completedAt timestamp on status change to/from done
+- JSONB for deliverable type config (statuses, transitions, fields)
+- Status validation at service layer (not database) for flexibility
+- completedAt auto-managed based on isFinal status flag
 
 ### Pending Todos
 
@@ -89,10 +92,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Plan 04-01 complete. Ready for Plan 04-02 (Deliverable Types).
+None - Plan 04-02 complete. Ready for Plan 04-03 (Dependencies).
 
 ## Session Continuity
 
-Last session: 2026-02-06T00:31:00Z
-Stopped at: Completed 04-01-PLAN.md (Tasks Schema & CRUD)
+Last session: 2026-02-06T10:08:00Z
+Stopped at: Completed 04-02-PLAN.md (Deliverable Types & Deliverables)
 Resume file: None
