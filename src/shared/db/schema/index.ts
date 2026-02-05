@@ -8,3 +8,4 @@ export * from './refresh-tokens';
 export * from './squad-members';
 export * from './squads';
 export * from './users';
+export * from './visibility-grants';

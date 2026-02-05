@@ -1,3 +1,4 @@
+export { type AppAbility, defineAbilitiesFor, type UserContext } from './abilities';
 export {
   CAPABILITIES,
   type Capability,
