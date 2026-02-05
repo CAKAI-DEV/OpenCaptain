@@ -158,13 +158,87 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be filled during roadmap creation) | | |
+| DEPLOY-01 | Phase 1 | Pending |
+| DEPLOY-02 | Phase 1 | Pending |
+| DEPLOY-03 | Phase 1 | Pending |
+| DEPLOY-04 | Phase 1 | Pending |
+| DEPLOY-05 | Phase 1 | Pending |
+| TEAM-01 | Phase 2 | Pending |
+| TEAM-02 | Phase 2 | Pending |
+| TEAM-03 | Phase 2 | Pending |
+| TEAM-04 | Phase 2 | Pending |
+| TEAM-05 | Phase 2 | Pending |
+| TEAM-06 | Phase 2 | Pending |
+| TEAM-07 | Phase 2 | Pending |
+| VISB-01 | Phase 2 | Pending |
+| VISB-02 | Phase 2 | Pending |
+| VISB-03 | Phase 2 | Pending |
+| VISB-04 | Phase 2 | Pending |
+| VISB-05 | Phase 2 | Pending |
+| AI-01 | Phase 3 | Pending |
+| AI-02 | Phase 3 | Pending |
+| AI-03 | Phase 3 | Pending |
+| TASK-01 | Phase 4 | Pending |
+| TASK-02 | Phase 4 | Pending |
+| TASK-03 | Phase 4 | Pending |
+| TASK-04 | Phase 4 | Pending |
+| TASK-05 | Phase 4 | Pending |
+| TASK-06 | Phase 4 | Pending |
+| DELV-01 | Phase 4 | Pending |
+| DELV-02 | Phase 4 | Pending |
+| DELV-03 | Phase 4 | Pending |
+| DELV-04 | Phase 4 | Pending |
+| DELV-05 | Phase 4 | Pending |
+| DELV-06 | Phase 4 | Pending |
+| MSG-01 | Phase 5 | Pending |
+| MSG-02 | Phase 5 | Pending |
+| MSG-03 | Phase 5 | Pending |
+| MSG-04 | Phase 5 | Pending |
+| MSG-05 | Phase 5 | Pending |
+| MSG-06 | Phase 5 | Pending |
+| MSG-07 | Phase 5 | Pending |
+| COMM-01 | Phase 5 | Pending |
+| COMM-02 | Phase 5 | Pending |
+| COMM-03 | Phase 5 | Pending |
+| COMM-04 | Phase 5 | Pending |
+| CHCK-01 | Phase 6 | Pending |
+| CHCK-02 | Phase 6 | Pending |
+| CHCK-03 | Phase 6 | Pending |
+| CHCK-04 | Phase 6 | Pending |
+| CHCK-05 | Phase 6 | Pending |
+| CHCK-06 | Phase 6 | Pending |
+| ESCL-01 | Phase 6 | Pending |
+| ESCL-02 | Phase 6 | Pending |
+| ESCL-03 | Phase 6 | Pending |
+| ESCL-04 | Phase 6 | Pending |
+| ESCL-05 | Phase 6 | Pending |
+| ESCL-06 | Phase 6 | Pending |
+| ESCL-07 | Phase 6 | Pending |
+| WEB-01 | Phase 7 | Pending |
+| WEB-02 | Phase 7 | Pending |
+| WEB-05 | Phase 7 | Pending |
+| WEB-06 | Phase 7 | Pending |
+| WEB-07 | Phase 7 | Pending |
+| WEB-08 | Phase 7 | Pending |
+| WEB-09 | Phase 7 | Pending |
+| WEB-03 | Phase 8 | Pending |
+| WEB-04 | Phase 8 | Pending |
+| INTG-01 | Phase 8 | Pending |
+| INTG-02 | Phase 8 | Pending |
+| INTG-03 | Phase 8 | Pending |
+| INTG-04 | Phase 8 | Pending |
+| AI-04 | Phase 8 | Pending |
+| AI-05 | Phase 8 | Pending |
+| AI-06 | Phase 8 | Pending |
+| AI-07 | Phase 8 | Pending |
+| TASK-07 | Phase 8 | Pending |
+| TASK-08 | Phase 8 | Pending |
 
 **Coverage:**
-- v1 requirements: 56 total
-- Mapped to phases: 0
-- Unmapped: 56 ⚠️
+- v1 requirements: 75 total
+- Mapped to phases: 75
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-05 after initial definition*
+*Last updated: 2026-02-05 after roadmap creation*
