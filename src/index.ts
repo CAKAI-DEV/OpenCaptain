@@ -16,8 +16,10 @@ import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { tasksRoutes } from './features/tasks';
 import { teamsRoutes } from './features/teams';
+import { getTelegramBot, isTelegramConfigured, telegramWebhook } from './features/telegram';
 import { uploadsRoutes } from './features/uploads';
 import { visibilityRoutes } from './features/visibility';
+import { whatsappWebhook } from './features/whatsapp';
 import {
   type ApiError,
   apiRateLimiter,
@@ -106,6 +108,10 @@ app.route('/api/v1', rolesRoutes);
 // API Documentation (Swagger UI)
 app.route('/docs', docsRoutes);
 
+// Messaging webhooks (external services)
+app.route('', telegramWebhook);
+app.route('', whatsappWebhook);
+
 // Graceful shutdown handler
 let isShuttingDown = false;
 
@@ -149,6 +155,22 @@ async function main() {
 
   // Start background workers
   startMemoryConsolidationWorker();
+
+  // Set Telegram webhook URL on startup (only in production with configured bot)
+  if (env.NODE_ENV === 'production' && isTelegramConfigured()) {
+    const bot = getTelegramBot();
+    if (bot) {
+      const webhookUrl = `${env.APP_URL}/webhook/telegram`;
+      bot.api
+        .setWebhook(webhookUrl)
+        .then(() => {
+          logger.info({ webhookUrl }, 'Telegram webhook set');
+        })
+        .catch((err) => {
+          logger.error({ err }, 'Failed to set Telegram webhook');
+        });
+    }
+  }
 
   logger.info({ port: env.PORT }, 'BlockBot API started');
 
