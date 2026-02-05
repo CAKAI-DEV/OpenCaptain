@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 3 - LLM Infrastructure
+**Current focus:** Phase 3 - LLM Infrastructure (COMPLETE)
 
 ## Current Position
 
 Phase: 3 of 8 (LLM Infrastructure)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-05 - Completed 03-01-PLAN.md (LiteLLM + LLM Client)
+Plan: 3 of 3 in current phase (COMPLETE)
+Status: Phase complete
+Last activity: 2026-02-05 - Completed 03-03-PLAN.md (Memory and Conversations)
 
-Progress: [███████░░░] 32%
+Progress: [████████░░] 40%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
-- Average duration: 5 min
-- Total execution time: 0.87 hours
+- Total plans completed: 12
+- Average duration: 6 min
+- Total execution time: 1.1 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [███████░░░] 32%
 |-------|-------|-------|----------|
 | 01-core-infrastructure | 3 | 20 min | 7 min |
 | 02-team-access | 4 | 18 min | 5 min |
-| 03-llm-infrastructure | 2 | 14 min | 7 min |
+| 03-llm-infrastructure | 3 | 22 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (4m), 02-04 (3m), 03-02 (6m), 03-01 (8m)
+- Last 5 plans: 02-04 (3m), 03-01 (8m), 03-02 (6m), 03-03 (8m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -73,6 +73,11 @@ Recent decisions affecting current work:
 - Port 4010 for LiteLLM (4000/4001 already in use by other Docker services)
 - Non-retryable errors (400/401/403/404) trigger fallback, retryable errors re-throw
 - LLM client created per-request (not singleton) for flexibility
+- Separate ioredis connection for BullMQ (required, prevents mixing with redis package)
+- Memory capacity limits: org=1000, project=500, user=100 (capacity-based retention)
+- Rate limit consolidation worker to 10/minute (prevents LLM API overload)
+- HNSW index for memory embeddings (consistent with RAG embeddings)
+- Keep 10 recent messages when consolidating (configurable via KEEP_RECENT_MESSAGES)
 
 ### Pending Todos
 
@@ -80,10 +85,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Plan 03-01 complete.
+None - Phase 03 complete. Ready for Phase 04 (Agent Implementation).
 
 ## Session Continuity
 
-Last session: 2026-02-05T14:01:29Z
-Stopped at: Completed 03-01-PLAN.md (LiteLLM + LLM Client)
+Last session: 2026-02-05T14:XX:XXZ
+Stopped at: Completed 03-03-PLAN.md (Memory and Conversations)
 Resume file: None
