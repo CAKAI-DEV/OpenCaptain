@@ -1,6 +1,7 @@
 export * from './conversations';
 export * from './deliverable-types';
 export * from './deliverables';
+export * from './dependencies';
 export * from './embeddings';
 export * from './invitations';
 export * from './invite-links';
