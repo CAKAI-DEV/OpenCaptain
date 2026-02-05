@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 3 - LLM Infrastructure (COMPLETE)
+**Current focus:** Phase 4 - Tasks & Deliverables (IN PROGRESS)
 
 ## Current Position
 
-Phase: 3 of 8 (LLM Infrastructure)
-Plan: 5 of 5 in current phase (COMPLETE - with gap closure)
-Status: Phase complete (gaps closed)
-Last activity: 2026-02-05 - Completed gap closure plans 03-04, 03-05
+Phase: 4 of 8 (Tasks & Deliverables)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-02-06 - Completed 04-01-PLAN.md (Tasks Schema & CRUD)
 
-Progress: [████████░░] 40%
+Progress: [████████░░] 43%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
+- Total plans completed: 15
 - Average duration: 6 min
-- Total execution time: 1.3 hours
+- Total execution time: 1.4 hours
 
 **By Phase:**
 
@@ -30,9 +30,10 @@ Progress: [████████░░] 40%
 | 01-core-infrastructure | 3 | 20 min | 7 min |
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
+| 04-tasks-deliverables | 1 | 6 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (8m), 03-02 (6m), 03-03 (8m), 03-04 (8m), 03-05 (3m)
+- Last 5 plans: 03-02 (6m), 03-03 (8m), 03-04 (8m), 03-05 (3m), 04-01 (6m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -78,6 +79,9 @@ Recent decisions affecting current work:
 - Rate limit consolidation worker to 10/minute (prevents LLM API overload)
 - HNSW index for memory embeddings (consistent with RAG embeddings)
 - Keep 10 recent messages when consolidating (configurable via KEEP_RECENT_MESSAGES)
+- MAX_DEPTH=2 for task nesting (0=task, 1=subtask, 2=sub-subtask)
+- Status transitions: todo<->in_progress<->done (bidirectional within flow)
+- Auto-set completedAt timestamp on status change to/from done
 
 ### Pending Todos
 
@@ -85,10 +89,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 03 complete. Ready for Phase 04 (Agent Implementation).
+None - Plan 04-01 complete. Ready for Plan 04-02 (Deliverable Types).
 
 ## Session Continuity
 
-Last session: 2026-02-05T21:40:XXZ
-Stopped at: Completed gap closure plans 03-04-PLAN.md (Conversations Service) and 03-05-PLAN.md (pgvector Extension)
+Last session: 2026-02-06T00:31:00Z
+Stopped at: Completed 04-01-PLAN.md (Tasks Schema & CRUD)
 Resume file: None
