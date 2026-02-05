@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 4 - Tasks & Deliverables (COMPLETE)
+**Current focus:** Phase 5 - Messaging Channels (IN PROGRESS)
 
 ## Current Position
 
-Phase: 4 of 8 (Tasks & Deliverables)
-Plan: 4 of 4 in current phase (COMPLETE)
-Status: Phase complete
-Last activity: 2026-02-06 - Completed phase execution and verification
+Phase: 5 of 8 (Messaging Channels)
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-02-05 - Completed 05-01-PLAN.md (Foundation Schemas)
 
-Progress: [██████████] 50%
+Progress: [██████████░] 53%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 19
 - Average duration: 6 min
 - Total execution time: 1.8 hours
 
@@ -31,9 +31,10 @@ Progress: [██████████] 50%
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
 | 04-tasks-deliverables | 4 | 26 min | 7 min |
+| 05-messaging-channels | 1 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-05 (3m), 04-01 (6m), 04-02 (8m), 04-03 (6m), 04-04 (6m)
+- Last 5 plans: 04-01 (6m), 04-02 (8m), 04-03 (6m), 04-04 (6m), 05-01 (2m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -93,6 +94,8 @@ Recent decisions affecting current work:
 - Attachment status lifecycle: pending -> completed/failed
 - Presigned URLs: 1 hour for upload, 7 days for download
 - Metrics computed on-demand via raw SQL (no materialized views yet)
+- Polymorphic targets for comments/notifications using targetType+targetId columns (consistent with dependencies)
+- Optional messaging env vars (Telegram/WhatsApp) - features gracefully degrade when not configured
 
 ### Pending Todos
 
@@ -100,10 +103,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 04 complete. Ready for Phase 05 (Messaging Channels).
+None - Phase 05 in progress.
 
 ## Session Continuity
 
-Last session: 2026-02-06T18:00:00Z
-Stopped at: Completed Phase 4 execution and verification
+Last session: 2026-02-05T19:26:54Z
+Stopped at: Completed 05-01-PLAN.md (Foundation Schemas)
 Resume file: None
