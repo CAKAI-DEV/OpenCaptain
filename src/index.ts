@@ -13,6 +13,9 @@ import { healthRoutes } from './features/health';
 import { invitationRoutes } from './features/invitations';
 import { startMemoryConsolidationWorker } from './features/memory';
 import { metricsRoutes } from './features/metrics';
+import { notificationsRoutes } from './features/notifications';
+// Import worker to start it on app startup
+import './features/notifications/notifications.worker';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { tasksRoutes } from './features/tasks';
@@ -105,6 +108,7 @@ app.route('/api/v1/metrics', metricsRoutes);
 app.route('/api/v1/visibility', visibilityRoutes);
 app.route('/api/v1/conversations', conversationRoutes);
 app.route('/api/v1/comments', commentsRoutes);
+app.route('/api/v1/notifications', notificationsRoutes);
 app.route('/api/v1', rolesRoutes);
 
 // API Documentation (Swagger UI)

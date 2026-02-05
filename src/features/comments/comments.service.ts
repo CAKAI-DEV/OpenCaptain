@@ -1,6 +1,7 @@
 import { and, desc, eq } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
+import { queueNotification } from '../notifications';
 import type { CommentResult, CreateCommentInput, ParsedMention } from './comments.types';
 
 // Regex to match @mentions - handles @email or @username format
@@ -92,6 +93,51 @@ export async function createComment(
     },
     'Comment created'
   );
+
+  // Queue notifications for mentioned users
+  for (const mentionUserId of mentionUserIds) {
+    if (mentionUserId !== authorId) {
+      // Don't notify yourself
+      await queueNotification({
+        type: 'mention',
+        userId: mentionUserId,
+        actorId: authorId,
+        targetType: input.targetType,
+        targetId: input.targetId,
+        projectId,
+        commentId: comment.id,
+      });
+    }
+  }
+
+  // Notify assignee if commenting on their item (except self)
+  let assigneeId: string | null = null;
+  if (input.targetType === 'task') {
+    const task = await db.query.tasks.findFirst({
+      where: eq(schema.tasks.id, input.targetId),
+      columns: { assigneeId: true },
+    });
+    assigneeId = task?.assigneeId ?? null;
+  } else {
+    const deliverable = await db.query.deliverables.findFirst({
+      where: eq(schema.deliverables.id, input.targetId),
+      columns: { assigneeId: true },
+    });
+    assigneeId = deliverable?.assigneeId ?? null;
+  }
+
+  // Notify assignee only if not author and not already mentioned
+  if (assigneeId && assigneeId !== authorId && !mentionUserIds.includes(assigneeId)) {
+    await queueNotification({
+      type: 'comment',
+      userId: assigneeId,
+      actorId: authorId,
+      targetType: input.targetType,
+      targetId: input.targetId,
+      projectId,
+      commentId: comment.id,
+    });
+  }
 
   return {
     id: comment.id,
