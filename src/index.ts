@@ -5,6 +5,8 @@ import { HTTPException } from 'hono/http-exception';
 import { authRoutes } from './features/auth';
 import { docsRoutes } from './features/docs';
 import { healthRoutes } from './features/health';
+import { invitationRoutes } from './features/invitations';
+import { projectRoutes } from './features/projects';
 import {
   type ApiError,
   apiRateLimiter,
@@ -76,6 +78,8 @@ app.use('/api/v1/*', apiRateLimiter);
 // Feature routes
 app.route('/api/v1/auth', authRoutes);
 app.route('/api/v1/health', healthRoutes);
+app.route('/api/v1/invitations', invitationRoutes);
+app.route('/api/v1/projects', projectRoutes);
 
 // API Documentation (Swagger UI)
 app.route('/docs', docsRoutes);
