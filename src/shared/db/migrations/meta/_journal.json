@@ -15,6 +15,13 @@
       "when": 1770271359960,
       "tag": "0001_parallel_tomas",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1770288903072,
+      "tag": "0002_aberrant_penance",
+      "breakpoints": true
     }
   ]
 }
