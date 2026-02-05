@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import type { Bot, InlineKeyboard } from 'grammy';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
+import { processMessage } from '../messaging';
 import type { BotContext } from './telegram.types';
 
 /**
@@ -278,13 +279,14 @@ export function registerHandlers(bot: Bot<BotContext>): void {
     // Update last activity
     ctx.session.lastActivity = Date.now();
 
-    // Placeholder for NLU - full implementation in Plan 06
-    await ctx.reply(
-      'Natural language processing coming soon.\n\n' +
-        'For now, please use commands:\n' +
-        '/switch - Switch between projects\n' +
-        '/help - Show available commands'
-    );
+    // Process message through NLU pipeline
+    const result = await processMessage(userId, ctx.message.text, 'telegram');
+    await ctx.reply(result.response);
+
+    // Update session if project changed
+    if (result.newProjectId) {
+      ctx.session.currentProjectId = result.newProjectId;
+    }
   });
 
   logger.info('Telegram command handlers registered');

@@ -1,6 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
+import { processMessage } from '../messaging';
 import { sendWhatsAppMessage } from './whatsapp.client';
 import type { IncomingMessage } from './whatsapp.types';
 
@@ -63,33 +64,7 @@ export async function handleIncomingMessage(message: IncomingMessage): Promise<v
     return;
   }
 
-  // Check for commands
-  const text = message.text.trim().toLowerCase();
-
-  if (text === '/help' || text === 'help') {
-    await sendWhatsAppMessage(
-      message.from,
-      'BlockBot Commands:\n\n' +
-        '- "switch" - Change project context\n' +
-        '- "status" - View current project status\n' +
-        '- "help" - Show this message\n\n' +
-        'Or ask me anything about your tasks!'
-    );
-    return;
-  }
-
-  if (text === '/switch' || text === 'switch') {
-    // For now, prompt to use web or Telegram (WhatsApp doesn't have inline keyboards)
-    await sendWhatsAppMessage(
-      message.from,
-      'To switch projects, reply with the project name.\n\nOr use the web app for a full project list.'
-    );
-    return;
-  }
-
-  // Placeholder for NLU processing (Plan 06)
-  await sendWhatsAppMessage(
-    message.from,
-    'Thanks for your message! Natural language processing is coming soon.\n\nType "help" to see available commands.'
-  );
+  // Process message through NLU pipeline
+  const result = await processMessage(userId, message.text, 'whatsapp');
+  await sendWhatsAppMessage(message.from, result.response);
 }
