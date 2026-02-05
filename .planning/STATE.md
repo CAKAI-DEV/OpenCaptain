@@ -5,33 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 2 - Team & Access (Complete)
+**Current focus:** Phase 2 - Team & Access (Complete with gap closure)
 
 ## Current Position
 
 Phase: 2 of 8 (Team & Access)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-02-05 - Completed 02-03-PLAN.md
+Plan: 4 of 4 in current phase (including gap closure)
+Status: Phase complete with gap closure
+Last activity: 2026-02-05 - Completed 02-04-PLAN.md (Visibility Enforcement)
 
 Progress: [██████░░░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
+- Total plans completed: 7
 - Average duration: 5 min
-- Total execution time: 0.58 hours
+- Total execution time: 0.63 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-core-infrastructure | 3 | 20 min | 7 min |
-| 02-team-access | 3 | 15 min | 5 min |
+| 02-team-access | 4 | 18 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-03 (8m), 02-01 (4m), 02-02 (7m), 02-03 (4m)
+- Last 5 plans: 02-01 (4m), 02-02 (7m), 02-03 (4m), 02-04 (3m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -63,6 +63,8 @@ Recent decisions affecting current work:
 - Default visibility is project-wide (unrestricted users see all)
 - CASL PureAbility with raw rules for flexible authorization conditions
 - Empty visibleSquadIds array means "all visible" for admin/PM/unrestricted
+- visibilityMiddleware applied to all protected route files globally
+- Visibility check (403) happens before existence check (404)
 
 ### Pending Todos
 
@@ -70,10 +72,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 02 complete and verified.
+None - Phase 02 complete with gap closure verified.
 
 ## Session Continuity
 
-Last session: 2026-02-05T11:10:47Z
-Stopped at: Completed 02-03-PLAN.md (Visibility Rules)
+Last session: 2026-02-05T11:18:00Z
+Stopped at: Completed 02-04-PLAN.md (Visibility Enforcement - Gap Closure)
 Resume file: None
