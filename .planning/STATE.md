@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 4 of 8 (Tasks & Deliverables)
-Plan: 2 of 5 in current phase
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-06 - Completed 04-02-PLAN.md (Deliverable Types & Deliverables)
+Last activity: 2026-02-06 - Completed 04-03-PLAN.md (Dependencies & Custom Fields)
 
-Progress: [████████░░] 46%
+Progress: [████████░░] 49%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 6 min
-- Total execution time: 1.5 hours
+- Total execution time: 1.6 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [████████░░] 46%
 | 01-core-infrastructure | 3 | 20 min | 7 min |
 | 02-team-access | 4 | 18 min | 5 min |
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
-| 04-tasks-deliverables | 2 | 14 min | 7 min |
+| 04-tasks-deliverables | 3 | 20 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-03 (8m), 03-04 (8m), 03-05 (3m), 04-01 (6m), 04-02 (8m)
+- Last 5 plans: 03-04 (8m), 03-05 (3m), 04-01 (6m), 04-02 (8m), 04-03 (6m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -85,6 +85,10 @@ Recent decisions affecting current work:
 - JSONB for deliverable type config (statuses, transitions, fields)
 - Status validation at service layer (not database) for flexibility
 - completedAt auto-managed based on isFinal status flag
+- Polymorphic dependencies via type+id columns, not foreign keys
+- DFS cycle detection at service layer (not database constraint)
+- Field type changes prevented after creation (400 error)
+- Custom fields can apply to tasks, deliverables, or both
 
 ### Pending Todos
 
@@ -92,10 +96,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Plan 04-02 complete. Ready for Plan 04-03 (Dependencies).
+None - Plan 04-03 complete. Ready for Plan 04-04 (Metrics).
 
 ## Session Continuity
 
-Last session: 2026-02-06T10:08:00Z
-Stopped at: Completed 04-02-PLAN.md (Deliverable Types & Deliverables)
+Last session: 2026-02-06T17:42:26Z
+Stopped at: Completed 04-03-PLAN.md (Dependencies & Custom Fields)
 Resume file: None
