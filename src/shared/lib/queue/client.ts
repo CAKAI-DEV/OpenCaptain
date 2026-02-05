@@ -30,9 +30,14 @@ export const embeddingQueue = new Queue('embedding-generation', {
   connection: getQueueConnection(),
 });
 
+export const notificationQueue = new Queue('notifications', {
+  connection: getQueueConnection(),
+});
+
 export async function closeQueueConnections(): Promise<void> {
   await memoryConsolidationQueue.close();
   await embeddingQueue.close();
+  await notificationQueue.close();
   if (connection) {
     connection.disconnect();
     connection = null;
