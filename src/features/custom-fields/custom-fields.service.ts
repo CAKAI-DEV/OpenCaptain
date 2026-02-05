@@ -1,4 +1,4 @@
-import { and, eq, or } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { db, schema } from '../../shared/db';
 import { ApiError } from '../../shared/middleware/error-handler';
@@ -232,16 +232,16 @@ export async function listCustomFields(
   projectId: string,
   target?: 'task' | 'deliverable'
 ): Promise<CustomFieldResult[]> {
-  let whereCondition = eq(schema.customFields.projectId, projectId);
+  const conditions = [eq(schema.customFields.projectId, projectId)];
 
   if (target === 'task') {
-    whereCondition = and(whereCondition, eq(schema.customFields.appliesToTasks, true))!;
+    conditions.push(eq(schema.customFields.appliesToTasks, true));
   } else if (target === 'deliverable') {
-    whereCondition = and(whereCondition, eq(schema.customFields.appliesToDeliverables, true))!;
+    conditions.push(eq(schema.customFields.appliesToDeliverables, true));
   }
 
   const fields = await db.query.customFields.findMany({
-    where: whereCondition,
+    where: and(...conditions),
     orderBy: (fields, { asc }) => [asc(fields.name)],
   });
 

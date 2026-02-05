@@ -31,7 +31,8 @@ export async function wouldCreateCycle(
   const stack: DependencyNode[] = [blocked];
 
   while (stack.length > 0) {
-    const current = stack.pop()!;
+    const current = stack.pop();
+    if (!current) continue;
     const key = `${current.type}:${current.id}`;
 
     if (visited.has(key)) continue;
