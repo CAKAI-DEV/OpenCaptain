@@ -39,10 +39,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Check-ins & Communication
 
-- [ ] **COMM-01**: User can @mention others in comments
-- [ ] **COMM-02**: User can comment on tasks and deliverables
-- [ ] **COMM-03**: User receives notifications for mentions, assignments, and updates
-- [ ] **COMM-04**: User can view activity feed showing recent project activity
+- [x] **COMM-01**: User can @mention others in comments
+- [x] **COMM-02**: User can comment on tasks and deliverables
+- [x] **COMM-03**: User receives notifications for mentions, assignments, and updates
+- [x] **COMM-04**: User can view activity feed showing recent project activity
 - [ ] **CHCK-01**: Admin can create check-in blocks with scheduled frequency
 - [ ] **CHCK-02**: Check-in blocks support custom questions
 - [ ] **CHCK-03**: Agent sends check-in prompts at scheduled times via messaging channel
@@ -70,13 +70,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Messaging Channels
 
-- [ ] **MSG-01**: User can interact with agent via WhatsApp
-- [ ] **MSG-02**: User can interact with agent via Telegram
-- [ ] **MSG-03**: Agent understands natural language commands and queries
-- [ ] **MSG-04**: User can switch between project contexts (/switch command)
-- [ ] **MSG-05**: Agent remembers last used project context per user
-- [ ] **MSG-06**: Agent sends proactive messages (check-ins, alerts, recaps)
-- [ ] **MSG-07**: User can query agent ("what's due this week?", "squad status")
+- [x] **MSG-01**: User can interact with agent via WhatsApp
+- [x] **MSG-02**: User can interact with agent via Telegram
+- [x] **MSG-03**: Agent understands natural language commands and queries
+- [x] **MSG-04**: User can switch between project contexts (/switch command)
+- [x] **MSG-05**: Agent remembers last used project context per user
+- [x] **MSG-06**: Agent sends proactive messages (check-ins, alerts, recaps)
+- [x] **MSG-07**: User can query agent ("what's due this week?", "squad status")
 
 ### Web UI
 
@@ -190,17 +190,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DELV-04 | Phase 4 | Complete |
 | DELV-05 | Phase 4 | Complete |
 | DELV-06 | Phase 4 | Complete |
-| MSG-01 | Phase 5 | Pending |
-| MSG-02 | Phase 5 | Pending |
-| MSG-03 | Phase 5 | Pending |
-| MSG-04 | Phase 5 | Pending |
-| MSG-05 | Phase 5 | Pending |
-| MSG-06 | Phase 5 | Pending |
-| MSG-07 | Phase 5 | Pending |
-| COMM-01 | Phase 5 | Pending |
-| COMM-02 | Phase 5 | Pending |
-| COMM-03 | Phase 5 | Pending |
-| COMM-04 | Phase 5 | Pending |
+| MSG-01 | Phase 5 | Complete |
+| MSG-02 | Phase 5 | Complete |
+| MSG-03 | Phase 5 | Complete |
+| MSG-04 | Phase 5 | Complete |
+| MSG-05 | Phase 5 | Complete |
+| MSG-06 | Phase 5 | Complete |
+| MSG-07 | Phase 5 | Complete |
+| COMM-01 | Phase 5 | Complete |
+| COMM-02 | Phase 5 | Complete |
+| COMM-03 | Phase 5 | Complete |
+| COMM-04 | Phase 5 | Complete |
 | CHCK-01 | Phase 6 | Pending |
 | CHCK-02 | Phase 6 | Pending |
 | CHCK-03 | Phase 6 | Pending |

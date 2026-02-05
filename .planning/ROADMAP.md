@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Team & Access** - Users, organizations, roles, squads, visibility rules ✓
 - [x] **Phase 3: LLM Infrastructure** - Model abstraction, memory persistence, RAG pipeline ✓
 - [x] **Phase 4: Tasks & Deliverables** - Core PM data structures and CRUD operations ✓
-- [ ] **Phase 5: Messaging Channels** - WhatsApp and Telegram bot interfaces
+- [x] **Phase 5: Messaging Channels** - WhatsApp and Telegram bot interfaces ✓
 - [ ] **Phase 6: Check-ins & Escalations** - Scheduled prompts, alerts, and escalation chains
 - [ ] **Phase 7: Web UI & Analytics** - Dashboard, task views, analytics at all levels
 - [ ] **Phase 8: Workflow Builder & Integrations** - Visual block editor, Linear sync, advanced AI
@@ -105,13 +105,13 @@ Plans:
 **Plans**: 7 plans
 
 Plans:
-- [ ] 05-01-PLAN.md - Database schemas (user_messaging, comments, notifications)
-- [ ] 05-02-PLAN.md - Telegram bot with grammY and Redis sessions
-- [ ] 05-03-PLAN.md - WhatsApp Cloud API integration
-- [ ] 05-04-PLAN.md - Comments with @mention parsing
-- [ ] 05-05-PLAN.md - Notifications system with messaging delivery
-- [ ] 05-06-PLAN.md - Intent detection and context management
-- [ ] 05-07-PLAN.md - Proactive messaging and activity feed
+- [x] 05-01-PLAN.md - Database schemas (user_messaging, comments, notifications)
+- [x] 05-02-PLAN.md - Telegram bot with grammY and Redis sessions
+- [x] 05-03-PLAN.md - WhatsApp Cloud API integration
+- [x] 05-04-PLAN.md - Comments with @mention parsing
+- [x] 05-05-PLAN.md - Notifications system with messaging delivery
+- [x] 05-06-PLAN.md - Intent detection and context management
+- [x] 05-07-PLAN.md - Proactive messaging and activity feed
 
 ### Phase 6: Check-ins & Escalations
 **Goal**: Agent proactively reaches out for check-ins and handles escalations
@@ -178,7 +178,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 2. Team & Access | 4/4 | Complete | 2026-02-05 |
 | 3. LLM Infrastructure | 5/5 | Complete | 2026-02-05 |
 | 4. Tasks & Deliverables | 4/4 | Complete | 2026-02-06 |
-| 5. Messaging Channels | 0/7 | Planned | - |
+| 5. Messaging Channels | 7/7 | Complete | 2026-02-06 |
 | 6. Check-ins & Escalations | 0/3 | Not started | - |
 | 7. Web UI & Analytics | 0/3 | Not started | - |
 | 8. Workflow Builder & Integrations | 0/5 | Not started | - |
