@@ -47,13 +47,30 @@ teams.post('/', zValidator('json', createSquadSchema), async (c) => {
 // GET /api/v1/projects/:projectId/squads - Get squad hierarchy for project
 teams.get('/projects/:projectId/squads', async (c) => {
   const projectId = c.req.param('projectId');
-  const hierarchy = await getSquadHierarchy(projectId);
+  const visibleSquadIds = c.get('visibleSquadIds');
+  const hierarchy = await getSquadHierarchy(projectId, visibleSquadIds);
   return c.json(hierarchy);
 });
 
 // GET /api/v1/squads/:id - Get single squad
 teams.get('/:id', async (c) => {
   const id = c.req.param('id');
+  const visibleSquadIds = c.get('visibleSquadIds');
+
+  // If visibleSquadIds is non-empty array, user is restricted - check access
+  if (visibleSquadIds && visibleSquadIds.length > 0 && !visibleSquadIds.includes(id)) {
+    return c.json(
+      {
+        type: 'https://blockbot.dev/errors/squads/access-denied',
+        title: 'Access Denied',
+        status: 403,
+        detail: 'You do not have visibility access to this squad',
+        instance: c.req.path,
+      },
+      403
+    );
+  }
+
   const squad = await getSquad(id);
 
   if (!squad) {
@@ -106,6 +123,22 @@ teams.delete('/:id/members/:userId', async (c) => {
 // GET /api/v1/squads/:id/members - List members
 teams.get('/:id/members', async (c) => {
   const squadId = c.req.param('id');
+  const visibleSquadIds = c.get('visibleSquadIds');
+
+  // If visibleSquadIds is non-empty array, user is restricted - check access
+  if (visibleSquadIds && visibleSquadIds.length > 0 && !visibleSquadIds.includes(squadId)) {
+    return c.json(
+      {
+        type: 'https://blockbot.dev/errors/squads/access-denied',
+        title: 'Access Denied',
+        status: 403,
+        detail: 'You do not have visibility access to this squad',
+        instance: c.req.path,
+      },
+      403
+    );
+  }
+
   const members = await getSquadMembers(squadId);
   return c.json(members);
 });

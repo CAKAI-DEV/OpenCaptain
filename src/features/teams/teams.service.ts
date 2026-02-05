@@ -98,8 +98,13 @@ export async function createSquad(input: CreateSquadInput): Promise<SquadBasic> 
 /**
  * Gets the squad hierarchy for a project.
  * Returns top-level squads with nested subSquads arrays.
+ * If visibleSquadIds is provided and non-empty, filters results to only visible squads.
+ * Empty visibleSquadIds array means "all visible" (admin/PM/unrestricted).
  */
-export async function getSquadHierarchy(projectId: string): Promise<SquadWithHierarchy[]> {
+export async function getSquadHierarchy(
+  projectId: string,
+  visibleSquadIds?: string[]
+): Promise<SquadWithHierarchy[]> {
   // Get all squads for the project
   const allSquads = await db.query.squads.findMany({
     where: eq(schema.squads.projectId, projectId),
@@ -110,9 +115,21 @@ export async function getSquadHierarchy(projectId: string): Promise<SquadWithHie
     return [];
   }
 
-  // Get members for all squads in one query - need to fetch for each squad
+  // Filter by visibility if visibleSquadIds is provided and non-empty
+  // Empty array means "all visible" (admin/PM/unrestricted)
+  let filteredSquads = allSquads;
+  if (visibleSquadIds && visibleSquadIds.length > 0) {
+    filteredSquads = allSquads.filter((s) => visibleSquadIds.includes(s.id));
+  }
+
+  // If no visible squads after filtering, return empty
+  if (filteredSquads.length === 0) {
+    return [];
+  }
+
+  // Get members for filtered squads
   const membersBySquad: Record<string, SquadMember[]> = {};
-  for (const squad of allSquads) {
+  for (const squad of filteredSquads) {
     const squadMembersResult = await db.query.squadMembers.findMany({
       where: eq(schema.squadMembers.squadId, squad.id),
     });
@@ -143,7 +160,7 @@ export async function getSquadHierarchy(projectId: string): Promise<SquadWithHie
   const topLevelSquads: SquadWithHierarchy[] = [];
   const subSquadMap = new Map<string, SquadWithHierarchy[]>();
 
-  for (const squad of allSquads) {
+  for (const squad of filteredSquads) {
     const squadWithHierarchy: SquadWithHierarchy = {
       ...squad,
       subSquads: [],
