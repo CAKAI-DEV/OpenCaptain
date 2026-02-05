@@ -7,6 +7,7 @@
       "dependencies": {
         "@casl/ability": "^6.8.0",
         "@grammyjs/storage-redis": "^2.5.1",
+        "@great-detail/whatsapp": "^8.4.0",
         "@hono/node-server": "^1.19.9",
         "@hono/swagger-ui": "^0.5.1",
         "@hono/zod-openapi": "^0.19.6",
@@ -130,6 +131,8 @@
     "@grammyjs/storage-redis": ["@grammyjs/storage-redis@2.5.1", "", {}, "sha512-Rz7bnrtDz8NOjgSRR4n/rBciHKSvmkrgIUc+8Yb96tSsecBlA91MGOmcgmQXKxb7gTmwliF37VgmMT85bsCZtA=="],
 
     "@grammyjs/types": ["@grammyjs/types@3.23.0", "", {}, "sha512-D3jQ4UWERPsyR3op/YFudMMIPNTU47vy7L51uO9/73tMELmjO/+LX5N36/Y0CG5IQfIsz43MxiHI5rgsK0/k+g=="],
+
+    "@great-detail/whatsapp": ["@great-detail/whatsapp@8.4.0", "", { "dependencies": { "ky": "^1.8.2" } }, "sha512-UIEVLPlBbLoXwx0KyMoGAc8RCzWVYgVgp8zTzR78AuFj7BzvwYq92qgspKgnqQFyh7vc9zmwvrdUy4uTbmFcjA=="],
 
     "@hono/node-server": ["@hono/node-server@1.19.9", "", { "peerDependencies": { "hono": "^4" } }, "sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw=="],
 
@@ -348,6 +351,8 @@
     "isexe": ["isexe@2.0.0", "", {}, "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw=="],
 
     "js-tiktoken": ["js-tiktoken@1.0.21", "", { "dependencies": { "base64-js": "^1.5.1" } }, "sha512-biOj/6M5qdgx5TKjDnFT1ymSpM5tbd3ylwDtrQvFQSu0Z7bBYko2dF+W/aUkXUPuk6IVpRxk/3Q2sHOzGlS36g=="],
+
+    "ky": ["ky@1.14.3", "", {}, "sha512-9zy9lkjac+TR1c2tG+mkNSVlyOpInnWdSMiue4F+kq8TwJSgv6o8jhLRg8Ho6SnZ9wOYUq/yozts9qQCfk7bIw=="],
 
     "langsmith": ["langsmith@0.4.12", "", { "dependencies": { "@types/uuid": "^10.0.0", "chalk": "^4.1.2", "console-table-printer": "^2.12.1", "p-queue": "^6.6.2", "semver": "^7.6.3", "uuid": "^10.0.0" }, "peerDependencies": { "@opentelemetry/api": "*", "@opentelemetry/exporter-trace-otlp-proto": "*", "@opentelemetry/sdk-trace-base": "*", "openai": "*" }, "optionalPeers": ["@opentelemetry/api", "@opentelemetry/exporter-trace-otlp-proto", "@opentelemetry/sdk-trace-base", "openai"] }, "sha512-YWt0jcGvKqjUgIvd78rd4QcdMss0lUkeUaqp0UpVRq7H2yNDx8H5jOUO/laWUmaPtWGgcip0qturykXe1g9Gqw=="],
 
