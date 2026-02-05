@@ -11,10 +11,12 @@ import { docsRoutes } from './features/docs';
 import { healthRoutes } from './features/health';
 import { invitationRoutes } from './features/invitations';
 import { startMemoryConsolidationWorker } from './features/memory';
+import { metricsRoutes } from './features/metrics';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { tasksRoutes } from './features/tasks';
 import { teamsRoutes } from './features/teams';
+import { uploadsRoutes } from './features/uploads';
 import { visibilityRoutes } from './features/visibility';
 import {
   type ApiError,
@@ -95,6 +97,8 @@ app.route('/api/v1/tasks', tasksRoutes);
 app.route('/api/v1/deliverables', deliverablesRoutes);
 app.route('/api/v1/dependencies', dependenciesRoutes);
 app.route('/api/v1/custom-fields', customFieldsRoutes);
+app.route('/api/v1/uploads', uploadsRoutes);
+app.route('/api/v1/metrics', metricsRoutes);
 app.route('/api/v1/visibility', visibilityRoutes);
 app.route('/api/v1/conversations', conversationRoutes);
 app.route('/api/v1', rolesRoutes);

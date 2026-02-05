@@ -27,11 +27,12 @@ function getS3Client(): S3Client {
     );
   }
 
+  // Safe to use as string after isS3Configured() check
   return new S3Client({
-    accessKeyId: env.S3_ACCESS_KEY_ID!,
-    secretAccessKey: env.S3_SECRET_ACCESS_KEY!,
-    bucket: env.S3_BUCKET!,
-    endpoint: env.S3_ENDPOINT!,
+    accessKeyId: env.S3_ACCESS_KEY_ID as string,
+    secretAccessKey: env.S3_SECRET_ACCESS_KEY as string,
+    bucket: env.S3_BUCKET as string,
+    endpoint: env.S3_ENDPOINT as string,
   });
 }
 
