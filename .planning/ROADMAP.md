@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: LLM Infrastructure** - Model abstraction, memory persistence, RAG pipeline ✓
 - [x] **Phase 4: Tasks & Deliverables** - Core PM data structures and CRUD operations ✓
 - [x] **Phase 5: Messaging Channels** - WhatsApp and Telegram bot interfaces ✓
-- [ ] **Phase 6: Check-ins & Escalations** - Scheduled prompts, alerts, and escalation chains
+- [x] **Phase 6: Check-ins & Escalations** - Scheduled prompts, alerts, and escalation chains ✓
 - [ ] **Phase 7: Web UI & Analytics** - Dashboard, task views, analytics at all levels
 - [ ] **Phase 8: Workflow Builder & Integrations** - Visual block editor, Linear sync, advanced AI
 
@@ -126,9 +126,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01-PLAN.md - Check-in blocks, templates, scheduling, and delivery worker
-- [ ] 06-02-PLAN.md - Role-based recap generation with LLM and scheduled delivery
-- [ ] 06-03-PLAN.md - Escalation blocks, blockers, routing chains, deadline/output monitoring
+- [x] 06-01-PLAN.md - Check-in blocks, templates, scheduling, and delivery worker
+- [x] 06-02-PLAN.md - Role-based recap generation with LLM and scheduled delivery
+- [x] 06-03-PLAN.md - Escalation blocks, blockers, routing chains, deadline/output monitoring
 
 ### Phase 7: Web UI & Analytics
 **Goal**: Users can access dashboard, task views, and analytics via web interface
@@ -179,7 +179,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 3. LLM Infrastructure | 5/5 | Complete | 2026-02-05 |
 | 4. Tasks & Deliverables | 4/4 | Complete | 2026-02-06 |
 | 5. Messaging Channels | 7/7 | Complete | 2026-02-06 |
-| 6. Check-ins & Escalations | 0/3 | Not started | - |
+| 6. Check-ins & Escalations | 3/3 | Complete | 2026-02-06 |
 | 7. Web UI & Analytics | 0/3 | Not started | - |
 | 8. Workflow Builder & Integrations | 0/5 | Not started | - |
 

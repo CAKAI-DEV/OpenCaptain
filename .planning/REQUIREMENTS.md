@@ -43,22 +43,22 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **COMM-02**: User can comment on tasks and deliverables
 - [x] **COMM-03**: User receives notifications for mentions, assignments, and updates
 - [x] **COMM-04**: User can view activity feed showing recent project activity
-- [ ] **CHCK-01**: Admin can create check-in blocks with scheduled frequency
-- [ ] **CHCK-02**: Check-in blocks support custom questions
-- [ ] **CHCK-03**: Agent sends check-in prompts at scheduled times via messaging channel
-- [ ] **CHCK-04**: System provides check-in templates (daily standup, output count, weekly forecast)
-- [ ] **CHCK-05**: Agent generates recap summaries for stakeholders (daily, weekly)
-- [ ] **CHCK-06**: Recaps are tailored to recipient's role and visibility level
+- [x] **CHCK-01**: Admin can create check-in blocks with scheduled frequency
+- [x] **CHCK-02**: Check-in blocks support custom questions
+- [x] **CHCK-03**: Agent sends check-in prompts at scheduled times via messaging channel
+- [x] **CHCK-04**: System provides check-in templates (daily standup, output count, weekly forecast)
+- [x] **CHCK-05**: Agent generates recap summaries for stakeholders (daily, weekly)
+- [x] **CHCK-06**: Recaps are tailored to recipient's role and visibility level
 
 ### Escalations
 
-- [ ] **ESCL-01**: Admin can create escalation blocks with configurable triggers
-- [ ] **ESCL-02**: Escalation triggers support: blocker reported, deadline risk, output below threshold
-- [ ] **ESCL-03**: Escalation blocks support time-windowed routing (e.g., 4hr → squad lead, 24hr → PM)
-- [ ] **ESCL-04**: User can report blockers via messaging channel
-- [ ] **ESCL-05**: Squad lead can mark blockers as resolved
-- [ ] **ESCL-06**: Agent sends deadline risk alerts when deliverable is due soon and not progressed
-- [ ] **ESCL-07**: Agent sends output threshold warnings when creator output drops below configured level
+- [x] **ESCL-01**: Admin can create escalation blocks with configurable triggers
+- [x] **ESCL-02**: Escalation triggers support: blocker reported, deadline risk, output below threshold
+- [x] **ESCL-03**: Escalation blocks support time-windowed routing (e.g., 4hr → squad lead, 24hr → PM)
+- [x] **ESCL-04**: User can report blockers via messaging channel
+- [x] **ESCL-05**: Squad lead can mark blockers as resolved
+- [x] **ESCL-06**: Agent sends deadline risk alerts when deliverable is due soon and not progressed
+- [x] **ESCL-07**: Agent sends output threshold warnings when creator output drops below configured level
 
 ### Visibility & Access
 
@@ -201,19 +201,19 @@ Which phases cover which requirements. Updated during roadmap creation.
 | COMM-02 | Phase 5 | Complete |
 | COMM-03 | Phase 5 | Complete |
 | COMM-04 | Phase 5 | Complete |
-| CHCK-01 | Phase 6 | Pending |
-| CHCK-02 | Phase 6 | Pending |
-| CHCK-03 | Phase 6 | Pending |
-| CHCK-04 | Phase 6 | Pending |
-| CHCK-05 | Phase 6 | Pending |
-| CHCK-06 | Phase 6 | Pending |
-| ESCL-01 | Phase 6 | Pending |
-| ESCL-02 | Phase 6 | Pending |
-| ESCL-03 | Phase 6 | Pending |
-| ESCL-04 | Phase 6 | Pending |
-| ESCL-05 | Phase 6 | Pending |
-| ESCL-06 | Phase 6 | Pending |
-| ESCL-07 | Phase 6 | Pending |
+| CHCK-01 | Phase 6 | Complete |
+| CHCK-02 | Phase 6 | Complete |
+| CHCK-03 | Phase 6 | Complete |
+| CHCK-04 | Phase 6 | Complete |
+| CHCK-05 | Phase 6 | Complete |
+| CHCK-06 | Phase 6 | Complete |
+| ESCL-01 | Phase 6 | Complete |
+| ESCL-02 | Phase 6 | Complete |
+| ESCL-03 | Phase 6 | Complete |
+| ESCL-04 | Phase 6 | Complete |
+| ESCL-05 | Phase 6 | Complete |
+| ESCL-06 | Phase 6 | Complete |
+| ESCL-07 | Phase 6 | Complete |
 | WEB-01 | Phase 7 | Pending |
 | WEB-02 | Phase 7 | Pending |
 | WEB-05 | Phase 7 | Pending |
