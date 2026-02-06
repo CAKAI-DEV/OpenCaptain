@@ -1,26 +1,60 @@
-import { WorkflowEditor } from '@/components/workflow';
+'use client';
+
+import type { Edge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { WorkflowEditor } from '@/components/workflow';
+import { toast } from '@/hooks/use-toast';
+import { fetchWorkflow, saveWorkflow } from '@/lib/api/workflows';
+import type { WorkflowNode } from '@/lib/workflow/types';
 
-interface WorkflowsPageProps {
-  params: Promise<{ projectId: string }>;
-}
+export default function WorkflowsPage() {
+  const params = useParams();
+  const projectId = params.projectId as string;
 
-export default async function WorkflowsPage({ params }: WorkflowsPageProps) {
-  const { projectId } = await params;
+  const [initialNodes, setInitialNodes] = useState<WorkflowNode[]>([]);
+  const [initialEdges, setInitialEdges] = useState<Edge[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // TODO: Fetch existing workflow configuration from API
-  // const workflow = await fetchWorkflow(projectId);
+  // Fetch workflow on mount
+  useEffect(() => {
+    async function loadWorkflow() {
+      try {
+        const workflow = await fetchWorkflow(projectId);
+        setInitialNodes(workflow.nodes);
+        setInitialEdges(workflow.edges);
+      } catch (err) {
+        // No workflow yet or error - start with empty canvas
+        console.error('Failed to load workflow:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadWorkflow();
+  }, [projectId]);
+
+  const handleSave = async (nodes: WorkflowNode[], edges: Edge[]) => {
+    try {
+      await saveWorkflow(projectId, nodes, edges);
+      toast({ title: 'Workflow saved' });
+    } catch (err) {
+      console.error('Failed to save workflow:', err);
+      toast({ title: 'Failed to save workflow', variant: 'destructive' });
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="h-[calc(100vh-4rem)] flex items-center justify-center">
+        <div className="text-muted-foreground">Loading workflow...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-[calc(100vh-4rem)]">
-      <WorkflowEditor
-        initialNodes={[]}
-        initialEdges={[]}
-        onSave={(nodes, edges) => {
-          // TODO: POST to /api/v1/projects/{projectId}/workflows
-          console.log('Saving workflow for project:', projectId, { nodes, edges });
-        }}
-      />
+      <WorkflowEditor initialNodes={initialNodes} initialEdges={initialEdges} onSave={handleSave} />
     </div>
   );
 }
