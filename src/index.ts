@@ -36,6 +36,7 @@ import { getTelegramBot, isTelegramConfigured, telegramWebhook } from './feature
 import { uploadsRoutes } from './features/uploads';
 import { visibilityRoutes } from './features/visibility';
 import { whatsappWebhook } from './features/whatsapp';
+import { workflowsRoutes } from './features/workflows';
 import {
   type ApiError,
   apiRateLimiter,
@@ -125,6 +126,7 @@ app.route('/api/v1/check-ins', checkInsRoutes);
 app.route('/api/v1/recaps', recapsRoutes);
 app.route('/api/v1/escalations', escalationsRoutes);
 app.route('/api/v1/projects', insightsRoutes);
+app.route('/api/v1/projects', workflowsRoutes);
 app.route('/api/v1', rolesRoutes);
 
 // API Documentation (Swagger UI)
