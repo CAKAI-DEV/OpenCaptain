@@ -2,6 +2,7 @@
  * Coding agent module exports.
  */
 export { codingAgentQueue } from './coding-agent.queue';
+export { codingAgentRoutes } from './coding-agent.routes';
 export {
   getCodingRequestStatus,
   getLatestCodingRequestForTask,

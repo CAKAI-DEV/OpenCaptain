@@ -189,9 +189,16 @@ export async function processCodingRequest(requestId: string): Promise<CodingAge
     }
 
     // 4. Create GitHub client
+    const appId = process.env.GITHUB_APP_ID;
+    const privateKey = process.env.GITHUB_APP_PRIVATE_KEY;
+
+    if (!appId || !privateKey) {
+      throw new Error('GitHub App not configured');
+    }
+
     const config: GitHubAppConfig = {
-      appId: process.env.GITHUB_APP_ID!,
-      privateKey: process.env.GITHUB_APP_PRIVATE_KEY!,
+      appId,
+      privateKey,
       installationId: linkedRepo.installationId,
     };
 

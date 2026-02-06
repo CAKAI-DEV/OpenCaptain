@@ -1,15 +1,10 @@
 /**
  * Coding agent queue configuration.
  */
-import { Queue } from 'bullmq';
-import { getQueueConnection, notificationQueue } from '../../shared/lib/queue/client';
+import { codingAgentQueue, notificationQueue } from '../../shared/lib/queue/client';
 
-/**
- * Queue for coding agent jobs.
- */
-export const codingAgentQueue = new Queue('coding-agent', {
-  connection: getQueueConnection(),
-});
+// Re-export the centralized queue
+export { codingAgentQueue };
 
 /**
  * Notification job data for coding agent.

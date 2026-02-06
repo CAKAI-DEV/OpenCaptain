@@ -4,6 +4,7 @@ import { cors } from 'hono/cors';
 import { HTTPException } from 'hono/http-exception';
 import { authRoutes } from './features/auth';
 import { checkInsRoutes } from './features/check-ins';
+import { codingAgentRoutes } from './features/coding-agent';
 import { commentsRoutes } from './features/comments';
 import { conversationRoutes } from './features/conversations';
 import { customFieldsRoutes } from './features/custom-fields';
@@ -25,6 +26,7 @@ import './features/check-ins/check-ins.worker';
 import './features/recaps/recaps.worker';
 import './features/escalations/escalations.worker';
 import './features/escalations/deadline-monitor.worker';
+import './features/coding-agent/coding-agent.worker';
 import { linearApiRoutes, linearWebhookRoutes } from './features/integrations/linear/linear.routes';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
@@ -137,6 +139,9 @@ app.route('', linearWebhookRoutes);
 
 // Linear API routes
 app.route('/api/v1', linearApiRoutes);
+
+// Coding agent routes (repos and fix requests)
+app.route('/api/v1', codingAgentRoutes);
 
 // Graceful shutdown handler
 let isShuttingDown = false;
