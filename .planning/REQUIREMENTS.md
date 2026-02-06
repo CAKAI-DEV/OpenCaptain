@@ -80,15 +80,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Web UI
 
-- [ ] **WEB-01**: User can log in and access dashboard
-- [ ] **WEB-02**: Dashboard shows project overview with health indicators
+- [x] **WEB-01**: User can log in and access dashboard
+- [x] **WEB-02**: Dashboard shows project overview with health indicators
 - [ ] **WEB-03**: Admin can use visual block editor to configure workflows (n8n-style)
 - [ ] **WEB-04**: Visual editor supports drag-and-drop block placement
-- [ ] **WEB-05**: User can view tasks in Kanban board view
-- [ ] **WEB-06**: User can view tasks in list view with filters and search
-- [ ] **WEB-07**: User can view individual analytics (their output, trends)
-- [ ] **WEB-08**: Squad lead can view squad analytics (output, blockers, trends)
-- [ ] **WEB-09**: PM can view project-level analytics (all squads, health score)
+- [x] **WEB-05**: User can view tasks in Kanban board view
+- [x] **WEB-06**: User can view tasks in list view with filters and search
+- [x] **WEB-07**: User can view individual analytics (their output, trends)
+- [x] **WEB-08**: Squad lead can view squad analytics (output, blockers, trends)
+- [x] **WEB-09**: PM can view project-level analytics (all squads, health score)
 
 ### Integrations
 
@@ -214,13 +214,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ESCL-05 | Phase 6 | Complete |
 | ESCL-06 | Phase 6 | Complete |
 | ESCL-07 | Phase 6 | Complete |
-| WEB-01 | Phase 7 | Pending |
-| WEB-02 | Phase 7 | Pending |
-| WEB-05 | Phase 7 | Pending |
-| WEB-06 | Phase 7 | Pending |
-| WEB-07 | Phase 7 | Pending |
-| WEB-08 | Phase 7 | Pending |
-| WEB-09 | Phase 7 | Pending |
+| WEB-01 | Phase 7 | Complete |
+| WEB-02 | Phase 7 | Complete |
+| WEB-05 | Phase 7 | Complete |
+| WEB-06 | Phase 7 | Complete |
+| WEB-07 | Phase 7 | Complete |
+| WEB-08 | Phase 7 | Complete |
+| WEB-09 | Phase 7 | Complete |
 | WEB-03 | Phase 8 | Pending |
 | WEB-04 | Phase 8 | Pending |
 | INTG-01 | Phase 8 | Pending |
