@@ -35,8 +35,12 @@ export default async function ProjectOverviewPage({
   const velocityHealth = computeHealth(currentVelocity, previousVelocity);
 
   // Get task counts for the past week
-  const today = new Date().toISOString().split('T')[0];
-  const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  // Note: Date calculations in Server Components are evaluated at request time
+  const now = new Date();
+  const today = now.toISOString().split('T')[0];
+  const weekAgoDate = new Date(now);
+  weekAgoDate.setDate(weekAgoDate.getDate() - 7);
+  const weekAgo = weekAgoDate.toISOString().split('T')[0];
 
   const outputResponse = await apiClient<ApiResponse<OutputMetrics>>(
     `/metrics/output?projectId=${projectId}&startDate=${weekAgo}&endDate=${today}`

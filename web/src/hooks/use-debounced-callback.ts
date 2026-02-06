@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 /**
  * Returns a memoized debounced version of the callback.
@@ -13,8 +13,10 @@ export function useDebouncedCallback<T extends (...args: Parameters<T>) => void>
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const callbackRef = useRef(callback);
 
-  // Keep callback ref up to date
-  callbackRef.current = callback;
+  // Keep callback ref up to date (in effect, not during render)
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
 
   return useCallback(
     (...args: Parameters<T>) => {
