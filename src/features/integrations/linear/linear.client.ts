@@ -199,7 +199,7 @@ export class LinearRateLimitError extends Error {
 function getRetryAfter(error: Error): number {
   // Linear typically returns retry info in error message or headers
   const match = error.message.match(/(\d+)\s*(seconds?|ms)/i);
-  if (match && match[1] && match[2]) {
+  if (match?.[1] && match[2]) {
     const value = Number.parseInt(match[1], 10);
     return match[2].toLowerCase().startsWith('ms') ? value : value * 1000;
   }
