@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { TaskFilters } from '@/components/list/task-filters';
 import { TaskList } from '@/components/list/task-list';
 import { Skeleton } from '@/components/ui/skeleton';
-import { apiClient } from '@/lib/api';
+import { apiClient } from '@/lib/api.server';
 import type { PaginatedResponse } from '@/types/api';
 import type { Task, TaskPriority, TaskStatus } from '@/types/task';
 

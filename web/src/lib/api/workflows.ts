@@ -1,5 +1,5 @@
 import type { Edge } from '@xyflow/react';
-import { clientApiClient } from '@/lib/api';
+import { clientApiClient } from '@/lib/api.client';
 import type { WorkflowNode } from '@/lib/workflow/types';
 
 interface WorkflowResponse {

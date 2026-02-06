@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { HealthCard } from '@/components/common/health-card';
-import { apiClient } from '@/lib/api';
+import { apiClient } from '@/lib/api.server';
 import type { OutputMetrics, VelocityPeriod } from '@/types/analytics';
 import type { ApiResponse } from '@/types/api';
 import type { Project } from '@/types/project';

@@ -6,7 +6,7 @@ import { DateRangePicker } from '@/components/charts/date-range-picker';
 import { OutputChart } from '@/components/charts/output-chart';
 import { VelocityChart } from '@/components/charts/velocity-chart';
 import { Skeleton } from '@/components/ui/skeleton';
-import { apiClient } from '@/lib/api';
+import { apiClient } from '@/lib/api.server';
 import type {
   BurndownPoint,
   OutputMetrics,

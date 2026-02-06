@@ -1,10 +1,9 @@
 services:
+  # PostgreSQL with pgvector extension
   postgres:
-    # Uses pgvector/pgvector image which has the vector extension pre-installed
-    # The init-pgvector.sql script enables the extension in the database
-    # Required for embeddings table vector(1536) column and HNSW index
     image: pgvector/pgvector:pg16
     container_name: blockbot-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_DB: blockbot
       POSTGRES_USER: blockbot
@@ -20,10 +19,14 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+    networks:
+      - blockbot
 
+  # Redis for caching, sessions, and job queues
   redis:
     image: redis:7-alpine
     container_name: blockbot-redis
+    restart: unless-stopped
     ports:
       - "6379:6379"
     volumes:
@@ -33,19 +36,21 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - blockbot
 
+  # LiteLLM proxy for LLM model abstraction (optional - can use OpenAI directly)
   litellm:
     image: ghcr.io/berriai/litellm:main-v1.55.0
     container_name: blockbot-litellm
+    restart: unless-stopped
     ports:
       - "4010:4000"
     volumes:
       - ./litellm-config.yaml:/app/config.yaml
     environment:
-      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
-      - LITELLM_SALT_KEY=${LITELLM_SALT_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
     command: ["--config", "/app/config.yaml", "--port", "4000"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4000/health/liveliness"]
@@ -56,6 +61,81 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - blockbot
+
+  # Backend API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: blockbot-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://blockbot:${POSTGRES_PASSWORD:-devpassword}@postgres:5432/blockbot
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      RESEND_API_KEY: ${RESEND_API_KEY:-re_test}
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3000
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3001}
+      APP_URL: ${APP_URL:-http://localhost:3000}
+      LITELLM_URL: http://litellm:4000
+      LITELLM_API_KEY: ${LITELLM_API_KEY:-sk-dev}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      # Optional services
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      WHATSAPP_ACCESS_TOKEN: ${WHATSAPP_ACCESS_TOKEN:-}
+      WHATSAPP_PHONE_NUMBER_ID: ${WHATSAPP_PHONE_NUMBER_ID:-}
+      WHATSAPP_VERIFY_TOKEN: ${WHATSAPP_VERIFY_TOKEN:-}
+      WHATSAPP_APP_SECRET: ${WHATSAPP_APP_SECRET:-}
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:-}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:-}
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_ENDPOINT: ${S3_ENDPOINT:-}
+      LINEAR_WEBHOOK_SECRET: ${LINEAR_WEBHOOK_SECRET:-}
+      GITHUB_APP_ID: ${GITHUB_APP_ID:-}
+      GITHUB_APP_PRIVATE_KEY: ${GITHUB_APP_PRIVATE_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - blockbot
+
+  # Frontend web app
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: blockbot-web
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      HOSTNAME: 0.0.0.0
+      API_URL: http://api:3000
+      NEXT_PUBLIC_API_URL: http://localhost:3000/api/v1
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - blockbot
+
+networks:
+  blockbot:
+    driver: bridge
 
 volumes:
   postgres_data:

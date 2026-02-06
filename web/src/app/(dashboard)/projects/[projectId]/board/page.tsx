@@ -1,5 +1,5 @@
 import { KanbanBoard } from '@/components/board/kanban-board';
-import { apiClient } from '@/lib/api';
+import { apiClient } from '@/lib/api.server';
 import type { PaginatedResponse } from '@/types/api';
 import type { Task } from '@/types/task';
 
