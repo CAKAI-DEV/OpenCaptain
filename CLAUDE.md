@@ -1,6 +1,6 @@
-# BlockBot API
+# OpenMinion
 
-Self-hosted project management agent API built with Bun, Hono, PostgreSQL, and Redis.
+Self-hosted, open-source project management agent API. Communicate with your PM through WhatsApp/Telegram using natural language. Built with Bun, Hono, PostgreSQL, and Redis.
 
 ## Tech Stack
 
@@ -67,7 +67,7 @@ bun run db:studio    # Open Drizzle Studio
 Required in `.env`:
 ```
 PORT=3000
-DATABASE_URL=postgres://user:pass@localhost:5432/blockbot
+DATABASE_URL=postgres://user:pass@localhost:5432/openminion
 REDIS_URL=redis://localhost:6379
 JWT_SECRET=your-secret-key
 JWT_REFRESH_SECRET=your-refresh-secret
@@ -87,7 +87,7 @@ OpenAPI JSON spec at: `http://localhost:3000/docs/openapi.json`
 All errors return Problem Details JSON:
 ```json
 {
-  "type": "https://blockbot.dev/errors/auth/invalid-credentials",
+  "type": "https://openminion.dev/errors/auth/invalid-credentials",
   "title": "Invalid Credentials",
   "status": 401,
   "detail": "Email or password is incorrect",
