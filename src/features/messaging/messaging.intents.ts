@@ -88,7 +88,7 @@ const INTENT_FUNCTION = {
  */
 export async function detectIntent(
   message: string,
-  organizationId: string,
+  _organizationId: string,
   conversationHistory: Array<{ role: 'user' | 'assistant'; content: string }> = []
 ): Promise<IntentResult> {
   try {

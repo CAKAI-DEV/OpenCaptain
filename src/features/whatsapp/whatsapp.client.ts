@@ -34,11 +34,11 @@ export function getWhatsAppClient(): Client | null {
 
 export async function sendWhatsAppMessage(to: string, text: string): Promise<boolean> {
   const wa = getWhatsAppClient();
-  if (!wa) return false;
+  if (!wa || !env.WHATSAPP_PHONE_NUMBER_ID) return false;
 
   try {
     await wa.message.createMessage({
-      phoneNumberID: env.WHATSAPP_PHONE_NUMBER_ID!,
+      phoneNumberID: env.WHATSAPP_PHONE_NUMBER_ID,
       to,
       type: MessageType.Text,
       [MessageType.Text]: { body: text },

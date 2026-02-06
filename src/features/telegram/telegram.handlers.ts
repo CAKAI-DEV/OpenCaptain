@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm';
-import type { Bot, InlineKeyboard } from 'grammy';
+import type { Bot } from 'grammy';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
 import { processMessage } from '../messaging';
@@ -115,7 +115,7 @@ export function registerHandlers(bot: Bot<BotContext>): void {
     }
 
     // Check for deep link param starting with "connect_"
-    if (param && param.startsWith('connect_')) {
+    if (param?.startsWith('connect_')) {
       const userId = param.substring(8); // Remove "connect_" prefix
 
       const result = await connectTelegramAccount(chatId, userId, ctx.from?.username);

@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 import { Hono } from 'hono';
 import { env } from '../../shared/lib/env';
 import { logger } from '../../shared/lib/logger';

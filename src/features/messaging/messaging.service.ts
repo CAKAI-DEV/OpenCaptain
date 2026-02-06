@@ -4,7 +4,7 @@
  * Processes natural language messages from Telegram and WhatsApp,
  * routing to appropriate handlers based on detected intent.
  */
-import { and, eq, gte, lte, ne, or } from 'drizzle-orm';
+import { and, eq, gte, lte, ne } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
 import { sendMessage as conversationSendMessage, createConversation } from '../conversations';
@@ -249,7 +249,6 @@ export async function processMessage(
       return { response: result.message.content };
     }
 
-    case 'unknown':
     default:
       if (intent.confidence < 0.5) {
         return {

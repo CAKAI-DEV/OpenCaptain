@@ -1,6 +1,5 @@
 import { and, eq, gte, lt, lte, or, sql } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
-import { logger } from '../../shared/lib/logger';
 
 export interface TaskSummary {
   id: string;
