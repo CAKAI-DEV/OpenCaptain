@@ -17,8 +17,9 @@ import { reportBlocker } from '../escalations';
 import { createTask } from '../tasks/tasks.service';
 import { getAvailableProjects, getUserContext, switchProject } from './messaging.context';
 import { detectIntent } from './messaging.intents';
-import { extractTaskFromMessage } from './messaging.task-extraction';
+import { detectActionableItems, extractTaskFromMessage } from './messaging.task-extraction';
 import type {
+  ActionableItem,
   IntentResult,
   MessageContext,
   PendingTaskConfirmation,
@@ -258,7 +259,9 @@ function parseRelativeDueDate(dueDateHint: string | null): Date | undefined {
   if (hint.includes('end of week')) {
     const endOfWeek = new Date(now);
     const daysUntilFriday = 5 - now.getDay();
-    endOfWeek.setDate(endOfWeek.getDate() + (daysUntilFriday <= 0 ? 7 + daysUntilFriday : daysUntilFriday));
+    endOfWeek.setDate(
+      endOfWeek.getDate() + (daysUntilFriday <= 0 ? 7 + daysUntilFriday : daysUntilFriday)
+    );
     endOfWeek.setHours(23, 59, 59, 0);
     return endOfWeek;
   }
@@ -459,6 +462,20 @@ async function handleReportBlocker(
 }
 
 /**
+ * Format actionable items as suggestions for the user.
+ */
+function formatActionableItemsSuggestion(items: ActionableItem[]): string {
+  if (items.length === 0) return '';
+
+  let message = '\n\n---\nI noticed some actionable items:\n';
+  for (const [index, item] of items.entries()) {
+    message += `${index + 1}. "${item.suggestedTitle}"\n`;
+  }
+  message += '\nWould you like me to create tasks for any of these? Reply with the number(s).';
+  return message;
+}
+
+/**
  * Process an incoming message from any platform.
  *
  * Main entry point for NLU pipeline. Detects intent, routes to handler,
@@ -586,7 +603,28 @@ export async function processMessage(
         context.currentProjectId
       );
 
-      return { response: result.message.content };
+      let response = result.message.content;
+
+      // For general chat, check for actionable items in recent conversation
+      if (intent.intent === 'general_chat' && intent.confidence > 0.6) {
+        try {
+          // Detect actionable items from the current message
+          const actionableItems = await detectActionableItems([message]);
+          if (actionableItems.length > 0) {
+            response += formatActionableItemsSuggestion(actionableItems);
+
+            logger.info(
+              { userId: context.userId, itemCount: actionableItems.length },
+              'Actionable items detected in conversation'
+            );
+          }
+        } catch (err) {
+          // Don't fail the response if actionable item detection fails
+          logger.warn({ err }, 'Failed to detect actionable items');
+        }
+      }
+
+      return { response };
     }
 
     default:
