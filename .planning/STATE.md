@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 8 of 8 (Workflow Builder & Integrations)
-Plan: 4 of 5 in current phase
+Plan: 4 of 5 in current phase (08-02 complete)
 Status: In progress
-Last activity: 2026-02-06 - Completed 08-04-PLAN.md
+Last activity: 2026-02-06 - Completed 08-02-PLAN.md (Linear Integration)
 
 Progress: [████████████████░░░] 80% of Phase 8
 
@@ -141,6 +141,12 @@ Recent decisions affecting current work:
 - 5 minute TTL for pending task confirmations (security + UX balance)
 - Never auto-create tasks - always require user confirmation
 - gpt-4o-mini for task extraction (speed/cost over gpt-4o)
+- @linear/sdk for Linear API integration (official TypeScript SDK)
+- Last-write-wins conflict resolution for bidirectional sync (simple, predictable)
+- HMAC SHA256 with timing-safe comparison for webhook verification
+- Redis idempotency with 5-min TTL for duplicate webhook prevention
+- Configurable status mapping per-project for Linear workflow states
+- skipLinearSync option on task operations to prevent infinite loops
 
 ### Pending Todos
 
@@ -148,10 +154,10 @@ None yet.
 
 ### Blockers/Concerns
 
-- Pre-existing typecheck errors in linear.routes.ts (from 08-02) need resolution in 08-05
+None - all typechecks and lints passing.
 
 ## Session Continuity
 
-Last session: 2026-02-06T13:56:53Z
-Stopped at: Completed 08-04-PLAN.md
+Last session: 2026-02-06T13:58:00Z
+Stopped at: Completed 08-02-PLAN.md (Linear Integration)
 Resume file: None
