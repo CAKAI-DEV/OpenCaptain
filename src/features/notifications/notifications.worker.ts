@@ -8,7 +8,7 @@ import { registerWorker } from '../../shared/lib/queue/workers';
 import { sendTelegramMessage } from '../telegram';
 import { sendWhatsAppMessage } from '../whatsapp/whatsapp.client';
 import { storeNotification } from './notifications.service';
-import type { NotificationJobData } from './notifications.types';
+import type { NotificationJobData, StandardNotificationJobData } from './notifications.types';
 
 /**
  * Build notification message based on type
@@ -67,6 +67,41 @@ async function getTargetTitle(
 }
 
 /**
+ * Deliver message via user's connected messaging channels
+ */
+async function deliverMessage(userId: string, message: string): Promise<void> {
+  const userMessaging = await db.query.userMessaging.findFirst({
+    where: eq(schema.userMessaging.userId, userId),
+  });
+
+  // Skip messaging if user hasn't enabled it
+  if (!userMessaging?.messagingEnabled) {
+    logger.info({ userId }, 'Messaging disabled for user, skipping delivery');
+    return;
+  }
+
+  // Deliver via Telegram if connected
+  if (userMessaging.telegramChatId && userMessaging.telegramVerified) {
+    try {
+      await sendTelegramMessage(userMessaging.telegramChatId, message);
+      logger.info({ userId, platform: 'telegram' }, 'Notification delivered');
+    } catch (err) {
+      logger.error({ err, userId, platform: 'telegram' }, 'Failed to deliver via Telegram');
+    }
+  }
+
+  // Deliver via WhatsApp if connected
+  if (userMessaging.whatsappPhone && userMessaging.whatsappVerified) {
+    try {
+      await sendWhatsAppMessage(userMessaging.whatsappPhone, message);
+      logger.info({ userId, platform: 'whatsapp' }, 'Notification delivered');
+    } catch (err) {
+      logger.error({ err, userId, platform: 'whatsapp' }, 'Failed to deliver via WhatsApp');
+    }
+  }
+}
+
+/**
  * Notification worker - stores notification and delivers via messaging channels
  */
 export const notificationWorker = new Worker<NotificationJobData>(
@@ -75,50 +110,25 @@ export const notificationWorker = new Worker<NotificationJobData>(
     const data = job.data;
     logger.info({ jobId: job.id, type: data.type, userId: data.userId }, 'Processing notification');
 
-    // 1. Store notification in database
-    await storeNotification(data);
-
-    // 2. Get user's messaging preferences
-    const userMessaging = await db.query.userMessaging.findFirst({
-      where: eq(schema.userMessaging.userId, data.userId),
-    });
-
-    // Skip messaging if user hasn't enabled it
-    if (!userMessaging?.messagingEnabled) {
-      logger.info({ userId: data.userId }, 'Messaging disabled for user, skipping delivery');
+    // Handle escalation notifications differently (not stored, only delivered)
+    if (data.type === 'escalation') {
+      const message = `${data.title}\n\n${data.body}`;
+      await deliverMessage(data.userId, message);
       return;
     }
 
-    // 3. Build notification message
-    const actorName = await getActorName(data.actorId);
-    const targetTitle = await getTargetTitle(data.targetType, data.targetId);
-    const message = buildMessage(data.type, actorName, targetTitle);
+    // Standard notifications are stored and delivered
+    const standardData = data as StandardNotificationJobData;
 
-    // 4. Deliver via Telegram if connected
-    if (userMessaging.telegramChatId && userMessaging.telegramVerified) {
-      try {
-        await sendTelegramMessage(userMessaging.telegramChatId, message);
-        logger.info({ userId: data.userId, platform: 'telegram' }, 'Notification delivered');
-      } catch (err) {
-        logger.error(
-          { err, userId: data.userId, platform: 'telegram' },
-          'Failed to deliver via Telegram'
-        );
-      }
-    }
+    // 1. Store notification in database
+    await storeNotification(standardData);
 
-    // 5. Deliver via WhatsApp if connected
-    if (userMessaging.whatsappPhone && userMessaging.whatsappVerified) {
-      try {
-        await sendWhatsAppMessage(userMessaging.whatsappPhone, message);
-        logger.info({ userId: data.userId, platform: 'whatsapp' }, 'Notification delivered');
-      } catch (err) {
-        logger.error(
-          { err, userId: data.userId, platform: 'whatsapp' },
-          'Failed to deliver via WhatsApp'
-        );
-      }
-    }
+    // 2. Build and deliver notification message
+    const actorName = await getActorName(standardData.actorId);
+    const targetTitle = await getTargetTitle(standardData.targetType, standardData.targetId);
+    const message = buildMessage(standardData.type, actorName, targetTitle);
+
+    await deliverMessage(standardData.userId, message);
   },
   {
     connection: getQueueConnection(),

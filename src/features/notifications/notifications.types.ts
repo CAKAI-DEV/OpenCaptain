@@ -6,12 +6,16 @@ export const notificationTypes = [
   'assignment', // Assigned to task/deliverable
   'status_change', // Status changed on assigned item
   'due_soon', // Upcoming deadline
+  'escalation', // Escalation alert (blocker, deadline risk, output threshold)
 ] as const;
 
 export type NotificationType = (typeof notificationTypes)[number];
 
-export interface NotificationJobData {
-  type: NotificationType;
+/**
+ * Standard notification job data (stored in DB)
+ */
+export interface StandardNotificationJobData {
+  type: Exclude<NotificationType, 'escalation'>;
   userId: string;
   actorId: string | null; // null for system notifications
   targetType: 'task' | 'deliverable';
@@ -20,6 +24,22 @@ export interface NotificationJobData {
   commentId?: string;
   extra?: Record<string, unknown>;
 }
+
+/**
+ * Escalation notification job data (not stored, only delivered)
+ */
+export interface EscalationNotificationJobData {
+  type: 'escalation';
+  userId: string;
+  title: string;
+  body: string;
+  data?: Record<string, unknown>;
+}
+
+/**
+ * Union type for all notification job data
+ */
+export type NotificationJobData = StandardNotificationJobData | EscalationNotificationJobData;
 
 export interface NotificationResult {
   id: string;

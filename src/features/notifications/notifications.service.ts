@@ -2,7 +2,11 @@ import { and, eq, sql } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
 import { notificationQueue } from '../../shared/lib/queue/client';
-import type { NotificationJobData, NotificationResult } from './notifications.types';
+import type {
+  NotificationJobData,
+  NotificationResult,
+  StandardNotificationJobData,
+} from './notifications.types';
 
 /**
  * Queue a notification for processing
@@ -19,9 +23,9 @@ export async function queueNotification(data: NotificationJobData): Promise<void
 }
 
 /**
- * Store notification in database
+ * Store notification in database (for standard notifications only)
  */
-export async function storeNotification(data: NotificationJobData): Promise<string> {
+export async function storeNotification(data: StandardNotificationJobData): Promise<string> {
   const [notification] = await db
     .insert(schema.notifications)
     .values({

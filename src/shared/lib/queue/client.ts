@@ -46,6 +46,10 @@ export const recapQueue = new Queue('recaps', {
   connection: getQueueConnection(),
 });
 
+export const escalationQueue = new Queue('escalations', {
+  connection: getQueueConnection(),
+});
+
 export async function closeQueueConnections(): Promise<void> {
   await memoryConsolidationQueue.close();
   await embeddingQueue.close();
@@ -53,6 +57,7 @@ export async function closeQueueConnections(): Promise<void> {
   await proactiveMessagingQueue.close();
   await checkInQueue.close();
   await recapQueue.close();
+  await escalationQueue.close();
   if (connection) {
     connection.disconnect();
     connection = null;
