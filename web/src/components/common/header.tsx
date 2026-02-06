@@ -1,5 +1,6 @@
 'use client';
 
+import { ProjectSelector } from './project-selector';
 import { UserMenu } from './user-menu';
 
 interface HeaderProps {
@@ -10,10 +11,7 @@ interface HeaderProps {
 export function Header({ userEmail, projectId }: HeaderProps) {
   return (
     <header className="h-14 border-b bg-card flex items-center justify-between px-6">
-      <div className="flex items-center gap-4">
-        {/* Project selector will be added here when on project routes */}
-        {projectId && <span className="text-sm text-muted-foreground">Project context active</span>}
-      </div>
+      <div className="flex items-center gap-4">{projectId && <ProjectSelector />}</div>
       <div className="flex items-center gap-4">
         <UserMenu userEmail={userEmail} />
       </div>
