@@ -10,6 +10,7 @@ export * from './deliverables';
 export * from './dependencies';
 export * from './embeddings';
 export * from './escalation-blocks';
+export * from './github-repos';
 export * from './invitations';
 export * from './invite-links';
 export * from './linear-sync';

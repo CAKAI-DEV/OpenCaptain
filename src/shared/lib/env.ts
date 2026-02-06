@@ -30,6 +30,9 @@ const envSchema = z.object({
   WHATSAPP_APP_SECRET: z.string().optional(),
   // Linear Integration (optional - bidirectional sync disabled if not configured)
   LINEAR_WEBHOOK_SECRET: z.string().optional(),
+  // GitHub App (optional - coding agent disabled if not configured)
+  GITHUB_APP_ID: z.string().optional(),
+  GITHUB_APP_PRIVATE_KEY: z.string().optional(),
 });
 
 export const env = envSchema.parse(Bun.env);
