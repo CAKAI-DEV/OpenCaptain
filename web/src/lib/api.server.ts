@@ -1,6 +1,8 @@
 import { cookies } from 'next/headers';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/v1';
+// Server-side uses internal Docker URL, falls back to localhost for local dev
+const API_URL = process.env.API_URL || 'http://localhost:3000';
+const API_BASE = `${API_URL}/api/v1`;
 
 export class ApiError extends Error {
   constructor(
