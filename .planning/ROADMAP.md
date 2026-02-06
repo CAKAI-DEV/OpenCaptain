@@ -123,12 +123,12 @@ Plans:
   3. Agent generates recap summaries tailored to recipient's role and visibility level
   4. Admin can create escalation blocks with configurable triggers (blocker, deadline risk, low output)
   5. Escalations route through time-windowed chains (e.g., 4hr to squad lead, 24hr to PM)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Check-in blocks and scheduling
-- [ ] 06-02: Recap generation and distribution
-- [ ] 06-03: Escalation blocks and routing chains
+- [ ] 06-01-PLAN.md - Check-in blocks, templates, scheduling, and delivery worker
+- [ ] 06-02-PLAN.md - Role-based recap generation with LLM and scheduled delivery
+- [ ] 06-03-PLAN.md - Escalation blocks, blockers, routing chains, deadline/output monitoring
 
 ### Phase 7: Web UI & Analytics
 **Goal**: Users can access dashboard, task views, and analytics via web interface
