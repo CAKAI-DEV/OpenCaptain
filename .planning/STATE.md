@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 8 - Workflow Builder & Integrations (IN PROGRESS)
+**Current focus:** Phase 8 - Workflow Builder & Integrations (COMPLETE)
 
 ## Current Position
 
 Phase: 8 of 8 (Workflow Builder & Integrations)
-Plan: 4 of 5 in current phase (08-03 complete)
-Status: In progress
-Last activity: 2026-02-06 - Completed 08-03-PLAN.md (Smart Insights & Suggestions)
+Plan: 5 of 5 in current phase (08-05 complete)
+Status: Phase complete
+Last activity: 2026-02-06 - Completed 08-05-PLAN.md (GitHub App & Coding Agent)
 
-Progress: [█████████████████░░] 85% of Phase 8
+Progress: [████████████████████] 100% of Phase 8
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 37
+- Total plans completed: 38
 - Average duration: 6 min
-- Total execution time: 3.33 hours
+- Total execution time: 3.47 hours
 
 **By Phase:**
 
@@ -34,10 +34,10 @@ Progress: [█████████████████░░] 85% of Pha
 | 05-messaging-channels | 7 | 22 min | 3 min |
 | 06-check-ins-escalations | 3 | 18 min | 6 min |
 | 07-web-ui-analytics | 6 | 21 min | 4 min |
-| 08-workflow-builder-integrations | 5 | 32 min | 6 min |
+| 08-workflow-builder-integrations | 5 | 40 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 08-01 (9m), 08-02 (6m), 08-03 (6m), 08-04 (6m), 08-03 (5m)
+- Last 5 plans: 08-01 (9m), 08-02 (6m), 08-03 (6m), 08-04 (6m), 08-05 (8m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -150,6 +150,11 @@ Recent decisions affecting current work:
 - 10% threshold for significant metric changes (insights generation)
 - gpt-4o-mini for insight text generation with fallback
 - Stuck blockers threshold at 2+ days for proactive notification
+- Fresh GitHub App installation token per operation (no caching)
+- Draft PR only for coding agent - never auto-merge
+- Role tier <= 2 (admin/pm/squad_lead) required for coding fix authorization
+- LLM generates fix analysis description, not actual code changes (MVP)
+- Centralized codingAgentQueue in shared/lib/queue/client.ts
 
 ### Pending Todos
 
@@ -157,10 +162,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - all typechecks and lints passing.
+None - all typechecks and lints passing. Phase 8 complete.
 
 ## Session Continuity
 
-Last session: 2026-02-06T14:07:00Z
-Stopped at: Completed 08-03-PLAN.md (Smart Insights & Suggestions)
+Last session: 2026-02-06T14:11:49Z
+Stopped at: Completed 08-05-PLAN.md (GitHub App & Coding Agent)
 Resume file: None
