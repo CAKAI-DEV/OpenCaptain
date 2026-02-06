@@ -4,7 +4,6 @@ import {
   closestCorners,
   DndContext,
   type DragEndEvent,
-  type DragOverEvent,
   DragOverlay,
   type DragStartEvent,
   KeyboardSensor,
@@ -30,7 +29,7 @@ interface KanbanBoardProps {
 }
 
 export function KanbanBoard({ initialTasks }: KanbanBoardProps) {
-  const { tasks, updateTask, isPending } = useOptimisticTasks(initialTasks);
+  const { tasks, updateTask } = useOptimisticTasks(initialTasks);
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
   const sensors = useSensors(
@@ -52,7 +51,7 @@ export function KanbanBoard({ initialTasks }: KanbanBoardProps) {
     }
   };
 
-  const handleDragOver = (_event: DragOverEvent) => {
+  const handleDragOver = () => {
     // Handle drag over columns for visual feedback
     // The actual status change happens on dragEnd
   };
