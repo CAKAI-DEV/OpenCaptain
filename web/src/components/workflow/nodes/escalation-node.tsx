@@ -1,9 +1,12 @@
 'use client';
 
+import type { Node } from '@xyflow/react';
 import { Handle, type NodeProps, Position } from '@xyflow/react';
 import { AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { EscalationNode as EscalationNodeType } from '@/lib/workflow/types';
+import type { EscalationNodeData } from '@/lib/workflow/types';
+
+type EscalationNodeType = Node<EscalationNodeData, 'escalation'>;
 
 const TRIGGER_LABELS: Record<string, string> = {
   missed_checkin: 'Missed Check-in',

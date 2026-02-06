@@ -64,8 +64,12 @@ export type EscalationNode = Node<EscalationNodeData, 'escalation'>;
 export type RoleNode = Node<RoleNodeData, 'role'>;
 export type VisibilityNode = Node<VisibilityNodeData, 'visibility'>;
 
-// Union of all workflow nodes
-export type WorkflowNode = CheckInNode | EscalationNode | RoleNode | VisibilityNode;
+// Union of all workflow nodes (strict typing)
+export type WorkflowNodeStrict = CheckInNode | EscalationNode | RoleNode | VisibilityNode;
+
+// Flexible workflow node type for state management
+// Uses union data type to avoid discriminated union issues with React state
+export type WorkflowNode = Node<WorkflowNodeData, WorkflowNodeType>;
 
 // Default data factories
 export function createCheckInNodeData(): CheckInNodeData {

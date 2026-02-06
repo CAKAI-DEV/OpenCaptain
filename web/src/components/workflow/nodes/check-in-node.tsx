@@ -1,9 +1,12 @@
 'use client';
 
+import type { Node } from '@xyflow/react';
 import { Handle, type NodeProps, Position } from '@xyflow/react';
 import { Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { CheckInNode as CheckInNodeType } from '@/lib/workflow/types';
+import type { CheckInNodeData } from '@/lib/workflow/types';
+
+type CheckInNodeType = Node<CheckInNodeData, 'checkIn'>;
 
 export function CheckInNode({ data, selected }: NodeProps<CheckInNodeType>) {
   return (

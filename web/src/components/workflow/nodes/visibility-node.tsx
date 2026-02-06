@@ -1,9 +1,12 @@
 'use client';
 
+import type { Node } from '@xyflow/react';
 import { Handle, type NodeProps, Position } from '@xyflow/react';
 import { Eye } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { VisibilityNode as VisibilityNodeType } from '@/lib/workflow/types';
+import type { VisibilityNodeData } from '@/lib/workflow/types';
+
+type VisibilityNodeType = Node<VisibilityNodeData, 'visibility'>;
 
 const SCOPE_LABELS: Record<string, string> = {
   project: 'Project-wide',

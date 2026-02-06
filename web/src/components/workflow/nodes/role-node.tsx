@@ -1,9 +1,12 @@
 'use client';
 
+import type { Node } from '@xyflow/react';
 import { Handle, type NodeProps, Position } from '@xyflow/react';
 import { Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { RoleNode as RoleNodeType } from '@/lib/workflow/types';
+import type { RoleNodeData } from '@/lib/workflow/types';
+
+type RoleNodeType = Node<RoleNodeData, 'role'>;
 
 export function RoleNode({ data, selected }: NodeProps<RoleNodeType>) {
   return (
