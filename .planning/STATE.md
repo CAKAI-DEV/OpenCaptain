@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 8 of 8 (Workflow Builder & Integrations)
-Plan: 4 of 5 in current phase (08-02 complete)
+Plan: 4 of 5 in current phase (08-03 complete)
 Status: In progress
-Last activity: 2026-02-06 - Completed 08-02-PLAN.md (Linear Integration)
+Last activity: 2026-02-06 - Completed 08-03-PLAN.md (Smart Insights & Suggestions)
 
-Progress: [████████████████░░░] 80% of Phase 8
+Progress: [█████████████████░░] 85% of Phase 8
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 36
+- Total plans completed: 37
 - Average duration: 6 min
-- Total execution time: 3.25 hours
+- Total execution time: 3.33 hours
 
 **By Phase:**
 
@@ -34,10 +34,10 @@ Progress: [████████████████░░░] 80% of Pha
 | 05-messaging-channels | 7 | 22 min | 3 min |
 | 06-check-ins-escalations | 3 | 18 min | 6 min |
 | 07-web-ui-analytics | 6 | 21 min | 4 min |
-| 08-workflow-builder-integrations | 4 | 27 min | 7 min |
+| 08-workflow-builder-integrations | 5 | 32 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-06 (3m), 08-01 (9m), 08-02 (6m), 08-03 (6m), 08-04 (6m)
+- Last 5 plans: 08-01 (9m), 08-02 (6m), 08-03 (6m), 08-04 (6m), 08-03 (5m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -147,6 +147,9 @@ Recent decisions affecting current work:
 - Redis idempotency with 5-min TTL for duplicate webhook prevention
 - Configurable status mapping per-project for Linear workflow states
 - skipLinearSync option on task operations to prevent infinite loops
+- 10% threshold for significant metric changes (insights generation)
+- gpt-4o-mini for insight text generation with fallback
+- Stuck blockers threshold at 2+ days for proactive notification
 
 ### Pending Todos
 
@@ -158,6 +161,6 @@ None - all typechecks and lints passing.
 
 ## Session Continuity
 
-Last session: 2026-02-06T13:58:00Z
-Stopped at: Completed 08-02-PLAN.md (Linear Integration)
+Last session: 2026-02-06T14:07:00Z
+Stopped at: Completed 08-03-PLAN.md (Smart Insights & Suggestions)
 Resume file: None
