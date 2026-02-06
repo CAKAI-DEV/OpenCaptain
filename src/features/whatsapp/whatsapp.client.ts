@@ -49,3 +49,40 @@ export async function sendWhatsAppMessage(to: string, text: string): Promise<boo
     return false;
   }
 }
+
+/**
+ * Send WhatsApp interactive message with buttons
+ */
+export async function sendWhatsAppInteractiveMessage(
+  to: string,
+  bodyText: string,
+  buttons: Array<{ id: string; title: string }>
+): Promise<boolean> {
+  const wa = getWhatsAppClient();
+  if (!wa || !env.WHATSAPP_PHONE_NUMBER_ID) return false;
+
+  try {
+    await wa.message.createMessage({
+      phoneNumberID: env.WHATSAPP_PHONE_NUMBER_ID,
+      to,
+      type: MessageType.Interactive,
+      [MessageType.Interactive]: {
+        type: 'button',
+        body: { text: bodyText },
+        action: {
+          buttons: buttons.slice(0, 3).map((btn) => ({
+            type: 'reply' as const,
+            reply: {
+              id: btn.id,
+              title: btn.title.slice(0, 20), // WhatsApp button title limit
+            },
+          })),
+        },
+      },
+    });
+    return true;
+  } catch (err) {
+    logger.error({ err, to }, 'Failed to send WhatsApp interactive message');
+    return false;
+  }
+}

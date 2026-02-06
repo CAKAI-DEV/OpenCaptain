@@ -19,13 +19,18 @@ export {
 } from './messaging.proactive';
 // Message processing
 export { processMessage } from './messaging.service';
+// Task extraction
+export { detectActionableItems, extractTaskFromMessage } from './messaging.task-extraction';
 // Types
 export type {
+  ActionableItem,
   Entities,
   Intent,
   IntentResult,
   MessageContext,
+  PendingTaskConfirmation,
   ProcessedMessage,
+  TaskExtractionResult,
 } from './messaging.types';
 export {
   proactiveMessagingQueue,

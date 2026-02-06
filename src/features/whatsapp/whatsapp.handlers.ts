@@ -1,8 +1,9 @@
 import { eq } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
-import { processMessage } from '../messaging';
-import { sendWhatsAppMessage } from './whatsapp.client';
+import { getPendingTaskConfirmation } from '../../shared/lib/redis';
+import { type PendingTaskConfirmation, processMessage } from '../messaging';
+import { sendWhatsAppInteractiveMessage, sendWhatsAppMessage } from './whatsapp.client';
 import type { IncomingMessage } from './whatsapp.types';
 
 /**
@@ -66,5 +67,48 @@ export async function handleIncomingMessage(message: IncomingMessage): Promise<v
 
   // Process message through NLU pipeline
   const result = await processMessage(userId, message.text, 'whatsapp');
-  await sendWhatsAppMessage(message.from, result.response);
+
+  // Check if we have a pending task confirmation
+  const pendingResult = await getPendingTaskConfirmation<PendingTaskConfirmation>(userId);
+
+  if (pendingResult.success && pendingResult.data) {
+    // Send interactive message with buttons for task confirmation
+    await sendWhatsAppInteractiveMessage(message.from, result.response, [
+      { id: 'task_confirm', title: 'Confirm' },
+      { id: 'task_cancel', title: 'Cancel' },
+    ]);
+  } else {
+    await sendWhatsAppMessage(message.from, result.response);
+  }
+}
+
+/**
+ * Handle WhatsApp interactive button response
+ */
+export async function handleButtonResponse(phone: string, buttonId: string): Promise<void> {
+  logger.info({ phone, buttonId }, 'Processing WhatsApp button response');
+
+  const userId = await getUserIdFromWhatsApp(phone);
+  if (!userId) {
+    return;
+  }
+
+  let responseText: string;
+
+  switch (buttonId) {
+    case 'task_confirm': {
+      const result = await processMessage(userId, 'yes', 'whatsapp');
+      responseText = result.response;
+      break;
+    }
+    case 'task_cancel': {
+      const result = await processMessage(userId, 'no', 'whatsapp');
+      responseText = result.response;
+      break;
+    }
+    default:
+      responseText = 'Unknown action. Please try again.';
+  }
+
+  await sendWhatsAppMessage(phone, responseText);
 }

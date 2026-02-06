@@ -2,7 +2,8 @@ import { eq } from 'drizzle-orm';
 import type { Bot } from 'grammy';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
-import { processMessage } from '../messaging';
+import { getPendingTaskConfirmation } from '../../shared/lib/redis';
+import { type PendingTaskConfirmation, processMessage } from '../messaging';
 import type { BotContext } from './telegram.types';
 
 /**
@@ -242,12 +243,147 @@ export function registerHandlers(bot: Bot<BotContext>): void {
     await ctx.editMessageText(`Current project: ${project.name}`);
   });
 
+  // /task command - quick task creation
+  bot.command('task', async (ctx) => {
+    const chatId = ctx.chat?.id.toString();
+    const taskDescription = ctx.match?.trim();
+
+    if (!chatId) {
+      await ctx.reply('Could not determine chat ID.');
+      return;
+    }
+
+    const userId = await getUserIdFromTelegram(chatId);
+
+    if (!userId) {
+      await ctx.reply(
+        'Your account is not connected.\n\n' +
+          'Please connect your account first using the BlockBot web app.\n' +
+          'Use /start for instructions.'
+      );
+      return;
+    }
+
+    if (!taskDescription) {
+      await ctx.reply(
+        'Usage: /task [description]\n\n' +
+          'Examples:\n' +
+          '/task Review the PR for login feature\n' +
+          '/task Fix the bug in payment processing by Friday\n' +
+          '/task Update documentation high priority\n\n' +
+          'Or simply type "Create a task to [description]"'
+      );
+      return;
+    }
+
+    // Process the task creation through NLU pipeline
+    const result = await processMessage(userId, `Create a task: ${taskDescription}`, 'telegram');
+
+    // Check if we have a pending confirmation (task was extracted)
+    const pendingResult = await getPendingTaskConfirmation<PendingTaskConfirmation>(userId);
+
+    if (pendingResult.success && pendingResult.data) {
+      // Add inline keyboard for confirmation
+      const { InlineKeyboard } = await import('grammy');
+      const keyboard = new InlineKeyboard()
+        .text('Confirm', 'task_confirm')
+        .text('Cancel', 'task_cancel')
+        .row()
+        .text('Edit', 'task_edit');
+
+      await ctx.reply(result.response, {
+        reply_markup: keyboard,
+        parse_mode: 'Markdown',
+      });
+    } else {
+      await ctx.reply(result.response);
+    }
+  });
+
+  // Handle task confirmation callback
+  bot.callbackQuery('task_confirm', async (ctx) => {
+    const chatId = ctx.chat?.id.toString();
+
+    if (!chatId) {
+      await ctx.answerCallbackQuery({ text: 'Error' });
+      return;
+    }
+
+    const userId = await getUserIdFromTelegram(chatId);
+    if (!userId) {
+      await ctx.answerCallbackQuery({ text: 'Account not connected' });
+      return;
+    }
+
+    // Process confirmation
+    const result = await processMessage(userId, 'yes', 'telegram');
+    await ctx.answerCallbackQuery({ text: 'Task created!' });
+    await ctx.editMessageText(result.response);
+  });
+
+  // Handle task cancel callback
+  bot.callbackQuery('task_cancel', async (ctx) => {
+    const chatId = ctx.chat?.id.toString();
+
+    if (!chatId) {
+      await ctx.answerCallbackQuery({ text: 'Error' });
+      return;
+    }
+
+    const userId = await getUserIdFromTelegram(chatId);
+    if (!userId) {
+      await ctx.answerCallbackQuery({ text: 'Account not connected' });
+      return;
+    }
+
+    // Process cancellation
+    const result = await processMessage(userId, 'no', 'telegram');
+    await ctx.answerCallbackQuery({ text: 'Cancelled' });
+    await ctx.editMessageText(result.response);
+  });
+
+  // Handle task edit callback
+  bot.callbackQuery('task_edit', async (ctx) => {
+    const chatId = ctx.chat?.id.toString();
+
+    if (!chatId) {
+      await ctx.answerCallbackQuery({ text: 'Error' });
+      return;
+    }
+
+    const userId = await getUserIdFromTelegram(chatId);
+    if (!userId) {
+      await ctx.answerCallbackQuery({ text: 'Account not connected' });
+      return;
+    }
+
+    // Show edit instructions
+    const pending = await getPendingTaskConfirmation<PendingTaskConfirmation>(userId);
+    if (pending.success && pending.data) {
+      await ctx.answerCallbackQuery({ text: 'Send your changes' });
+      await ctx.reply(
+        'Current task details:\n\n' +
+          `*Title:* ${pending.data.extractedTask.title || 'Not set'}\n` +
+          `*Priority:* ${pending.data.extractedTask.priority || 'medium'}\n` +
+          `*Due:* ${pending.data.extractedTask.dueDate || 'Not set'}\n\n` +
+          'Reply with what you want to change, for example:\n' +
+          '"Change the title to Review login PR"\n' +
+          '"Make it high priority"\n' +
+          '"Due tomorrow"',
+        { parse_mode: 'Markdown' }
+      );
+    } else {
+      await ctx.answerCallbackQuery({ text: 'No pending task' });
+    }
+  });
+
   // /help command
   bot.command('help', async (ctx) => {
     await ctx.reply(
       'BlockBot Commands:\n\n' +
         '/start - Connect your account or show welcome\n' +
         '/switch - Switch between your projects\n' +
+        '/task [description] - Quick task creation\n' +
         '/help - Show this help message\n\n' +
         'You can also send messages directly and I will help you manage your tasks and projects.\n\n' +
         'Examples:\n' +
