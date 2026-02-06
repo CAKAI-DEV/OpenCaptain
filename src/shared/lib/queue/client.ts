@@ -38,11 +38,16 @@ export const proactiveMessagingQueue = new Queue('proactive-messaging', {
   connection: getQueueConnection(),
 });
 
+export const checkInQueue = new Queue('check-ins', {
+  connection: getQueueConnection(),
+});
+
 export async function closeQueueConnections(): Promise<void> {
   await memoryConsolidationQueue.close();
   await embeddingQueue.close();
   await notificationQueue.close();
   await proactiveMessagingQueue.close();
+  await checkInQueue.close();
   if (connection) {
     connection.disconnect();
     connection = null;
