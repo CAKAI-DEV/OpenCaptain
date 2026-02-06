@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 8 of 8 (Workflow Builder & Integrations)
-Plan: 1 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-06 - Completed 08-01-PLAN.md
+Last activity: 2026-02-06 - Completed 08-04-PLAN.md
 
-Progress: [███░░░░░░░░░░░░░░░░] 20% of Phase 8
+Progress: [████████████████░░░] 80% of Phase 8
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 33
+- Total plans completed: 36
 - Average duration: 6 min
-- Total execution time: 3.1 hours
+- Total execution time: 3.25 hours
 
 **By Phase:**
 
@@ -34,10 +34,10 @@ Progress: [███░░░░░░░░░░░░░░░░] 20% of Pha
 | 05-messaging-channels | 7 | 22 min | 3 min |
 | 06-check-ins-escalations | 3 | 18 min | 6 min |
 | 07-web-ui-analytics | 6 | 21 min | 4 min |
-| 08-workflow-builder-integrations | 1 | 9 min | 9 min |
+| 08-workflow-builder-integrations | 4 | 27 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-04 (3m), 07-05 (3m), 07-06 (3m), 08-01 (9m)
+- Last 5 plans: 07-06 (3m), 08-01 (9m), 08-02 (6m), 08-03 (6m), 08-04 (6m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -137,6 +137,10 @@ Recent decisions affecting current work:
 - nodeTypes defined at module level to prevent React Flow flickering
 - edgesRef pattern for accessing current edges in drag callbacks without stale closures
 - button element for draggable blocks (accessibility compliance)
+- Confidence threshold 0.7 for task creation intent, 0.6 for actionable items
+- 5 minute TTL for pending task confirmations (security + UX balance)
+- Never auto-create tasks - always require user confirmation
+- gpt-4o-mini for task extraction (speed/cost over gpt-4o)
 
 ### Pending Todos
 
@@ -144,10 +148,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - 08-01 complete. Continuing Phase 8.
+- Pre-existing typecheck errors in linear.routes.ts (from 08-02) need resolution in 08-05
 
 ## Session Continuity
 
-Last session: 2026-02-06T13:56:18Z
-Stopped at: Completed 08-01-PLAN.md
+Last session: 2026-02-06T13:56:53Z
+Stopped at: Completed 08-04-PLAN.md
 Resume file: None
