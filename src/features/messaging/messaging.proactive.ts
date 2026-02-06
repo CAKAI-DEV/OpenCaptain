@@ -1,5 +1,14 @@
 import { and, eq, gte, lt, lte, or, sql } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
+import { logger } from '../../shared/lib/logger';
+import {
+  generateInsights,
+  generateSuggestions,
+  getInsightsForRole,
+  getUserProjectRole,
+  getUserSquad,
+} from '../insights/insights.service';
+import type { Insight, Suggestion, SuggestionContext } from '../insights/insights.types';
 
 export interface TaskSummary {
   id: string;
@@ -83,7 +92,7 @@ export async function getOverdueTasks(
 }
 
 /**
- * Generate daily check-in message
+ * Generate daily check-in message with top suggestion if available.
  */
 export async function generateDailyCheckin(
   userId: string,
@@ -118,6 +127,18 @@ export async function generateDailyCheckin(
       .join('\n');
     if (todayTasks.length > 5) {
       message += `\n  ...and ${todayTasks.length - 5} more`;
+    }
+  }
+
+  // Add top suggestion if project context is available
+  if (projectId) {
+    try {
+      const topSuggestion = await getTopSuggestionForUser(userId, projectId);
+      if (topSuggestion) {
+        message += `\n\n**Suggestion:** ${topSuggestion.title}\n${topSuggestion.action}`;
+      }
+    } catch (error) {
+      logger.warn({ error, userId, projectId }, 'Failed to get suggestion for daily checkin');
     }
   }
 
@@ -156,7 +177,7 @@ export async function generateOverdueAlert(
 }
 
 /**
- * Generate weekly recap message
+ * Generate weekly recap message with key insights.
  */
 export async function generateWeeklyRecap(
   userId: string,
@@ -214,5 +235,136 @@ export async function generateWeeklyRecap(
     message += '\nHeads up: Your backlog is growing. Consider prioritizing.';
   }
 
+  // Add key insights if project context is available
+  if (projectId) {
+    try {
+      const insights = await getKeyInsightsForUser(userId, projectId);
+      if (insights.length > 0) {
+        message += '\n\n**Key Insights:**\n';
+        message += insights
+          .slice(0, 3)
+          .map((i) => `- ${i.title}`)
+          .join('\n');
+      }
+    } catch (error) {
+      logger.warn({ error, userId, projectId }, 'Failed to get insights for weekly recap');
+    }
+  }
+
   return message;
+}
+
+/**
+ * Get the top suggestion for a user based on recent insights.
+ */
+async function getTopSuggestionForUser(
+  userId: string,
+  projectId: string
+): Promise<Suggestion | null> {
+  const role = await getUserProjectRole(projectId, userId);
+  const squadId = await getUserSquad(projectId, userId);
+  const { scopeType, scopeId } = await getInsightsForRole(projectId, userId, role, squadId);
+
+  const endDate = new Date();
+  const startDate = new Date(endDate);
+  startDate.setDate(startDate.getDate() - 7);
+
+  const recentInsights = await generateInsights({
+    projectId,
+    scopeType,
+    scopeId,
+    timeRange: { start: startDate, end: endDate },
+  });
+
+  const context: SuggestionContext = {
+    projectId,
+    userId,
+    role,
+    recentInsights,
+    squadId,
+  };
+
+  const suggestions = await generateSuggestions(context);
+  return suggestions[0] ?? null;
+}
+
+/**
+ * Get key insights for a user based on their role.
+ */
+async function getKeyInsightsForUser(userId: string, projectId: string): Promise<Insight[]> {
+  const role = await getUserProjectRole(projectId, userId);
+  const squadId = await getUserSquad(projectId, userId);
+  const { scopeType, scopeId } = await getInsightsForRole(projectId, userId, role, squadId);
+
+  const endDate = new Date();
+  const startDate = new Date(endDate);
+  startDate.setDate(startDate.getDate() - 7);
+
+  return generateInsights({
+    projectId,
+    scopeType,
+    scopeId,
+    timeRange: { start: startDate, end: endDate },
+  });
+}
+
+/**
+ * Generate an insight alert message for significant changes.
+ *
+ * Used for proactive notification when significant metric changes are detected.
+ * @param _userId - User ID (reserved for future personalization)
+ * @param _projectId - Project ID (reserved for future context)
+ * @param insight - The insight to format as an alert
+ */
+export async function generateInsightAlert(
+  _userId: string,
+  _projectId: string,
+  insight: Insight
+): Promise<string> {
+  const percentStr = `${Math.abs(Math.round(insight.percentChange * 100))}%`;
+  const direction = insight.percentChange >= 0 ? 'up' : 'down';
+
+  let message = `**Insight Alert**\n\n`;
+  message += `${insight.title}\n\n`;
+  message += `${insight.description}\n`;
+
+  if (insight.percentChange !== 0) {
+    message += `\n_${insight.metric} is ${direction} ${percentStr} compared to last period._`;
+  }
+
+  return message;
+}
+
+/**
+ * Check for significant insights and return alert-worthy ones.
+ *
+ * Insights with >20% change are considered alert-worthy.
+ */
+export async function getAlertWorthyInsights(
+  userId: string,
+  projectId: string
+): Promise<Insight[]> {
+  const role = await getUserProjectRole(projectId, userId);
+  const squadId = await getUserSquad(projectId, userId);
+  const { scopeType, scopeId } = await getInsightsForRole(projectId, userId, role, squadId);
+
+  const endDate = new Date();
+  const startDate = new Date(endDate);
+  startDate.setDate(startDate.getDate() - 7);
+
+  const insights = await generateInsights({
+    projectId,
+    scopeType,
+    scopeId,
+    timeRange: { start: startDate, end: endDate },
+  });
+
+  // Filter for significant insights (>20% change or specific types)
+  const ALERT_THRESHOLD = 0.2;
+  return insights.filter(
+    (i) =>
+      Math.abs(i.percentChange) > ALERT_THRESHOLD ||
+      i.type === 'blocker_pattern' ||
+      i.type === 'deadline_risk'
+  );
 }

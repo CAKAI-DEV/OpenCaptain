@@ -12,6 +12,7 @@ import { dependenciesRoutes } from './features/dependencies';
 import { docsRoutes } from './features/docs';
 import { escalationsRoutes, schedulePeriodicChecks } from './features/escalations';
 import { healthRoutes } from './features/health';
+import { insightsRoutes } from './features/insights';
 import { invitationRoutes } from './features/invitations';
 import { startMemoryConsolidationWorker } from './features/memory';
 import { metricsRoutes } from './features/metrics';
@@ -24,6 +25,7 @@ import './features/check-ins/check-ins.worker';
 import './features/recaps/recaps.worker';
 import './features/escalations/escalations.worker';
 import './features/escalations/deadline-monitor.worker';
+import { linearApiRoutes, linearWebhookRoutes } from './features/integrations/linear/linear.routes';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { tasksRoutes } from './features/tasks';
@@ -32,7 +34,6 @@ import { getTelegramBot, isTelegramConfigured, telegramWebhook } from './feature
 import { uploadsRoutes } from './features/uploads';
 import { visibilityRoutes } from './features/visibility';
 import { whatsappWebhook } from './features/whatsapp';
-import { linearApiRoutes, linearWebhookRoutes } from './features/integrations/linear/linear.routes';
 import {
   type ApiError,
   apiRateLimiter,
@@ -121,6 +122,7 @@ app.route('/api/v1/notifications', notificationsRoutes);
 app.route('/api/v1/check-ins', checkInsRoutes);
 app.route('/api/v1/recaps', recapsRoutes);
 app.route('/api/v1/escalations', escalationsRoutes);
+app.route('/api/v1/projects', insightsRoutes);
 app.route('/api/v1', rolesRoutes);
 
 // API Documentation (Swagger UI)

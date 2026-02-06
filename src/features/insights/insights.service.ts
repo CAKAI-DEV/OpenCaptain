@@ -118,7 +118,6 @@ export async function generateInsights(request: InsightsRequest): Promise<Insigh
   }
 
   // Per-person output (find significant individual changes)
-  const currentByPerson = new Map(currentMetrics.byPerson.map((p) => [p.userId, p.count]));
   const previousByPerson = new Map(previousMetrics.byPerson.map((p) => [p.userId, p.count]));
 
   for (const person of currentMetrics.byPerson) {
@@ -247,7 +246,7 @@ Description: [2-3 sentences explaining the change and its potential impact]`;
  */
 function formatMetricName(metric: string): string {
   if (metric.startsWith('person_')) {
-    return metric.replace('person_', '').split('@')[0] + "'s output";
+    return `${metric.replace('person_', '').split('@')[0]}'s output`;
   }
   return metric
     .split('_')
@@ -284,14 +283,6 @@ async function analyzeBlockerPatterns(
   endDate: Date
 ): Promise<Insight[]> {
   const insights: Insight[] = [];
-
-  // Count active blockers
-  const [activeBlockers] = await db
-    .select({ count: count() })
-    .from(schema.blockers)
-    .where(and(eq(schema.blockers.projectId, projectId), eq(schema.blockers.status, 'active')));
-
-  const activeCount = activeBlockers?.count ?? 0;
 
   // Count stuck blockers (active for more than 2 days)
   const twoDaysAgo = new Date();
@@ -382,7 +373,7 @@ async function analyzeDeadlineRisks(projectId: string): Promise<Insight[]> {
  * @returns Array of prioritized suggestions
  */
 export async function generateSuggestions(context: SuggestionContext): Promise<Suggestion[]> {
-  const { projectId, userId, role, recentInsights, squadId } = context;
+  const { projectId, userId, role, recentInsights } = context;
 
   // Get user's task summary for context
   const userTasks = await db.query.tasks.findMany({
@@ -566,7 +557,6 @@ export async function getInsightsForRole(
       return { scopeType: 'project', scopeId: projectId };
     case 'lead':
       return { scopeType: 'squad', scopeId: squadId };
-    case 'member':
     default:
       return { scopeType: 'personal', scopeId: userId };
   }
