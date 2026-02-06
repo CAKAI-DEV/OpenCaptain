@@ -1,6 +1,6 @@
-# Contributing to OpenMinion
+# Contributing to OpenCaptain
 
-First off, thank you for considering contributing to OpenMinion! It's people like you that make OpenMinion a great tool for teams everywhere.
+First off, thank you for considering contributing to OpenCaptain! It's people like you that make OpenCaptain a great tool for teams everywhere.
 
 ## Table of Contents
 
@@ -188,7 +188,7 @@ Have an idea? [Open a feature request](https://github.com/openminion/openminion/
 - Problem you're trying to solve
 - Proposed solution
 - Alternatives you've considered
-- How it fits with OpenMinion's philosophy
+- How it fits with OpenCaptain's philosophy
 
 ### Contributing Code
 
@@ -495,4 +495,4 @@ Contributors are recognized in:
 
 ---
 
-Thank you for contributing to OpenMinion! Every contribution, no matter how small, helps make project management more accessible and human-centered.
+Thank you for contributing to OpenCaptain! Every contribution, no matter how small, helps make project management more accessible and human-centered.

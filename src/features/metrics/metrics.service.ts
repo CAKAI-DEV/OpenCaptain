@@ -38,13 +38,16 @@ export async function getOutputMetrics(
 
   // Count completed deliverables (those with completedAt set)
   // Join with deliverable_types to check if current status is final
+  const startDateStr = startDate.toISOString();
+  const endDateStr = endDate.toISOString();
+
   const deliverableResult = await db.execute<{ count: string }>(sql`
     SELECT COUNT(*) as count FROM deliverables d
     JOIN deliverable_types dt ON d.deliverable_type_id = dt.id
     WHERE d.project_id = ${projectId}
       AND d.completed_at IS NOT NULL
-      AND d.completed_at >= ${startDate}
-      AND d.completed_at <= ${endDate}
+      AND d.completed_at >= ${startDateStr}
+      AND d.completed_at <= ${endDateStr}
       ${squadId ? sql`AND d.squad_id = ${squadId}` : sql``}
   `);
 
@@ -63,16 +66,16 @@ export async function getOutputMetrics(
       WHERE project_id = ${projectId}
         AND status = 'done'
         AND completed_at IS NOT NULL
-        AND completed_at >= ${startDate}
-        AND completed_at <= ${endDate}
+        AND completed_at >= ${startDateStr}
+        AND completed_at <= ${endDateStr}
         ${squadId ? sql`AND squad_id = ${squadId}` : sql``}
       UNION ALL
       SELECT d.completed_at FROM deliverables d
       JOIN deliverable_types dt ON d.deliverable_type_id = dt.id
       WHERE d.project_id = ${projectId}
         AND d.completed_at IS NOT NULL
-        AND d.completed_at >= ${startDate}
-        AND d.completed_at <= ${endDate}
+        AND d.completed_at >= ${startDateStr}
+        AND d.completed_at <= ${endDateStr}
         ${squadId ? sql`AND d.squad_id = ${squadId}` : sql``}
     ) combined
     GROUP BY DATE(combined.completed_at)
@@ -95,8 +98,8 @@ export async function getOutputMetrics(
     WHERE t.project_id = ${projectId}
       AND t.status = 'done'
       AND t.completed_at IS NOT NULL
-      AND t.completed_at >= ${startDate}
-      AND t.completed_at <= ${endDate}
+      AND t.completed_at >= ${startDateStr}
+      AND t.completed_at <= ${endDateStr}
       ${squadId ? sql`AND t.squad_id = ${squadId}` : sql``}
       AND t.assignee_id IS NOT NULL
     GROUP BY t.assignee_id, u.email
@@ -122,8 +125,8 @@ export async function getOutputMetrics(
     WHERE t.project_id = ${projectId}
       AND t.status = 'done'
       AND t.completed_at IS NOT NULL
-      AND t.completed_at >= ${startDate}
-      AND t.completed_at <= ${endDate}
+      AND t.completed_at >= ${startDateStr}
+      AND t.completed_at <= ${endDateStr}
       AND t.squad_id IS NOT NULL
     GROUP BY t.squad_id, s.name
     ORDER BY count DESC
@@ -279,6 +282,9 @@ export async function getPersonalMetrics(
     );
 
   // By day for user
+  const startDateStr = startDate.toISOString();
+  const endDateStr = endDate.toISOString();
+
   const byDayResult = await db.execute<{ date: string; count: string }>(sql`
     SELECT
       DATE(completed_at) as date,
@@ -288,8 +294,8 @@ export async function getPersonalMetrics(
       AND assignee_id = ${userId}
       AND status = 'done'
       AND completed_at IS NOT NULL
-      AND completed_at >= ${startDate}
-      AND completed_at <= ${endDate}
+      AND completed_at >= ${startDateStr}
+      AND completed_at <= ${endDateStr}
     GROUP BY DATE(completed_at)
     ORDER BY date
   `);

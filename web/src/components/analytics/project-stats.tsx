@@ -14,9 +14,7 @@ export function ProjectStats({ output, velocity }: ProjectStatsProps) {
     previousVelocity > 0 ? ((recentVelocity - previousVelocity) / previousVelocity) * 100 : 0;
 
   // Count active squads (those with any output)
-  const activeSquads = output.bySquad.filter(
-    (s) => s.tasksCompleted > 0 || s.deliverablesCompleted > 0
-  ).length;
+  const activeSquads = output.bySquad.filter((s) => s.count > 0).length;
 
   return (
     <div className="space-y-4">
@@ -24,21 +22,23 @@ export function ProjectStats({ output, velocity }: ProjectStatsProps) {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Total Tasks</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Total Completed
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{output.totals.tasksCompleted}</div>
+            <div className="text-2xl font-bold">{output.totalCompleted}</div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Total Deliverables
+              Active Contributors
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{output.totals.deliverablesCompleted}</div>
+            <div className="text-2xl font-bold">{output.byPerson.length}</div>
           </CardContent>
         </Card>
 

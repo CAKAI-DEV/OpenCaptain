@@ -1,18 +1,8 @@
 export interface OutputMetrics {
-  byUser: Array<{
-    userId: string;
-    tasksCompleted: number;
-    deliverablesCompleted: number;
-  }>;
-  bySquad: Array<{
-    squadId: string;
-    tasksCompleted: number;
-    deliverablesCompleted: number;
-  }>;
-  totals: {
-    tasksCompleted: number;
-    deliverablesCompleted: number;
-  };
+  totalCompleted: number;
+  byDay: Array<{ date: string; count: number }>;
+  byPerson: Array<{ userId: string; email: string; count: number }>;
+  bySquad: Array<{ squadId: string; name: string; count: number }>;
 }
 
 export interface VelocityPeriod {
@@ -24,14 +14,13 @@ export interface VelocityPeriod {
 export interface BurndownPoint {
   date: string;
   remaining: number;
-  completed: number;
+  ideal: number;
 }
 
 export interface PersonalMetrics {
-  tasksCompleted: number;
-  deliverablesCompleted: number;
-  tasksByPriority: Record<string, number>;
-  averageCompletionTime: number | null;
+  totalCompleted: number;
+  byDay: Array<{ date: string; count: number }>;
+  projectAverage: number;
 }
 
 export type HealthLevel = 'healthy' | 'warning' | 'critical';

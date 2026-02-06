@@ -6,66 +6,42 @@ interface PersonalStatsProps {
 }
 
 export function PersonalStats({ metrics }: PersonalStatsProps) {
-  const highPriorityCount =
-    (metrics.tasksByPriority?.high ?? 0) + (metrics.tasksByPriority?.urgent ?? 0);
-
-  const formatDuration = (ms: number | null) => {
-    if (!ms) return '-';
-    const days = Math.round(ms / (24 * 60 * 60 * 1000));
-    if (days === 0) {
-      const hours = Math.round(ms / (60 * 60 * 1000));
-      return `${hours}h`;
-    }
-    return `${days}d`;
-  };
+  // Calculate trend from byDay data
+  const recentDays = metrics.byDay.slice(-7);
+  const recentTotal = recentDays.reduce((sum, d) => sum + d.count, 0);
 
   return (
     <div className="space-y-4">
       <h2 className="text-lg font-semibold">Your Performance</h2>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Tasks Completed
+              Total Completed
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{metrics.tasksCompleted}</div>
+            <div className="text-2xl font-bold">{metrics.totalCompleted}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Last 7 Days</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{recentTotal}</div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Deliverables
+              Project Average
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{metrics.deliverablesCompleted}</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              High Priority
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{highPriorityCount}</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Avg. Completion
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {formatDuration(metrics.averageCompletionTime)}
-            </div>
+            <div className="text-2xl font-bold">{metrics.projectAverage}</div>
           </CardContent>
         </Card>
       </div>

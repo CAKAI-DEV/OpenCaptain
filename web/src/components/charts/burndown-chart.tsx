@@ -71,11 +71,11 @@ export function BurndownChart({
               />
               <Area
                 type="monotone"
-                dataKey="completed"
+                dataKey="ideal"
                 stackId="2"
                 stroke="hsl(var(--primary))"
                 fill="hsl(var(--primary) / 0.2)"
-                name="Completed"
+                name="Ideal"
               />
             </AreaChart>
           </ResponsiveContainer>

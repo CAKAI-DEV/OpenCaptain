@@ -54,16 +54,14 @@ async function AnalyticsLoader({
   const personal = personalRes.data;
 
   // Transform output data for chart
-  const outputByUser = output.byUser.map((u, i) => ({
-    name: `Member ${i + 1}`,
-    tasks: u.tasksCompleted,
-    deliverables: u.deliverablesCompleted,
+  const outputByPerson = output.byPerson.map((u) => ({
+    name: u.email.split('@')[0],
+    count: u.count,
   }));
 
-  const outputBySquad = output.bySquad.map((s, i) => ({
-    name: `Squad ${i + 1}`,
-    tasks: s.tasksCompleted,
-    deliverables: s.deliverablesCompleted,
+  const outputBySquad = output.bySquad.map((s) => ({
+    name: s.name,
+    count: s.count,
   }));
 
   return (
@@ -85,10 +83,10 @@ async function AnalyticsLoader({
         />
       </div>
 
-      {/* Output by User - visible to squad leads and PMs */}
-      {outputByUser.length > 0 && (
+      {/* Output by Person - visible to squad leads and PMs */}
+      {outputByPerson.length > 0 && (
         <OutputChart
-          data={outputByUser}
+          data={outputByPerson}
           title="Output by Member"
           description="Individual contribution in selected period"
         />
@@ -106,16 +104,16 @@ async function AnalyticsLoader({
       {/* Totals Summary */}
       <div className="grid gap-4 md:grid-cols-3">
         <div className="rounded-lg border p-4">
-          <div className="text-sm text-muted-foreground">Total Tasks Completed</div>
-          <div className="text-3xl font-bold">{output.totals.tasksCompleted}</div>
+          <div className="text-sm text-muted-foreground">Total Completed</div>
+          <div className="text-3xl font-bold">{output.totalCompleted}</div>
         </div>
         <div className="rounded-lg border p-4">
-          <div className="text-sm text-muted-foreground">Total Deliverables</div>
-          <div className="text-3xl font-bold">{output.totals.deliverablesCompleted}</div>
+          <div className="text-sm text-muted-foreground">Active Squads</div>
+          <div className="text-3xl font-bold">{output.bySquad.length}</div>
         </div>
         <div className="rounded-lg border p-4">
           <div className="text-sm text-muted-foreground">Active Contributors</div>
-          <div className="text-3xl font-bold">{output.byUser.length}</div>
+          <div className="text-3xl font-bold">{output.byPerson.length}</div>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
-# OpenMinion
+# OpenCaptain
 
 **Your AI Project Manager That Actually Manages**
 
-OpenMinion is a self-hosted, open-source project management agent that communicates through WhatsApp and Telegram. Unlike traditional PM tools where you check dashboards, OpenMinion proactively reaches out, conducts check-ins, escalates blockers, and keeps your projects moving—all through natural conversation.
+OpenCaptain is a self-hosted, open-source project management agent that communicates through WhatsApp and Telegram. Unlike traditional PM tools where you check dashboards, OpenCaptain proactively reaches out, conducts check-ins, escalates blockers, and keeps your projects moving—all through natural conversation.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Bun](https://img.shields.io/badge/Bun-1.0+-black)](https://bun.sh)
@@ -11,9 +11,9 @@ OpenMinion is a self-hosted, open-source project management agent that communica
 
 ---
 
-## Why OpenMinion?
+## Why OpenCaptain?
 
-Traditional PM tools are passive—they wait for you to update them. OpenMinion is different:
+Traditional PM tools are passive—they wait for you to update them. OpenCaptain is different:
 
 - **Proactive**: Sends daily standups, deadline reminders, and escalation alerts
 - **Conversational**: Manage tasks through WhatsApp/Telegram, not another dashboard
@@ -159,7 +159,7 @@ Once connected, your team interacts naturally:
 ```
 You: What's on my plate today?
 
-OpenMinion: Good morning! Here's your day:
+OpenCaptain: Good morning! Here's your day:
 
   Due Today:
   • Fix auth redirect bug (#142) - High priority
@@ -174,7 +174,7 @@ OpenMinion: Good morning! Here's your day:
 ```
 You: Create task: Update landing page copy, assign to @marketing, due next Monday
 
-OpenMinion: Created task #156: "Update landing page copy"
+OpenCaptain: Created task #156: "Update landing page copy"
   • Assigned to: Marketing Team
   • Due: Monday, Feb 10
   • Priority: Normal
@@ -344,7 +344,7 @@ Areas where we'd love help:
 
 ## Self-Hosting
 
-OpenMinion is designed for self-hosting. Recommended specs:
+OpenCaptain is designed for self-hosting. Recommended specs:
 
 | Component | Minimum | Recommended |
 |-----------|---------|-------------|
@@ -405,5 +405,5 @@ Built with inspiration from:
 ---
 
 <p align="center">
-  <b>OpenMinion</b> — Let the AI handle the meetings, you handle the work.
+  <b>OpenCaptain</b> — Your AI captain steers the project, you build the ship.
 </p>

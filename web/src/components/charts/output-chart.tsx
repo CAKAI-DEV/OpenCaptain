@@ -1,21 +1,11 @@
 'use client';
 
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface OutputData {
   name: string;
-  tasks: number;
-  deliverables: number;
+  count: number;
 }
 
 interface OutputChartProps {
@@ -27,7 +17,7 @@ interface OutputChartProps {
 export function OutputChart({
   data,
   title = 'Output',
-  description = 'Tasks and deliverables completed',
+  description = 'Items completed',
 }: OutputChartProps) {
   return (
     <Card>
@@ -57,12 +47,10 @@ export function OutputChart({
                   borderRadius: '8px',
                 }}
               />
-              <Legend />
-              <Bar dataKey="tasks" fill="hsl(var(--primary))" name="Tasks" radius={[4, 4, 0, 0]} />
               <Bar
-                dataKey="deliverables"
-                fill="hsl(var(--chart-2))"
-                name="Deliverables"
+                dataKey="count"
+                fill="hsl(var(--primary))"
+                name="Completed"
                 radius={[4, 4, 0, 0]}
               />
             </BarChart>

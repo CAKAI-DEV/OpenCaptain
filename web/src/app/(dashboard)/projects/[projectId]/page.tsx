@@ -69,21 +69,21 @@ export default async function ProjectOverviewPage({
           }
         />
         <HealthCard
-          title="Tasks Completed"
-          value={output.totals.tasksCompleted}
-          health={output.totals.tasksCompleted > 0 ? 'healthy' : 'warning'}
+          title="Completed"
+          value={output.totalCompleted}
+          health={output.totalCompleted > 0 ? 'healthy' : 'warning'}
           description="Last 7 days"
         />
         <HealthCard
-          title="Deliverables"
-          value={output.totals.deliverablesCompleted}
-          health={output.totals.deliverablesCompleted > 0 ? 'healthy' : 'warning'}
-          description="Last 7 days"
+          title="Active Squads"
+          value={output.bySquad.length}
+          health={output.bySquad.length > 0 ? 'healthy' : 'warning'}
+          description="Squads with completions"
         />
         <HealthCard
           title="Active Members"
-          value={output.byUser.length}
-          health={output.byUser.length > 0 ? 'healthy' : 'warning'}
+          value={output.byPerson.length}
+          health={output.byPerson.length > 0 ? 'healthy' : 'warning'}
           description="Contributors this week"
         />
       </div>
