@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 8 - Workflow Builder & Integrations (COMPLETE)
+**Current focus:** Phase 8 - Workflow Builder & Integrations (Gap Closure)
 
 ## Current Position
 
 Phase: 8 of 8 (Workflow Builder & Integrations)
-Plan: 5 of 5 in current phase (08-05 complete)
-Status: Phase complete
-Last activity: 2026-02-06 - Completed 08-05-PLAN.md (GitHub App & Coding Agent)
+Plan: 8 (Gap Closure) - 08-08 complete
+Status: Gap closure in progress
+Last activity: 2026-02-06 - Completed 08-08-PLAN.md (Actionable Items Wiring)
 
-Progress: [████████████████████] 100% of Phase 8
+Progress: [████████████████████] 100% of Phase 8 + Gap Closure
 
 ## Performance Metrics
 
@@ -37,7 +37,7 @@ Progress: [████████████████████] 100% of
 | 08-workflow-builder-integrations | 5 | 40 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 08-01 (9m), 08-02 (6m), 08-03 (6m), 08-04 (6m), 08-05 (8m)
+- Last 5 plans: 08-03 (6m), 08-04 (6m), 08-05 (8m), 08-06 gap, 08-08 (4m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -155,6 +155,8 @@ Recent decisions affecting current work:
 - Role tier <= 2 (admin/pm/squad_lead) required for coding fix authorization
 - LLM generates fix analysis description, not actual code changes (MVP)
 - Centralized codingAgentQueue in shared/lib/queue/client.ts
+- Actionable item detection only for general_chat intent (confidence > 0.6)
+- LLM feature augmentation pattern: wrap in try/catch, log on failure, continue main flow
 
 ### Pending Todos
 
@@ -162,10 +164,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - all typechecks and lints passing. Phase 8 complete.
+None - all typechecks and lints passing. Gap closure in progress.
 
 ## Session Continuity
 
-Last session: 2026-02-06T14:11:49Z
-Stopped at: Completed 08-05-PLAN.md (GitHub App & Coding Agent)
+Last session: 2026-02-06T14:34:00Z
+Stopped at: Completed 08-08-PLAN.md (Actionable Items Wiring)
 Resume file: None
