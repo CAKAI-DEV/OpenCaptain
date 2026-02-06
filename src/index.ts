@@ -58,7 +58,10 @@ const app = new Hono();
 app.use('*', requestIdMiddleware);
 app.use('*', securityHeadersMiddleware);
 app.use('*', requestLoggerMiddleware);
-app.use('*', compress());
+// Only enable compression if CompressionStream is available (not in Bun Alpine)
+if (typeof globalThis.CompressionStream !== 'undefined') {
+  app.use('*', compress());
+}
 app.use('*', cors({ origin: env.CORS_ORIGIN, credentials: true }));
 
 // Global error handler
