@@ -161,14 +161,17 @@ Plans:
   4. Agent provides proactive suggestions based on patterns
   5. User can create tasks via natural language in chat and agent auto-detects actionable items
   6. Lead can authorize agent to spawn coding agent for minor bug fixes (PR created for review)
-**Plans**: 5 plans
+**Plans**: 8 plans (5 original + 3 gap closure)
 
 Plans:
-- [ ] 08-01-PLAN.md - Visual workflow editor with React Flow and dagre layout
-- [ ] 08-02-PLAN.md - Linear bidirectional sync with webhooks and SDK
-- [ ] 08-03-PLAN.md - Smart insights and proactive suggestions via LLM
-- [ ] 08-04-PLAN.md - Natural language task creation with confirmation flow
-- [ ] 08-05-PLAN.md - GitHub App integration and coding agent for PR creation
+- [x] 08-01-PLAN.md - Visual workflow editor with React Flow and dagre layout
+- [x] 08-02-PLAN.md - Linear bidirectional sync with webhooks and SDK
+- [x] 08-03-PLAN.md - Smart insights and proactive suggestions via LLM
+- [x] 08-04-PLAN.md - Natural language task creation with confirmation flow
+- [x] 08-05-PLAN.md - GitHub App integration and coding agent for PR creation
+- [ ] 08-06-PLAN.md - Gap closure: Workflow backend persistence (schema + API)
+- [ ] 08-07-PLAN.md - Gap closure: Wire workflow page to backend API
+- [ ] 08-08-PLAN.md - Gap closure: Wire actionable item auto-detection
 
 ## Progress
 
@@ -184,7 +187,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 5. Messaging Channels | 7/7 | Complete | 2026-02-06 |
 | 6. Check-ins & Escalations | 3/3 | Complete | 2026-02-06 |
 | 7. Web UI & Analytics | 6/6 | Complete | 2026-02-06 |
-| 8. Workflow Builder & Integrations | 0/5 | Not started | - |
+| 8. Workflow Builder & Integrations | 5/8 | Gap closure | - |
 
 ---
 *Roadmap created: 2026-02-05*
