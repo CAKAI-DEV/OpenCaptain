@@ -7,7 +7,10 @@ export {
   decrement,
   deleteKey,
   deleteKeys,
+  // Pending Task Confirmation
+  deletePendingTaskConfirmation,
   findKeys,
+  getPendingTaskConfirmation,
   getTtl,
   // Key-Value
   getValue,
@@ -27,6 +30,7 @@ export {
   setExpiry,
   setIsMember,
   setMembers,
+  setPendingTaskConfirmation,
   setRemove,
   setValue,
 } from './operations';

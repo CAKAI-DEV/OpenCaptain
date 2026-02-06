@@ -233,3 +233,44 @@ export async function ping(): Promise<RedisResult<string>> {
     return redis.ping();
   }, 'ping');
 }
+
+// Pending Task Confirmation helpers
+const PENDING_TASK_PREFIX = 'pending_task:';
+const DEFAULT_PENDING_TASK_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+/**
+ * Store a pending task confirmation in Redis.
+ *
+ * @param userId - User ID who initiated the task creation
+ * @param data - Pending task confirmation data
+ * @param ttlMs - TTL in milliseconds (default: 5 minutes)
+ */
+export async function setPendingTaskConfirmation<T>(
+  userId: string,
+  data: T,
+  ttlMs: number = DEFAULT_PENDING_TASK_TTL_MS
+): Promise<RedisResult<void>> {
+  const key = `${PENDING_TASK_PREFIX}${userId}`;
+  return setValue(key, data, ttlMs);
+}
+
+/**
+ * Get a pending task confirmation from Redis.
+ *
+ * @param userId - User ID to look up
+ * @returns Pending task confirmation or undefined if not found/expired
+ */
+export async function getPendingTaskConfirmation<T>(userId: string): Promise<RedisResult<T>> {
+  const key = `${PENDING_TASK_PREFIX}${userId}`;
+  return getValue<T>(key);
+}
+
+/**
+ * Delete a pending task confirmation from Redis.
+ *
+ * @param userId - User ID whose confirmation to delete
+ */
+export async function deletePendingTaskConfirmation(userId: string): Promise<RedisResult<void>> {
+  const key = `${PENDING_TASK_PREFIX}${userId}`;
+  return deleteKey(key);
+}
