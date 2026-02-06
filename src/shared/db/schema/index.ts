@@ -12,6 +12,7 @@ export * from './embeddings';
 export * from './escalation-blocks';
 export * from './invitations';
 export * from './invite-links';
+export * from './linear-sync';
 export * from './magic-links';
 export * from './memories';
 export * from './notifications';
