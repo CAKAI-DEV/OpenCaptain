@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 7 of 8 (Web UI & Analytics)
-Plan: 2 of 9 in current phase
+Plan: 2 of 9 in current phase (07-01 + 07-02 complete)
 Status: In progress
-Last activity: 2026-02-06 - Completed 07-02-PLAN.md (Authentication Flow)
+Last activity: 2026-02-06 - Completed 07-01-PLAN.md (Next.js Foundation Setup)
 
 Progress: [████████████████████░░░░░░░░░] 67% of Phase 7
 
@@ -121,6 +121,9 @@ Recent decisions affecting current work:
 - HTTP-only cookies for JWT storage (XSS protection)
 - Next.js API routes proxy to backend and manage cookies
 - Middleware redirects unauthenticated users to /login with callbackUrl
+- Port 3001 for web dev server (avoids conflict with API on 3000)
+- Next.js 16 with Tailwind 4 (latest stable versions)
+- shadcn/ui new-york-v4 style for component library
 
 ### Pending Todos
 
@@ -132,6 +135,6 @@ None - Phase 7 in progress.
 
 ## Session Continuity
 
-Last session: 2026-02-06T10:36:38Z
-Stopped at: Completed 07-02-PLAN.md (Authentication Flow)
+Last session: 2026-02-06T10:40:00Z
+Stopped at: Completed 07-01-PLAN.md (Next.js Foundation Setup)
 Resume file: None
