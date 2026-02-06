@@ -61,3 +61,51 @@ export interface ProcessedMessage {
   response: string;
   newProjectId?: string; // If context switched
 }
+
+/**
+ * Result from task extraction via LLM.
+ */
+export interface TaskExtractionResult {
+  /** Whether the message indicates task creation intent */
+  isTaskCreation: boolean;
+  /** Extracted task title */
+  title: string | null;
+  /** Extracted task description */
+  description: string | null;
+  /** Hint about who to assign (name or mention) */
+  assigneeHint: string | null;
+  /** Due date hint (relative like "tomorrow", "next Friday") */
+  dueDate: string | null;
+  /** Extracted priority level */
+  priority: 'low' | 'medium' | 'high' | 'urgent' | null;
+  /** Confidence score 0-1 */
+  confidence: number;
+}
+
+/**
+ * An actionable item detected in conversation.
+ */
+export interface ActionableItem {
+  /** The actionable phrase from the conversation */
+  text: string;
+  /** Suggested task title based on the phrase */
+  suggestedTitle: string;
+  /** Confidence score 0-1 */
+  confidence: number;
+}
+
+/**
+ * Pending task confirmation stored in Redis.
+ */
+export interface PendingTaskConfirmation {
+  /** User who initiated the task creation */
+  userId: string;
+  /** Project ID for the task */
+  projectId: string;
+  /** Organization ID */
+  organizationId: string;
+  /** Extracted task details */
+  extractedTask: TaskExtractionResult;
+  /** Expiration timestamp */
+  expiresAt: number;
+}
