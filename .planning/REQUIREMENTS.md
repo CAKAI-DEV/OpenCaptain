@@ -15,8 +15,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **TASK-04**: Admin can define custom status flows per deliverable type
 - [x] **TASK-05**: User can create subtasks under parent tasks
 - [x] **TASK-06**: User can define task dependencies (X blocks Y)
-- [ ] **TASK-07**: User can create tasks via natural language in chat ("create a task to fix the login bug")
-- [ ] **TASK-08**: Agent automatically detects actionable items in conversation and creates tasks
+- [x] **TASK-07**: User can create tasks via natural language in chat ("create a task to fix the login bug")
+- [x] **TASK-08**: Agent automatically detects actionable items in conversation and creates tasks
 
 ### Team & Roles
 
@@ -82,8 +82,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **WEB-01**: User can log in and access dashboard
 - [x] **WEB-02**: Dashboard shows project overview with health indicators
-- [ ] **WEB-03**: Admin can use visual block editor to configure workflows (n8n-style)
-- [ ] **WEB-04**: Visual editor supports drag-and-drop block placement
+- [x] **WEB-03**: Admin can use visual block editor to configure workflows (n8n-style)
+- [x] **WEB-04**: Visual editor supports drag-and-drop block placement
 - [x] **WEB-05**: User can view tasks in Kanban board view
 - [x] **WEB-06**: User can view tasks in list view with filters and search
 - [x] **WEB-07**: User can view individual analytics (their output, trends)
@@ -92,20 +92,20 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Integrations
 
-- [ ] **INTG-01**: System syncs tasks bidirectionally with Linear
-- [ ] **INTG-02**: Linear sync maps: status ↔ issue status, assignee ↔ assignee, blockers → comments
-- [ ] **INTG-03**: System can receive webhooks from external services
+- [x] **INTG-01**: System syncs tasks bidirectionally with Linear
+- [x] **INTG-02**: Linear sync maps: status ↔ issue status, assignee ↔ assignee, blockers → comments
+- [x] **INTG-03**: System can receive webhooks from external services
 - [ ] **INTG-04**: System can send webhooks on configurable events
 
 ### AI Agent
 
-- [ ] **AI-01**: Agent maintains knowledge of project context, history, and patterns
-- [ ] **AI-02**: Agent memory persists across conversations
-- [ ] **AI-03**: Admin can configure which LLM model to use (Claude, GPT, local models)
-- [ ] **AI-04**: Agent generates smart insights ("Instagram output dropped 30% this week")
-- [ ] **AI-05**: Agent provides proactive suggestions based on patterns
-- [ ] **AI-06**: Lead can authorize agent to spawn coding agent for minor bug fixes
-- [ ] **AI-07**: Coding agent creates PR for review (does not merge automatically)
+- [x] **AI-01**: Agent maintains knowledge of project context, history, and patterns
+- [x] **AI-02**: Agent memory persists across conversations
+- [x] **AI-03**: Admin can configure which LLM model to use (Claude, GPT, local models)
+- [x] **AI-04**: Agent generates smart insights ("Instagram output dropped 30% this week")
+- [x] **AI-05**: Agent provides proactive suggestions based on patterns
+- [x] **AI-06**: Lead can authorize agent to spawn coding agent for minor bug fixes
+- [x] **AI-07**: Coding agent creates PR for review (does not merge automatically)
 
 ### Deployment & Self-Hosting
 

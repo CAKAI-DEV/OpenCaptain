@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 5: Messaging Channels** - WhatsApp and Telegram bot interfaces ✓
 - [x] **Phase 6: Check-ins & Escalations** - Scheduled prompts, alerts, and escalation chains ✓
 - [x] **Phase 7: Web UI & Analytics** - Dashboard, task views, analytics at all levels ✓
-- [ ] **Phase 8: Workflow Builder & Integrations** - Visual block editor, Linear sync, advanced AI
+- [x] **Phase 8: Workflow Builder & Integrations** - Visual block editor, Linear sync, advanced AI ✓
 
 ## Phase Details
 
@@ -169,9 +169,9 @@ Plans:
 - [x] 08-03-PLAN.md - Smart insights and proactive suggestions via LLM
 - [x] 08-04-PLAN.md - Natural language task creation with confirmation flow
 - [x] 08-05-PLAN.md - GitHub App integration and coding agent for PR creation
-- [ ] 08-06-PLAN.md - Gap closure: Workflow backend persistence (schema + API)
-- [ ] 08-07-PLAN.md - Gap closure: Wire workflow page to backend API
-- [ ] 08-08-PLAN.md - Gap closure: Wire actionable item auto-detection
+- [x] 08-06-PLAN.md - Gap closure: Workflow backend persistence (schema + API)
+- [x] 08-07-PLAN.md - Gap closure: Wire workflow page to backend API
+- [x] 08-08-PLAN.md - Gap closure: Wire actionable item auto-detection
 
 ## Progress
 
@@ -187,7 +187,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 5. Messaging Channels | 7/7 | Complete | 2026-02-06 |
 | 6. Check-ins & Escalations | 3/3 | Complete | 2026-02-06 |
 | 7. Web UI & Analytics | 6/6 | Complete | 2026-02-06 |
-| 8. Workflow Builder & Integrations | 5/8 | Gap closure | - |
+| 8. Workflow Builder & Integrations | 8/8 | Complete | 2026-02-06 |
 
 ---
 *Roadmap created: 2026-02-05*
