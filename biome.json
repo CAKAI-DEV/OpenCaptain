@@ -7,8 +7,8 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["src/**/*.ts"],
-    "experimentalScannerIgnores": ["node_modules", "dist", "src/shared/db/migrations"]
+    "includes": ["src/**/*.ts", "web/src/**/*.ts", "web/src/**/*.tsx", "web/*.ts"],
+    "experimentalScannerIgnores": ["node_modules", "dist", "src/shared/db/migrations", "web/node_modules", "web/.next"]
   },
   "formatter": {
     "enabled": true,
