@@ -20,6 +20,7 @@ Available intents:
 - create_task: User wants to create a task ("create task", "add task", "new task")
 - update_task: User wants to update a task ("mark X as done", "complete task", "update status")
 - switch_project: User wants to change project context ("switch project", "go to project X", "/switch")
+- report_blocker: User is blocked or stuck ("I'm blocked on X", "stuck on", "can't proceed", "waiting on", "blocker")
 - help: User asking for help ("help", "what can you do?", "commands")
 - general_chat: General conversation not about tasks ("hello", "thanks", "how are you")
 - unknown: Can't determine what user wants
@@ -30,7 +31,8 @@ Extract entities when present:
 - timeRange: today, this_week, this_month, or overdue
 - status: todo, in_progress, or done
 - priority: low, medium, high, or urgent
-- assignee: Person name if mentioned`;
+- assignee: Person name if mentioned
+- blockerDescription: Description of what's blocking them (for report_blocker intent)`;
 
 /**
  * Function definition for LLM function calling.
@@ -49,6 +51,7 @@ const INTENT_FUNCTION = {
           'create_task',
           'update_task',
           'switch_project',
+          'report_blocker',
           'help',
           'general_chat',
           'unknown',
@@ -64,6 +67,10 @@ const INTENT_FUNCTION = {
           status: { type: 'string', enum: ['todo', 'in_progress', 'done'] },
           priority: { type: 'string', enum: ['low', 'medium', 'high', 'urgent'] },
           assignee: { type: 'string', description: 'Person name if mentioned' },
+          blockerDescription: {
+            type: 'string',
+            description: 'Description of what is blocking the user',
+          },
         },
         required: [],
       },

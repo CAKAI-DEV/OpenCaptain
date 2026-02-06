@@ -9,6 +9,7 @@ export const intentEnum = z.enum([
   'create_task', // "create task X", "add task"
   'update_task', // "mark task X as done", "complete task"
   'switch_project', // "/switch", "switch to project X"
+  'report_blocker', // "I'm blocked on X", "stuck", "can't proceed"
   'help', // "help", "what can you do?"
   'general_chat', // Conversational, not task-specific
   'unknown', // Can't determine intent
@@ -26,6 +27,7 @@ export const entitiesSchema = z.object({
   status: z.enum(['todo', 'in_progress', 'done']).optional(),
   priority: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
   assignee: z.string().optional(),
+  blockerDescription: z.string().optional(),
 });
 
 export type Entities = z.infer<typeof entitiesSchema>;

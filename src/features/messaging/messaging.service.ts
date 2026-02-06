@@ -8,6 +8,7 @@ import { and, eq, gte, lte, ne } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
 import { sendMessage as conversationSendMessage, createConversation } from '../conversations';
+import { reportBlocker } from '../escalations';
 import { getAvailableProjects, getUserContext, switchProject } from './messaging.context';
 import { detectIntent } from './messaging.intents';
 import type { IntentResult, MessageContext, ProcessedMessage } from './messaging.types';
@@ -167,6 +168,64 @@ async function handleSwitchProject(
 }
 
 /**
+ * Handle report_blocker intent.
+ */
+async function handleReportBlocker(
+  context: MessageContext,
+  intent: IntentResult,
+  originalMessage: string
+): Promise<ProcessedMessage> {
+  if (!context.currentProjectId) {
+    return {
+      response: "Please select a project first. Say 'switch' to see available projects.",
+    };
+  }
+
+  // Use extracted blocker description or fall back to original message
+  const description = intent.entities.blockerDescription || originalMessage;
+
+  // Find task if mentioned
+  let taskId: string | undefined;
+  if (intent.entities.taskTitle) {
+    const task = await db.query.tasks.findFirst({
+      where: and(
+        eq(schema.tasks.projectId, context.currentProjectId),
+        eq(schema.tasks.assigneeId, context.userId)
+      ),
+      columns: { id: true, title: true },
+    });
+    if (task) {
+      taskId = task.id;
+    }
+  }
+
+  try {
+    const blocker = await reportBlocker(context.currentProjectId, context.userId, {
+      description,
+      taskId,
+    });
+
+    logger.info(
+      { blockerId: blocker.id, userId: context.userId, projectId: context.currentProjectId },
+      'Blocker reported via messaging'
+    );
+
+    return {
+      response:
+        "I've logged your blocker and notified the appropriate people. " +
+        'They will follow up to help resolve it.\n\n' +
+        `Blocker: ${description.substring(0, 100)}${description.length > 100 ? '...' : ''}`,
+    };
+  } catch (err) {
+    logger.error({ err, userId: context.userId }, 'Failed to report blocker via messaging');
+    return {
+      response:
+        'Sorry, I had trouble logging your blocker. Please try again or report it in the web app.',
+    };
+  }
+}
+
+/**
  * Process an incoming message from any platform.
  *
  * Main entry point for NLU pipeline. Detects intent, routes to handler,
@@ -204,12 +263,16 @@ export async function processMessage(
     case 'switch_project':
       return handleSwitchProject(context, intent);
 
+    case 'report_blocker':
+      return handleReportBlocker(context, intent, message);
+
     case 'help':
       return {
         response:
           'I can help you with:\n\n' +
           '- "What\'s due today/this week?" - See upcoming tasks\n' +
           '- "Switch to [project name]" - Change project context\n' +
+          '- "I\'m blocked on..." - Report a blocker\n' +
           '- "Squad status" - Get project overview\n' +
           '- Ask any question about your tasks!\n\n' +
           `Current project: ${context.currentProjectId ? 'Set' : 'Not set (use switch to select one)'}`,

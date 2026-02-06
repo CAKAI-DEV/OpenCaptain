@@ -10,6 +10,7 @@ import { customFieldsRoutes } from './features/custom-fields';
 import { deliverablesRoutes } from './features/deliverables';
 import { dependenciesRoutes } from './features/dependencies';
 import { docsRoutes } from './features/docs';
+import { escalationsRoutes, schedulePeriodicChecks } from './features/escalations';
 import { healthRoutes } from './features/health';
 import { invitationRoutes } from './features/invitations';
 import { startMemoryConsolidationWorker } from './features/memory';
@@ -21,6 +22,8 @@ import './features/notifications/notifications.worker';
 import './features/messaging/messaging.worker';
 import './features/check-ins/check-ins.worker';
 import './features/recaps/recaps.worker';
+import './features/escalations/escalations.worker';
+import './features/escalations/deadline-monitor.worker';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { tasksRoutes } from './features/tasks';
@@ -116,6 +119,7 @@ app.route('/api/v1/comments', commentsRoutes);
 app.route('/api/v1/notifications', notificationsRoutes);
 app.route('/api/v1/check-ins', checkInsRoutes);
 app.route('/api/v1/recaps', recapsRoutes);
+app.route('/api/v1/escalations', escalationsRoutes);
 app.route('/api/v1', rolesRoutes);
 
 // API Documentation (Swagger UI)
@@ -168,6 +172,9 @@ async function main() {
 
   // Start background workers
   startMemoryConsolidationWorker();
+
+  // Schedule periodic escalation checks
+  await schedulePeriodicChecks();
 
   // Set Telegram webhook URL on startup (only in production with configured bot)
   if (env.NODE_ENV === 'production' && isTelegramConfigured()) {
