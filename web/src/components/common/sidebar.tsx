@@ -20,7 +20,7 @@ export function Sidebar({ projectId }: SidebarProps) {
         { name: 'Analytics', href: `/projects/${projectId}/analytics`, icon: BarChart3 },
         { name: 'Workflows', href: `/projects/${projectId}/workflows`, icon: Workflow },
       ]
-    : [{ name: 'Dashboard', href: '/', icon: LayoutDashboard }];
+    : [{ name: 'Projects', href: '/projects', icon: LayoutDashboard }];
 
   return (
     <aside className="w-64 border-r bg-card h-screen flex flex-col">

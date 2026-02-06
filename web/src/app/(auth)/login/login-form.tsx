@@ -22,7 +22,7 @@ interface LoginFormProps {
   callbackUrl?: string;
 }
 
-export function LoginForm({ callbackUrl = '/' }: LoginFormProps) {
+export function LoginForm({ callbackUrl = '/projects' }: LoginFormProps) {
   const router = useRouter();
   const [magicLinkSent, setMagicLinkSent] = useState(false);
   const [magicLinkLoading, setMagicLinkLoading] = useState(false);
