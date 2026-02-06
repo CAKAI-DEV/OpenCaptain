@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-const API_BASE = process.env.API_URL || 'http://localhost:3000/api/v1';
+const API_URL = process.env.API_URL || 'http://localhost:3000';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   }
 
   const response = await fetch(
-    `${API_BASE}/auth/magic-link/verify?token=${encodeURIComponent(token)}`,
+    `${API_URL}/api/v1/auth/magic-link/verify?token=${encodeURIComponent(token)}`,
     {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },

@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-const API_BASE = process.env.API_URL || 'http://localhost:3000/api/v1';
+const API_URL = process.env.API_URL || 'http://localhost:3000';
 
 export async function POST() {
   const cookieStore = await cookies();
@@ -10,7 +10,7 @@ export async function POST() {
   // Call backend logout if we have a token
   if (accessToken) {
     try {
-      await fetch(`${API_BASE}/auth/logout`, {
+      await fetch(`${API_URL}/api/v1/auth/logout`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${accessToken}` },
       });

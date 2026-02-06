@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-const API_BASE = process.env.API_URL || 'http://localhost:3000/api/v1';
+const API_URL = process.env.API_URL || 'http://localhost:3000';
 
 export async function POST() {
   const cookieStore = await cookies();
@@ -11,7 +11,7 @@ export async function POST() {
     return NextResponse.json({ error: 'No refresh token' }, { status: 401 });
   }
 
-  const response = await fetch(`${API_BASE}/auth/refresh`, {
+  const response = await fetch(`${API_URL}/api/v1/auth/refresh`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ refreshToken }),
