@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 5 - Messaging Channels (COMPLETE)
+**Current focus:** Phase 6 - Check-ins and Escalations (IN PROGRESS)
 
 ## Current Position
 
-Phase: 5 of 8 (Messaging Channels)
-Plan: 7 of 7 in current phase
-Status: Phase complete
-Last activity: 2026-02-05 - Completed 05-07-PLAN.md (Proactive Messaging and Activity Feed)
+Phase: 6 of 8 (Check-ins and Escalations)
+Plan: 2 of 4 in current phase
+Status: In progress
+Last activity: 2026-02-06 - Completed 06-02-PLAN.md (Recap Generation)
 
-Progress: [███████████████████] 100% of Phase 5
+Progress: [██████████████████████████░░] 87% through Phase 6
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24
+- Total plans completed: 26
 - Average duration: 6 min
-- Total execution time: 2.3 hours
+- Total execution time: 2.6 hours
 
 **By Phase:**
 
@@ -32,9 +32,10 @@ Progress: [███████████████████] 100% of Ph
 | 03-llm-infrastructure | 5 | 33 min | 7 min |
 | 04-tasks-deliverables | 4 | 26 min | 7 min |
 | 05-messaging-channels | 7 | 22 min | 3 min |
+| 06-check-ins-escalations | 2 | 10 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-04 (3m), 05-05 (4m), 05-06 (5m), 05-07 (4m)
+- Last 5 plans: 05-06 (5m), 05-07 (4m), 06-01 (5m), 06-02 (5m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -110,6 +111,9 @@ Recent decisions affecting current work:
 - Proactive messages respect user preferences (dailyCheckinEnabled, weeklyRecapEnabled)
 - Messages delivered via both Telegram and WhatsApp if both verified
 - BullMQ repeatable jobs for scheduled proactive messaging (9 AM daily, 9 AM Monday)
+- Role-based scope determination: Admin/PM=project, Squad lead=squad, Member=personal
+- LLM fallback to metrics summary when LLM call fails
+- Recurring recaps: daily at 6 PM, weekly on Friday 5 PM
 
 ### Pending Todos
 
@@ -117,10 +121,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 5 complete. Ready for Phase 6.
+None - Plan 06-02 complete. Ready for Plan 06-03.
 
 ## Session Continuity
 
-Last session: 2026-02-05T19:47:30Z
-Stopped at: Completed 05-07-PLAN.md (Proactive Messaging and Activity Feed)
+Last session: 2026-02-06T06:18:48Z
+Stopped at: Completed 06-02-PLAN.md (Recap Generation)
 Resume file: None
