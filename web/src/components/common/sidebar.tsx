@@ -1,6 +1,6 @@
 'use client';
 
-import { BarChart3, KanbanSquare, LayoutDashboard, List, Settings } from 'lucide-react';
+import { BarChart3, KanbanSquare, LayoutDashboard, List, Settings, Workflow } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -18,6 +18,7 @@ export function Sidebar({ projectId }: SidebarProps) {
         { name: 'Board', href: `/projects/${projectId}/board`, icon: KanbanSquare },
         { name: 'List', href: `/projects/${projectId}/list`, icon: List },
         { name: 'Analytics', href: `/projects/${projectId}/analytics`, icon: BarChart3 },
+        { name: 'Workflows', href: `/projects/${projectId}/workflows`, icon: Workflow },
       ]
     : [{ name: 'Dashboard', href: '/', icon: LayoutDashboard }];
 
