@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 8 of 8 (Workflow Builder & Integrations)
-Plan: 8 (Gap Closure) - 08-08 complete
+Plan: 7 (Gap Closure) - 08-07 complete
 Status: Gap closure in progress
-Last activity: 2026-02-06 - Completed 08-08-PLAN.md (Actionable Items Wiring)
+Last activity: 2026-02-06 - Completed 08-07-PLAN.md (Workflow Persistence Frontend)
 
 Progress: [████████████████████] 100% of Phase 8 + Gap Closure
 
@@ -37,7 +37,7 @@ Progress: [████████████████████] 100% of
 | 08-workflow-builder-integrations | 5 | 40 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 08-03 (6m), 08-04 (6m), 08-05 (8m), 08-06 gap, 08-08 (4m)
+- Last 5 plans: 08-04 (6m), 08-05 (8m), 08-06 (5m), 08-07 (2m), 08-08 (4m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -160,6 +160,8 @@ Recent decisions affecting current work:
 - JSONB for workflow nodes/edges (flexible, matches React Flow structure)
 - One workflow per project via unique constraint on project_id
 - Upsert pattern for workflow save (creates or updates existing)
+- clientApiClient usage for client component API calls
+- API client files in web/src/lib/api/ for domain-specific endpoints
 
 ### Pending Todos
 
@@ -171,6 +173,6 @@ None - all typechecks and lints passing. Gap closure in progress.
 
 ## Session Continuity
 
-Last session: 2026-02-06T14:38:02Z
-Stopped at: Completed 08-06-PLAN.md (Workflow Persistence)
+Last session: 2026-02-06T14:37:57Z
+Stopped at: Completed 08-07-PLAN.md (Workflow Persistence Frontend)
 Resume file: None
