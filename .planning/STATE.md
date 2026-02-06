@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 ## Current Position
 
 Phase: 7 of 8 (Web UI & Analytics)
-Plan: 3 of 9 in current phase (07-01, 07-02, 07-03 complete)
+Plan: 4 of 9 in current phase (07-01, 07-02, 07-03, 07-04 complete)
 Status: In progress
-Last activity: 2026-02-06 - Completed 07-03-PLAN.md (Dashboard Layout & Project Overview)
+Last activity: 2026-02-06 - Completed 07-04-PLAN.md (Kanban Board)
 
-Progress: [█████████████████████████░░░░] 75% of Phase 7
+Progress: [██████████████████████████░░░] 80% of Phase 7
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 29
+- Total plans completed: 30
 - Average duration: 6 min
-- Total execution time: 2.8 hours
+- Total execution time: 2.85 hours
 
 **By Phase:**
 
@@ -33,10 +33,10 @@ Progress: [███████████████████████
 | 04-tasks-deliverables | 4 | 26 min | 7 min |
 | 05-messaging-channels | 7 | 22 min | 3 min |
 | 06-check-ins-escalations | 3 | 18 min | 6 min |
-| 07-web-ui-analytics | 3 | 12 min | 4 min |
+| 07-web-ui-analytics | 4 | 15 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-03 (8m), 07-01 (5m), 07-02 (5m), 07-03 (2m)
+- Last 5 plans: 07-01 (5m), 07-02 (5m), 07-03 (2m), 07-04 (3m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -127,6 +127,9 @@ Recent decisions affecting current work:
 - Nested layouts for dashboard/project context separation
 - HealthCard colored dots: -10% threshold healthy, -30% threshold warning
 - Project selector only shown when projectId in URL params
+- dnd-kit for drag-and-drop (over react-beautiful-dnd)
+- React 19 useOptimistic for instant UI updates with automatic rollback
+- Server Component fetches initial tasks, Client Component handles DnD
 
 ### Pending Todos
 
@@ -138,6 +141,6 @@ None - Phase 7 in progress.
 
 ## Session Continuity
 
-Last session: 2026-02-06T10:44:22Z
-Stopped at: Completed 07-03-PLAN.md (Dashboard Layout & Project Overview)
+Last session: 2026-02-06T10:46:32Z
+Stopped at: Completed 07-04-PLAN.md (Kanban Board)
 Resume file: None
