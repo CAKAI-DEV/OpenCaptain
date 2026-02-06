@@ -1,4 +1,6 @@
 export * from './attachments';
+export * from './check-in-blocks';
+export * from './check-in-responses';
 export * from './comments';
 export * from './conversations';
 export * from './custom-fields';
