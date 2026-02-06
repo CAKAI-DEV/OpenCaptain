@@ -105,11 +105,11 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     networks:
       - blockbot
 
@@ -129,7 +129,7 @@ services:
       NEXT_PUBLIC_API_URL: http://localhost:3000/api/v1
     depends_on:
       api:
-        condition: service_healthy
+        condition: service_started
     networks:
       - blockbot
 
