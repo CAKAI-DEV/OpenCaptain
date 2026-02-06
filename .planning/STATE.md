@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Teams manage work through natural conversation with an AI that understands their project context, while admins configure workflows visually without code.
-**Current focus:** Phase 7 - Web UI & Analytics (COMPLETE)
+**Current focus:** Phase 8 - Workflow Builder & Integrations (IN PROGRESS)
 
 ## Current Position
 
-Phase: 7 of 8 (Web UI & Analytics)
-Plan: 6 of 6 in current phase
-Status: Phase complete
-Last activity: 2026-02-06 - Completed Phase 7 (Web UI & Analytics)
+Phase: 8 of 8 (Workflow Builder & Integrations)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-02-06 - Completed 08-01-PLAN.md
 
-Progress: [███████████████████] 100% of Phase 7
+Progress: [███░░░░░░░░░░░░░░░░] 20% of Phase 8
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 32
+- Total plans completed: 33
 - Average duration: 6 min
-- Total execution time: 2.95 hours
+- Total execution time: 3.1 hours
 
 **By Phase:**
 
@@ -34,9 +34,10 @@ Progress: [███████████████████] 100% of Ph
 | 05-messaging-channels | 7 | 22 min | 3 min |
 | 06-check-ins-escalations | 3 | 18 min | 6 min |
 | 07-web-ui-analytics | 6 | 21 min | 4 min |
+| 08-workflow-builder-integrations | 1 | 9 min | 9 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-02 (5m), 07-03 (2m), 07-04 (3m), 07-05 (3m), 07-06 (3m)
+- Last 5 plans: 07-04 (3m), 07-05 (3m), 07-06 (3m), 08-01 (9m)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -133,6 +134,9 @@ Recent decisions affecting current work:
 - Recharts for analytics charts (responsive, shadcn compatible)
 - Date range persists in URL params for shareable analytics links
 - Parallel API fetching for faster analytics page load
+- nodeTypes defined at module level to prevent React Flow flickering
+- edgesRef pattern for accessing current edges in drag callbacks without stale closures
+- button element for draggable blocks (accessibility compliance)
 
 ### Pending Todos
 
@@ -140,10 +144,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None - Phase 7 complete. Ready for Phase 8.
+None - 08-01 complete. Continuing Phase 8.
 
 ## Session Continuity
 
-Last session: 2026-02-06T11:15:00Z
-Stopped at: Completed Phase 7 (Web UI & Analytics)
+Last session: 2026-02-06T13:56:18Z
+Stopped at: Completed 08-01-PLAN.md
 Resume file: None

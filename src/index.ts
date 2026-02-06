@@ -32,6 +32,7 @@ import { getTelegramBot, isTelegramConfigured, telegramWebhook } from './feature
 import { uploadsRoutes } from './features/uploads';
 import { visibilityRoutes } from './features/visibility';
 import { whatsappWebhook } from './features/whatsapp';
+import { linearApiRoutes, linearWebhookRoutes } from './features/integrations/linear/linear.routes';
 import {
   type ApiError,
   apiRateLimiter,
@@ -128,6 +129,12 @@ app.route('/docs', docsRoutes);
 // Messaging webhooks (external services)
 app.route('', telegramWebhook);
 app.route('', whatsappWebhook);
+
+// Linear webhook (signature verified, no auth)
+app.route('', linearWebhookRoutes);
+
+// Linear API routes
+app.route('/api/v1', linearApiRoutes);
 
 // Graceful shutdown handler
 let isShuttingDown = false;

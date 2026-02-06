@@ -1,6 +1,8 @@
 import { and, count, eq, isNull } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
+import { logger } from '../../shared/lib/logger';
 import { ApiError } from '../../shared/middleware/error-handler';
+import { createLinearClient, syncTaskToLinear, getLinearIntegration } from '../integrations/linear';
 import type {
   CreateTaskInput,
   PaginatedResult,
@@ -10,6 +12,13 @@ import type {
   TaskWithSubtasks,
   UpdateTaskInput,
 } from './tasks.types';
+
+/**
+ * Options for task operations with Linear sync control.
+ */
+export interface TaskOperationOptions {
+  skipLinearSync?: boolean;
+}
 
 /**
  * Maximum nesting depth for tasks.
@@ -30,8 +39,13 @@ const VALID_STATUS_TRANSITIONS: Record<string, string[]> = {
 /**
  * Creates a new task or subtask.
  * Enforces 2-level nesting limit (depth 0, 1, 2).
+ * Optionally syncs to Linear if integration is enabled.
  */
-export async function createTask(input: CreateTaskInput, createdById: string): Promise<TaskResult> {
+export async function createTask(
+  input: CreateTaskInput,
+  createdById: string,
+  options?: TaskOperationOptions
+): Promise<TaskResult> {
   let depth = 0;
 
   // If parentTaskId provided, validate nesting limit
@@ -136,17 +150,24 @@ export async function createTask(input: CreateTaskInput, createdById: string): P
     );
   }
 
+  // Sync to Linear if integration enabled and not skipped
+  if (!options?.skipLinearSync) {
+    await syncToLinearIfEnabled(task);
+  }
+
   return task;
 }
 
 /**
  * Updates an existing task.
  * Validates status transitions and manages completedAt timestamp.
+ * Optionally syncs to Linear if integration is enabled.
  */
 export async function updateTask(
   taskId: string,
   input: UpdateTaskInput,
-  _userId: string
+  _userId: string,
+  options?: TaskOperationOptions
 ): Promise<TaskResult> {
   const existingTask = await db.query.tasks.findFirst({
     where: eq(schema.tasks.id, taskId),
@@ -236,7 +257,41 @@ export async function updateTask(
     throw new ApiError(500, 'tasks/update-failed', 'Task Update Failed', 'Failed to update task');
   }
 
+  // Sync to Linear if integration enabled and not skipped
+  if (!options?.skipLinearSync) {
+    await syncToLinearIfEnabled(task);
+  }
+
   return task;
+}
+
+/**
+ * Syncs a task to Linear if integration is enabled for the project.
+ * Runs asynchronously - doesn't block task operations.
+ */
+async function syncToLinearIfEnabled(task: TaskResult): Promise<void> {
+  try {
+    const integration = await getLinearIntegration(task.projectId);
+
+    if (!integration || !integration.enabled) {
+      return;
+    }
+
+    const client = createLinearClient(integration.apiKeyEncrypted);
+    const result = await syncTaskToLinear(
+      task,
+      client,
+      integration.teamId,
+      integration.statusMappings || []
+    );
+
+    if (!result.success) {
+      logger.warn({ taskId: task.id, error: result.error }, 'Failed to sync task to Linear');
+    }
+  } catch (error) {
+    // Don't fail task operation if Linear sync fails
+    logger.error({ taskId: task.id, error }, 'Error syncing task to Linear');
+  }
 }
 
 /**

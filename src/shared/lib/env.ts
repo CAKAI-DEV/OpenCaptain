@@ -28,6 +28,8 @@ const envSchema = z.object({
   WHATSAPP_PHONE_NUMBER_ID: z.string().optional(),
   WHATSAPP_VERIFY_TOKEN: z.string().optional(),
   WHATSAPP_APP_SECRET: z.string().optional(),
+  // Linear Integration (optional - bidirectional sync disabled if not configured)
+  LINEAR_WEBHOOK_SECRET: z.string().optional(),
 });
 
 export const env = envSchema.parse(Bun.env);
