@@ -157,6 +157,9 @@ Recent decisions affecting current work:
 - Centralized codingAgentQueue in shared/lib/queue/client.ts
 - Actionable item detection only for general_chat intent (confidence > 0.6)
 - LLM feature augmentation pattern: wrap in try/catch, log on failure, continue main flow
+- JSONB for workflow nodes/edges (flexible, matches React Flow structure)
+- One workflow per project via unique constraint on project_id
+- Upsert pattern for workflow save (creates or updates existing)
 
 ### Pending Todos
 
@@ -168,6 +171,6 @@ None - all typechecks and lints passing. Gap closure in progress.
 
 ## Session Continuity
 
-Last session: 2026-02-06T14:34:00Z
-Stopped at: Completed 08-08-PLAN.md (Actionable Items Wiring)
+Last session: 2026-02-06T14:38:02Z
+Stopped at: Completed 08-06-PLAN.md (Workflow Persistence)
 Resume file: None
