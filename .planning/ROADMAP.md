@@ -161,14 +161,14 @@ Plans:
   4. Agent provides proactive suggestions based on patterns
   5. User can create tasks via natural language in chat and agent auto-detects actionable items
   6. Lead can authorize agent to spawn coding agent for minor bug fixes (PR created for review)
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 08-01: Visual workflow editor (React Flow)
-- [ ] 08-02: Linear integration (bidirectional sync)
-- [ ] 08-03: Smart insights and proactive suggestions
-- [ ] 08-04: Natural language task creation and auto-detection
-- [ ] 08-05: Coding agent integration
+- [ ] 08-01-PLAN.md - Visual workflow editor with React Flow and dagre layout
+- [ ] 08-02-PLAN.md - Linear bidirectional sync with webhooks and SDK
+- [ ] 08-03-PLAN.md - Smart insights and proactive suggestions via LLM
+- [ ] 08-04-PLAN.md - Natural language task creation with confirmation flow
+- [ ] 08-05-PLAN.md - GitHub App integration and coding agent for PR creation
 
 ## Progress
 
