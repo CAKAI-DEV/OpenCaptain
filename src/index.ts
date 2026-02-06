@@ -3,6 +3,7 @@ import { compress } from 'hono/compress';
 import { cors } from 'hono/cors';
 import { HTTPException } from 'hono/http-exception';
 import { authRoutes } from './features/auth';
+import { checkInsRoutes } from './features/check-ins';
 import { commentsRoutes } from './features/comments';
 import { conversationRoutes } from './features/conversations';
 import { customFieldsRoutes } from './features/custom-fields';
@@ -14,9 +15,12 @@ import { invitationRoutes } from './features/invitations';
 import { startMemoryConsolidationWorker } from './features/memory';
 import { metricsRoutes } from './features/metrics';
 import { notificationsRoutes } from './features/notifications';
+import { recapsRoutes } from './features/recaps';
 // Import workers to start them on app startup
 import './features/notifications/notifications.worker';
 import './features/messaging/messaging.worker';
+import './features/check-ins/check-ins.worker';
+import './features/recaps/recaps.worker';
 import { projectRoutes } from './features/projects';
 import { rolesRoutes } from './features/roles';
 import { tasksRoutes } from './features/tasks';
@@ -110,6 +114,8 @@ app.route('/api/v1/visibility', visibilityRoutes);
 app.route('/api/v1/conversations', conversationRoutes);
 app.route('/api/v1/comments', commentsRoutes);
 app.route('/api/v1/notifications', notificationsRoutes);
+app.route('/api/v1/check-ins', checkInsRoutes);
+app.route('/api/v1/recaps', recapsRoutes);
 app.route('/api/v1', rolesRoutes);
 
 // API Documentation (Swagger UI)

@@ -42,12 +42,17 @@ export const checkInQueue = new Queue('check-ins', {
   connection: getQueueConnection(),
 });
 
+export const recapQueue = new Queue('recaps', {
+  connection: getQueueConnection(),
+});
+
 export async function closeQueueConnections(): Promise<void> {
   await memoryConsolidationQueue.close();
   await embeddingQueue.close();
   await notificationQueue.close();
   await proactiveMessagingQueue.close();
   await checkInQueue.close();
+  await recapQueue.close();
   if (connection) {
     connection.disconnect();
     connection = null;
