@@ -1,4 +1,5 @@
 export * from './attachments';
+export * from './blockers';
 export * from './check-in-blocks';
 export * from './check-in-responses';
 export * from './comments';
@@ -8,6 +9,7 @@ export * from './deliverable-types';
 export * from './deliverables';
 export * from './dependencies';
 export * from './embeddings';
+export * from './escalation-blocks';
 export * from './invitations';
 export * from './invite-links';
 export * from './magic-links';
