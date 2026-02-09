@@ -7,11 +7,17 @@ export interface Squad {
   createdAt: string;
   updatedAt: string;
   children?: Squad[];
+  subSquads?: Squad[];
+  members?: SquadMember[];
 }
 
 export interface SquadMember {
+  id: string;
   userId: string;
-  email: string;
   squadId: string;
-  joinedAt: string;
+  createdAt: string;
+  user: {
+    id: string;
+    email: string;
+  };
 }

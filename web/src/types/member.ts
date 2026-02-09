@@ -1,9 +1,15 @@
 export type ProjectRole = 'admin' | 'pm' | 'squad_lead' | 'member';
 
 export interface ProjectMember {
+  id: string;
+  projectId: string;
   userId: string;
-  email: string;
   role: ProjectRole;
   reportsToUserId: string | null;
-  joinedAt: string;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    id: string;
+    email: string;
+  };
 }

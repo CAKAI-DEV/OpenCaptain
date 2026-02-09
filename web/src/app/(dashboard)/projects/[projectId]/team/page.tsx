@@ -94,16 +94,16 @@ export default function TeamPage() {
         squadsApi.list(projectId),
         membersApi.list(projectId),
       ]);
-      const loadedSquads = squadsRes.data || [];
+      const loadedSquads = Array.isArray(squadsRes) ? squadsRes : [];
       setSquads(loadedSquads);
-      setMembers(membersRes.data || []);
+      setMembers(Array.isArray(membersRes) ? membersRes : []);
 
       // Load members for each squad
       const memberResults = await Promise.all(
         loadedSquads.map((s) =>
           squadsApi
             .listMembers(s.id)
-            .then((r) => ({ squadId: s.id, members: r.data || [] }))
+            .then((r) => ({ squadId: s.id, members: Array.isArray(r) ? r : [] }))
             .catch(() => ({ squadId: s.id, members: [] }))
         )
       );
@@ -184,7 +184,7 @@ export default function TeamPage() {
     try {
       await squadsApi.addMember(squadId, userId);
       const res = await squadsApi.listMembers(squadId);
-      setSquadMembers((prev) => ({ ...prev, [squadId]: res.data || [] }));
+      setSquadMembers((prev) => ({ ...prev, [squadId]: Array.isArray(res) ? res : [] }));
       setAddMemberToSquadId('');
     } catch {
       // Handle error
@@ -305,12 +305,12 @@ export default function TeamPage() {
                 <Card key={member.userId}>
                   <CardContent className="p-4 flex items-center gap-3">
                     <Avatar>
-                      <AvatarFallback>{member.email[0].toUpperCase()}</AvatarFallback>
+                      <AvatarFallback>{member.user.email[0].toUpperCase()}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">{member.email}</p>
+                      <p className="text-sm font-medium">{member.user.email}</p>
                       <p className="text-xs text-muted-foreground">
-                        Joined {new Date(member.joinedAt).toLocaleDateString()}
+                        Joined {new Date(member.createdAt).toLocaleDateString()}
                       </p>
                     </div>
                     <Badge variant="secondary" className={roleColors[member.role]}>
@@ -458,7 +458,7 @@ export default function TeamPage() {
                           {sm.slice(0, 5).map((m) => (
                             <Avatar key={m.userId} className="h-7 w-7 border-2 border-background">
                               <AvatarFallback className="text-xs">
-                                {m.email[0].toUpperCase()}
+                                {m.user.email[0].toUpperCase()}
                               </AvatarFallback>
                             </Avatar>
                           ))}
@@ -469,9 +469,9 @@ export default function TeamPage() {
                           )}
                         </div>
                       )}
-                      {squad.children && squad.children.length > 0 && (
+                      {(squad.subSquads ?? squad.children ?? []).length > 0 && (
                         <div className="mt-2 space-y-1">
-                          {squad.children.map((child) => (
+                          {(squad.subSquads ?? squad.children ?? []).map((child) => (
                             <div
                               key={child.id}
                               className="flex items-center gap-1 text-xs text-muted-foreground"
@@ -514,7 +514,7 @@ export default function TeamPage() {
                   <SelectContent>
                     {getAvailableMembersForSquad(manageSquadId).map((m) => (
                       <SelectItem key={m.userId} value={m.userId}>
-                        {m.email} ({roleLabels[m.role]})
+                        {m.user.email} ({roleLabels[m.role]})
                       </SelectItem>
                     ))}
                     {getAvailableMembersForSquad(manageSquadId).length === 0 && (
@@ -555,11 +555,11 @@ export default function TeamPage() {
                   <div key={sm.userId} className="flex items-center gap-3 py-1.5">
                     <Avatar className="h-7 w-7">
                       <AvatarFallback className="text-xs">
-                        {sm.email[0].toUpperCase()}
+                        {sm.user.email[0].toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm truncate">{sm.email}</p>
+                      <p className="text-sm truncate">{sm.user.email}</p>
                     </div>
                     <Button
                       variant="ghost"
