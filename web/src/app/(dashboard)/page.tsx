@@ -9,7 +9,7 @@ export default async function DashboardPage() {
   if (projects.length === 0) {
     return (
       <div className="space-y-6">
-        <h1 className="text-3xl font-bold">Welcome to BlockBot</h1>
+        <h1 className="text-3xl font-bold">Welcome to OpenCaptain</h1>
         <p className="text-muted-foreground">
           You don&apos;t have any projects yet. Create one to get started.
         </p>

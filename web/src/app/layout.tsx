@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'BlockBot',
+  title: 'OpenCaptain',
   description: 'AI-powered project management for teams',
 };
 

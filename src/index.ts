@@ -78,7 +78,7 @@ app.onError((err, c) => {
 
   if (err instanceof HTTPException) {
     const problem: ProblemDetails = {
-      type: 'https://blockbot.dev/errors/http-exception',
+      type: 'https://opencaptain.dev/errors/http-exception',
       title: err.message || 'HTTP Exception',
       status: err.status,
       instance,
@@ -89,7 +89,7 @@ app.onError((err, c) => {
 
   logger.error({ err, path: instance, requestId }, 'Unexpected error');
   const problem: ProblemDetails = {
-    type: 'https://blockbot.dev/errors/internal',
+    type: 'https://opencaptain.dev/errors/internal',
     title: 'Internal Server Error',
     status: 500,
     instance,
@@ -182,7 +182,7 @@ async function shutdown(signal: string) {
 // Start server (only when run directly, not when imported for tests)
 async function main() {
   await connectRedis();
-  logger.info({ port: env.PORT }, 'Starting BlockBot API');
+  logger.info({ port: env.PORT }, 'Starting OpenCaptain API');
 
   const server = Bun.serve({
     port: env.PORT,
@@ -211,7 +211,7 @@ async function main() {
     }
   }
 
-  logger.info({ port: env.PORT }, 'BlockBot API started');
+  logger.info({ port: env.PORT }, 'OpenCaptain API started');
 
   // Register shutdown handlers
   process.on('SIGTERM', () => shutdown('SIGTERM'));

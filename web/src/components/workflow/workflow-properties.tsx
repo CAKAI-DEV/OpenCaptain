@@ -114,12 +114,12 @@ function CheckInProperties({ data, onUpdate }: CheckInPropertiesProps) {
       <div>
         <Label htmlFor="squad">Squad (optional)</Label>
         <Select
-          value={data.squadId || ''}
+          value={data.squadId || '__all__'}
           onValueChange={(value) =>
             onUpdate({
               ...data,
-              squadId: value || undefined,
-              squadName: value ? 'Squad' : undefined,
+              squadId: value === '__all__' ? undefined : value,
+              squadName: value === '__all__' ? undefined : 'Squad',
             })
           }
         >
@@ -127,7 +127,7 @@ function CheckInProperties({ data, onUpdate }: CheckInPropertiesProps) {
             <SelectValue placeholder="All squads" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All squads</SelectItem>
+            <SelectItem value="__all__">All squads</SelectItem>
             {/* Squad options would be populated dynamically */}
           </SelectContent>
         </Select>

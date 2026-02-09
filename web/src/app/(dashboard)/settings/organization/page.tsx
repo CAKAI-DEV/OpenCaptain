@@ -82,7 +82,7 @@ export default function OrganizationSettingsPage() {
               <div className="space-y-2">
                 <Label htmlFor="org-slug">URL Slug</Label>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">blockbot.dev/</span>
+                  <span className="text-sm text-muted-foreground">opencaptain.dev/</span>
                   <Input
                     id="org-slug"
                     value={orgSlug}

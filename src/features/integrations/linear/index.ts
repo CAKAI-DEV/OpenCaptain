@@ -1,6 +1,6 @@
 /**
  * Linear integration module.
- * Provides bidirectional sync between BlockBot tasks and Linear issues.
+ * Provides bidirectional sync between OpenCaptain tasks and Linear issues.
  */
 
 // Client functions

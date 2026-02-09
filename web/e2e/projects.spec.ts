@@ -7,10 +7,10 @@ test.describe('Projects', () => {
     await expect(page.getByText('Manage your projects and tasks')).toBeVisible();
   });
 
-  test('BlockBot v2 project card is visible', async ({ page }) => {
+  test('OpenCaptain v2 project card is visible', async ({ page }) => {
     await page.goto('/projects');
     // Server-side fetch may occasionally fail; retry with a reload
-    const card = page.getByText('BlockBot v2');
+    const card = page.getByText('OpenCaptain v2');
     if (!(await card.isVisible().catch(() => false))) {
       await page.reload();
     }
@@ -19,7 +19,7 @@ test.describe('Projects', () => {
 
   test('clicking project card navigates to project overview', async ({ page }) => {
     await page.goto('/projects');
-    const card = page.getByText('BlockBot v2');
+    const card = page.getByText('OpenCaptain v2');
     if (!(await card.isVisible().catch(() => false))) {
       await page.reload();
     }

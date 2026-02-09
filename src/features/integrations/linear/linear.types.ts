@@ -13,7 +13,7 @@ export interface LinearConfig {
 }
 
 /**
- * Maps BlockBot status to Linear workflow state.
+ * Maps OpenCaptain status to Linear workflow state.
  */
 export interface LinearStatusMapping {
   blockbotStatus: 'todo' | 'in_progress' | 'done';
@@ -31,7 +31,7 @@ export const DEFAULT_STATUS_MAPPINGS: Omit<LinearStatusMapping, 'linearStateId'>
 ];
 
 /**
- * Maps BlockBot priority to Linear priority.
+ * Maps OpenCaptain priority to Linear priority.
  * Linear uses 0-4: 0 = No priority, 1 = Urgent, 2 = High, 3 = Medium, 4 = Low
  */
 export const PRIORITY_TO_LINEAR: Record<string, number> = {
@@ -42,7 +42,7 @@ export const PRIORITY_TO_LINEAR: Record<string, number> = {
 };
 
 /**
- * Maps Linear priority back to BlockBot priority.
+ * Maps Linear priority back to OpenCaptain priority.
  */
 export const LINEAR_TO_PRIORITY: Record<number, string> = {
   0: 'medium', // No priority -> medium

@@ -52,7 +52,7 @@ teams.get('/:id', async (c) => {
   if (visibleSquadIds && visibleSquadIds.length > 0 && !visibleSquadIds.includes(id)) {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/squads/access-denied',
+        type: 'https://opencaptain.dev/errors/squads/access-denied',
         title: 'Access Denied',
         status: 403,
         detail: 'You do not have visibility access to this squad',
@@ -67,7 +67,7 @@ teams.get('/:id', async (c) => {
   if (!squad) {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/squads/not-found',
+        type: 'https://opencaptain.dev/errors/squads/not-found',
         title: 'Squad Not Found',
         status: 404,
         detail: 'The specified squad does not exist',
@@ -120,7 +120,7 @@ teams.get('/:id/members', async (c) => {
   if (visibleSquadIds && visibleSquadIds.length > 0 && !visibleSquadIds.includes(squadId)) {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/squads/access-denied',
+        type: 'https://opencaptain.dev/errors/squads/access-denied',
         title: 'Access Denied',
         status: 403,
         detail: 'You do not have visibility access to this squad',

@@ -207,7 +207,7 @@ export async function processCodingRequest(requestId: string): Promise<CodingAge
     // 5. Create a new branch
     const defaultBranch = await getDefaultBranch(octokit, linkedRepo.owner, linkedRepo.repo);
 
-    const branchName = `blockbot/fix-${task.id.slice(0, 8)}-${Date.now()}`;
+    const branchName = `opencaptain/fix-${task.id.slice(0, 8)}-${Date.now()}`;
 
     await createBranch(octokit, linkedRepo.owner, linkedRepo.repo, defaultBranch, branchName);
 
@@ -255,20 +255,20 @@ ${analysisResult.content}
 
 ---
 
-> **Note:** This is a draft PR created by BlockBot's coding agent.
+> **Note:** This is a draft PR created by OpenCaptain's coding agent.
 > A human developer should review, implement the actual changes, and approve.
 >
 > **CRITICAL:** Never auto-merge. All changes require human review.
 
 ---
 
-*Requested by: BlockBot Coding Agent*
+*Requested by: OpenCaptain Coding Agent*
 *Task ID: ${task.id}*`;
 
     const prResult = await createPullRequest(octokit, {
       owner: linkedRepo.owner,
       repo: linkedRepo.repo,
-      title: `[BlockBot] Fix: ${task.title}`,
+      title: `[OpenCaptain] Fix: ${task.title}`,
       body: prBody,
       head: branchName,
       base: defaultBranch,

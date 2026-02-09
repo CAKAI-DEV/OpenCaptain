@@ -14,12 +14,12 @@ export async function sendInvitationEmail(
 
   try {
     const { error } = await resend.emails.send({
-      from: 'BlockBot <noreply@resend.dev>',
+      from: 'OpenCaptain <noreply@resend.dev>',
       to: email,
-      subject: `You've been invited to join ${orgName} on BlockBot`,
+      subject: `You've been invited to join ${orgName} on OpenCaptain`,
       html: `
         <h1>You're invited to join ${orgName}</h1>
-        ${inviterEmail ? `<p>${inviterEmail} has invited you to join their organization on BlockBot.</p>` : '<p>You have been invited to join an organization on BlockBot.</p>'}
+        ${inviterEmail ? `<p>${inviterEmail} has invited you to join their organization on OpenCaptain.</p>` : '<p>You have been invited to join an organization on OpenCaptain.</p>'}
         <p>Click the link below to accept the invitation. This link expires in 7 days.</p>
         <a href="${joinUrl}">Accept Invitation</a>
         <p>If you didn't expect this invitation, you can safely ignore this email.</p>
@@ -46,14 +46,14 @@ export async function sendAddedToOrgEmail(
 ): Promise<boolean> {
   try {
     const { error } = await resend.emails.send({
-      from: 'BlockBot <noreply@resend.dev>',
+      from: 'OpenCaptain <noreply@resend.dev>',
       to: email,
-      subject: `You've been added to ${orgName} on BlockBot`,
+      subject: `You've been added to ${orgName} on OpenCaptain`,
       html: `
         <h1>You've been added to ${orgName}</h1>
-        <p>${addedByEmail} has added you to their organization on BlockBot.</p>
+        <p>${addedByEmail} has added you to their organization on OpenCaptain.</p>
         <p>You can now access the organization and its projects by logging in to your account.</p>
-        <a href="${env.APP_URL}/login">Log in to BlockBot</a>
+        <a href="${env.APP_URL}/login">Log in to OpenCaptain</a>
       `,
     });
 

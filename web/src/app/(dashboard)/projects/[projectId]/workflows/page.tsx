@@ -15,7 +15,7 @@ const WorkflowEditor = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[calc(100vh-4rem)] flex items-center justify-center">
+      <div className="h-[calc(100vh-3.5rem)] flex items-center justify-center">
         <div className="text-muted-foreground">Loading workflow editor...</div>
       </div>
     ),
@@ -59,14 +59,14 @@ export default function WorkflowsPage() {
 
   if (loading) {
     return (
-      <div className="h-[calc(100vh-4rem)] flex items-center justify-center">
+      <div className="h-[calc(100vh-3.5rem)] flex items-center justify-center">
         <div className="text-muted-foreground">Loading workflow...</div>
       </div>
     );
   }
 
   return (
-    <div className="h-[calc(100vh-4rem)]">
+    <div className="-m-6 h-[calc(100vh-3.5rem)]">
       <WorkflowEditor initialNodes={initialNodes} initialEdges={initialEdges} onSave={handleSave} />
     </div>
   );

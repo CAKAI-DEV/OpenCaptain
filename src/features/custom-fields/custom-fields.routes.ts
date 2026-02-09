@@ -96,7 +96,7 @@ customFieldsRoutes.get('/', async (c) => {
   if (!query.projectId) {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/custom-fields/missing-project-id',
+        type: 'https://opencaptain.dev/errors/custom-fields/missing-project-id',
         title: 'Missing Project ID',
         status: 400,
         detail: 'projectId query parameter is required',
@@ -109,7 +109,7 @@ customFieldsRoutes.get('/', async (c) => {
   if (!parsed.success) {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/custom-fields/invalid-query',
+        type: 'https://opencaptain.dev/errors/custom-fields/invalid-query',
         title: 'Invalid Query',
         status: 400,
         detail: parsed.error.message,
@@ -135,7 +135,7 @@ customFieldsRoutes.get('/:fieldId', async (c) => {
   if (!field) {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/custom-fields/not-found',
+        type: 'https://opencaptain.dev/errors/custom-fields/not-found',
         title: 'Custom Field Not Found',
         status: 404,
         detail: 'The requested custom field does not exist',
@@ -160,7 +160,7 @@ customFieldsRoutes.patch('/:fieldId', async (c) => {
   if ('type' in body) {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/custom-fields/type-change-not-allowed',
+        type: 'https://opencaptain.dev/errors/custom-fields/type-change-not-allowed',
         title: 'Type Change Not Allowed',
         status: 400,
         detail: 'Cannot change the type of an existing custom field. Create a new field instead.',

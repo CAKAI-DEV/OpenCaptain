@@ -65,7 +65,7 @@ async function seed() {
     .insert(schema.projects)
     .values({
       orgId: org.id,
-      name: 'BlockBot v2',
+      name: 'OpenCaptain v2',
       description: 'Next-generation project management agent with AI-powered workflows',
     })
     .returning();
@@ -272,7 +272,7 @@ async function seed() {
 
   await db.insert(schema.workflows).values({
     projectId: project.id,
-    name: 'BlockBot v2 Workflow',
+    name: 'OpenCaptain v2 Workflow',
     nodes: [
       {
         id: checkInNodeId,
@@ -577,7 +577,7 @@ async function seed() {
         squadId: backendSquad.id,
         deliverableTypeId: featureTypeId,
         title: 'WhatsApp Integration',
-        description: 'Enable users to interact with BlockBot via WhatsApp messages',
+        description: 'Enable users to interact with OpenCaptain via WhatsApp messages',
         status: 'spec',
         assigneeId: pm.id,
         createdById: admin.id,

@@ -15,15 +15,13 @@ import {
   Workflow,
 } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-interface SidebarProps {
-  projectId?: string;
-}
-
-export function Sidebar({ projectId }: SidebarProps) {
+export function Sidebar() {
   const pathname = usePathname();
+  const params = useParams();
+  const projectId = params.projectId as string | undefined;
 
   const mainNav = projectId
     ? [
@@ -50,7 +48,7 @@ export function Sidebar({ projectId }: SidebarProps) {
   return (
     <aside className="w-64 border-r bg-card h-screen flex flex-col">
       <div className="p-6">
-        <h1 className="text-xl font-bold">BlockBot</h1>
+        <h1 className="text-xl font-bold">OpenCaptain</h1>
       </div>
       <nav className="flex-1 px-4 space-y-6 overflow-y-auto">
         {/* Main Navigation */}

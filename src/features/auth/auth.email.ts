@@ -9,13 +9,13 @@ export async function sendMagicLink(email: string, token: string): Promise<boole
 
   try {
     const { error } = await resend.emails.send({
-      from: 'BlockBot <noreply@resend.dev>',
+      from: 'OpenCaptain <noreply@resend.dev>',
       to: email,
-      subject: 'Sign in to BlockBot',
+      subject: 'Sign in to OpenCaptain',
       html: `
-        <h1>Sign in to BlockBot</h1>
+        <h1>Sign in to OpenCaptain</h1>
         <p>Click the link below to sign in. This link expires in 15 minutes.</p>
-        <a href="${magicLinkUrl}">Sign in to BlockBot</a>
+        <a href="${magicLinkUrl}">Sign in to OpenCaptain</a>
         <p>If you didn't request this, you can safely ignore this email.</p>
       `,
     });

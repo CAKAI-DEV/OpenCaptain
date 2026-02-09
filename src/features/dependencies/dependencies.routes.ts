@@ -80,7 +80,7 @@ dependenciesRoutes.get('/for/:type/:itemId', async (c) => {
   if (type !== 'task' && type !== 'deliverable') {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/dependencies/invalid-type',
+        type: 'https://opencaptain.dev/errors/dependencies/invalid-type',
         title: 'Invalid Item Type',
         status: 400,
         detail: 'Type must be "task" or "deliverable"',
@@ -106,7 +106,7 @@ dependenciesRoutes.get('/blocked/:type/:itemId', async (c) => {
   if (type !== 'task' && type !== 'deliverable') {
     return c.json(
       {
-        type: 'https://blockbot.dev/errors/dependencies/invalid-type',
+        type: 'https://opencaptain.dev/errors/dependencies/invalid-type',
         title: 'Invalid Item Type',
         status: 400,
         detail: 'Type must be "task" or "deliverable"',

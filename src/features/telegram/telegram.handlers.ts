@@ -17,7 +17,7 @@ export async function getUserIdFromTelegram(telegramChatId: string): Promise<str
 }
 
 /**
- * Connect a Telegram account to a BlockBot user
+ * Connect a Telegram account to a OpenCaptain user
  */
 export async function connectTelegramAccount(
   telegramChatId: string,
@@ -123,14 +123,14 @@ export function registerHandlers(bot: Bot<BotContext>): void {
 
       if (result.success) {
         await ctx.reply(
-          'Your Telegram account has been connected to BlockBot!\n\n' +
+          'Your Telegram account has been connected to OpenCaptain!\n\n' +
             'You can now receive notifications and interact with your projects.\n\n' +
             'Use /help to see available commands.'
         );
       } else {
         await ctx.reply(
           `Failed to connect account: ${result.error}\n\n` +
-            'Please try generating a new link from the BlockBot web app.'
+            'Please try generating a new link from the OpenCaptain web app.'
         );
       }
       return;
@@ -141,7 +141,7 @@ export function registerHandlers(bot: Bot<BotContext>): void {
 
     if (existingUser) {
       await ctx.reply(
-        'Welcome back to BlockBot!\n\n' +
+        'Welcome back to OpenCaptain!\n\n' +
           'Your account is already connected.\n\n' +
           'Commands:\n' +
           '/switch - Switch between projects\n' +
@@ -149,9 +149,9 @@ export function registerHandlers(bot: Bot<BotContext>): void {
       );
     } else {
       await ctx.reply(
-        'Welcome to BlockBot!\n\n' +
+        'Welcome to OpenCaptain!\n\n' +
           'To connect your account, please:\n' +
-          '1. Log in to BlockBot web app\n' +
+          '1. Log in to OpenCaptain web app\n' +
           '2. Go to Settings > Messaging\n' +
           '3. Click "Connect Telegram"\n' +
           '4. Follow the link back to this bot\n\n' +
@@ -174,7 +174,7 @@ export function registerHandlers(bot: Bot<BotContext>): void {
     if (!userId) {
       await ctx.reply(
         'Your account is not connected.\n\n' +
-          'Please connect your account first using the BlockBot web app.\n' +
+          'Please connect your account first using the OpenCaptain web app.\n' +
           'Use /start for instructions.'
       );
       return;
@@ -258,7 +258,7 @@ export function registerHandlers(bot: Bot<BotContext>): void {
     if (!userId) {
       await ctx.reply(
         'Your account is not connected.\n\n' +
-          'Please connect your account first using the BlockBot web app.\n' +
+          'Please connect your account first using the OpenCaptain web app.\n' +
           'Use /start for instructions.'
       );
       return;
@@ -380,7 +380,7 @@ export function registerHandlers(bot: Bot<BotContext>): void {
   // /help command
   bot.command('help', async (ctx) => {
     await ctx.reply(
-      'BlockBot Commands:\n\n' +
+      'OpenCaptain Commands:\n\n' +
         '/start - Connect your account or show welcome\n' +
         '/switch - Switch between your projects\n' +
         '/task [description] - Quick task creation\n' +

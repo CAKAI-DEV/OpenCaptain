@@ -2,7 +2,7 @@ import { z } from '@hono/zod-openapi';
 
 // Common schemas
 export const ErrorSchema = z.object({
-  type: z.string().openapi({ example: 'https://blockbot.dev/errors/auth/invalid-credentials' }),
+  type: z.string().openapi({ example: 'https://opencaptain.dev/errors/auth/invalid-credentials' }),
   title: z.string().openapi({ example: 'Invalid Credentials' }),
   status: z.number().openapi({ example: 401 }),
   detail: z.string().optional().openapi({ example: 'Email or password is incorrect' }),

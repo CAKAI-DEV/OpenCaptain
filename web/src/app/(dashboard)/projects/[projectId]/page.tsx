@@ -125,7 +125,7 @@ export default async function ProjectOverviewPage({
       icon: Link2,
       desc: 'Connect tools',
     },
-    { name: 'AI Chat', href: '/chat', icon: Bot, desc: 'Talk to BlockBot' },
+    { name: 'AI Chat', href: '/chat', icon: Bot, desc: 'Talk to OpenCaptain' },
   ];
 
   return (

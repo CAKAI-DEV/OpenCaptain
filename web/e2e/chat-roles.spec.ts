@@ -7,7 +7,7 @@ import { loginAs } from './helpers/auth';
  * Returns the text content of the AI response.
  */
 async function sendAndWaitForResponse(page: import('@playwright/test').Page, message: string) {
-  const input = page.getByPlaceholder('Ask BlockBot anything...');
+  const input = page.getByPlaceholder('Ask OpenCaptain anything...');
   await expect(input).toBeVisible({ timeout: 10_000 });
 
   await input.fill(message);
@@ -74,7 +74,7 @@ for (const role of ROLES) {
       );
 
       const projectKeywords = [
-        'BlockBot', 'todo', 'in_progress', 'done',
+        'OpenCaptain', 'todo', 'in_progress', 'done',
         'task', 'overdue', 'blocker', 'team',
         'admin@acme.dev', 'pm@acme.dev', 'lead@acme.dev',
         'dev1@acme.dev', 'dev2@acme.dev',

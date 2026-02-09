@@ -7,7 +7,7 @@ export async function navigateToProject(page: Page): Promise<string> {
     await page.goto('/projects');
     await expect(page.getByRole('heading', { name: 'Projects', exact: true })).toBeVisible();
 
-    const card = page.getByText('BlockBot v2');
+    const card = page.getByText('OpenCaptain v2');
     if (await card.isVisible().catch(() => false)) {
       await card.click();
       await page.waitForURL('**/projects/*');
@@ -22,7 +22,7 @@ export async function navigateToProject(page: Page): Promise<string> {
 
   // Final attempt — will throw if card still not visible
   await page.goto('/projects');
-  await page.getByText('BlockBot v2').click();
+  await page.getByText('OpenCaptain v2').click();
   await page.waitForURL('**/projects/*');
   const url = page.url();
   const match = url.match(/\/projects\/([^/]+)/);

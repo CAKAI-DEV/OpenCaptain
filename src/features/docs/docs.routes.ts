@@ -212,12 +212,12 @@ docs.openapi(healthRoute, (c) => c.json({} as never));
 docs.doc('/openapi.json', {
   openapi: '3.1.0',
   info: {
-    title: 'BlockBot API',
+    title: 'OpenCaptain API',
     version: '0.1.0',
     description: 'Self-hosted project management agent API',
     contact: {
-      name: 'BlockBot',
-      url: 'https://blockbot.dev',
+      name: 'OpenCaptain',
+      url: 'https://opencaptain.dev',
     },
   },
   servers: [

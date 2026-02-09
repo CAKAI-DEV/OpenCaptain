@@ -60,7 +60,7 @@ export async function handleIncomingMessage(message: IncomingMessage): Promise<v
     // User not linked - send instructions
     await sendWhatsAppMessage(
       message.from,
-      'Welcome to BlockBot! To connect your account, please use the web app and click "Connect WhatsApp".'
+      'Welcome to OpenCaptain! To connect your account, please use the web app and click "Connect WhatsApp".'
     );
     return;
   }

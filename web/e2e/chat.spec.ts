@@ -5,9 +5,9 @@ test.describe('Chat', () => {
     await page.goto('/chat');
   });
 
-  test('shows BlockBot AI Assistant welcome and input', async ({ page }) => {
-    await expect(page.getByText('BlockBot AI Assistant')).toBeVisible();
-    await expect(page.getByPlaceholder('Ask BlockBot anything...')).toBeVisible();
+  test('shows OpenCaptain AI Assistant welcome and input', async ({ page }) => {
+    await expect(page.getByText('OpenCaptain AI Assistant')).toBeVisible();
+    await expect(page.getByPlaceholder('Ask OpenCaptain anything...')).toBeVisible();
   });
 
   test('shows current user email in banner', async ({ page }) => {
@@ -17,7 +17,7 @@ test.describe('Chat', () => {
   test('send button is disabled when input is empty', async ({ page }) => {
     const sendButton = page.locator('button').filter({ has: page.locator('svg') }).last();
     // Input is empty by default, send button should be disabled
-    const input = page.getByPlaceholder('Ask BlockBot anything...');
+    const input = page.getByPlaceholder('Ask OpenCaptain anything...');
     await expect(input).toHaveValue('');
     await expect(sendButton).toBeDisabled();
   });
@@ -27,12 +27,12 @@ test.describe('Chat', () => {
     await expect(suggestion).toBeVisible();
     await suggestion.click();
 
-    const input = page.getByPlaceholder('Ask BlockBot anything...');
+    const input = page.getByPlaceholder('Ask OpenCaptain anything...');
     await expect(input).toHaveValue("What's the status of our sprint?");
   });
 
   test('sending a message shows user message and AI response', async ({ page }) => {
-    const input = page.getByPlaceholder('Ask BlockBot anything...');
+    const input = page.getByPlaceholder('Ask OpenCaptain anything...');
     await input.fill('Hello');
     await input.press('Enter');
 

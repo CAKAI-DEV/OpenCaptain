@@ -215,7 +215,7 @@ export default function ChatPage() {
               <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Bot className="h-8 w-8 text-primary" />
               </div>
-              <h2 className="text-xl font-semibold mb-2">BlockBot AI Assistant</h2>
+              <h2 className="text-xl font-semibold mb-2">OpenCaptain AI Assistant</h2>
               <p className="text-muted-foreground text-sm mb-6">
                 Ask me anything about your projects. I can help with task management, status
                 updates, generating reports, and more.
@@ -299,7 +299,7 @@ export default function ChatPage() {
         <div className="border-t p-4">
           <div className="max-w-3xl mx-auto flex gap-2">
             <Input
-              placeholder="Ask BlockBot anything..."
+              placeholder="Ask OpenCaptain anything..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {

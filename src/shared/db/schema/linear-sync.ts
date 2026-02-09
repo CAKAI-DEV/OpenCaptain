@@ -35,7 +35,7 @@ export const linearIntegrations = pgTable('linear_integrations', {
   apiKeyEncrypted: text('api_key_encrypted').notNull(),
   teamId: varchar('team_id', { length: 100 }).notNull(),
 
-  // Status mappings: BlockBot status -> Linear state ID
+  // Status mappings: OpenCaptain status -> Linear state ID
   statusMappings: jsonb('status_mappings')
     .$type<
       Array<{
@@ -58,7 +58,7 @@ export const linearIntegrations = pgTable('linear_integrations', {
 });
 
 /**
- * Sync metadata linking BlockBot tasks to Linear issues.
+ * Sync metadata linking OpenCaptain tasks to Linear issues.
  * Enables bidirectional sync by tracking correlation and timestamps.
  */
 export const linearSyncMetadata = pgTable('linear_sync_metadata', {

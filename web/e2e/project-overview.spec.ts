@@ -4,7 +4,7 @@ import { navigateToProject } from './helpers/navigation';
 test.describe('Project Overview', () => {
   test('shows project name as heading', async ({ page }) => {
     await navigateToProject(page);
-    await expect(page.getByRole('heading', { name: 'BlockBot v2' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'OpenCaptain v2' })).toBeVisible();
   });
 
   test('shows health cards', async ({ page }) => {

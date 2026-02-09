@@ -28,7 +28,7 @@ interface TaskForSync {
 }
 
 /**
- * Syncs a BlockBot task to Linear.
+ * Syncs an OpenCaptain task to Linear.
  * Creates a new issue if no linearIssueId exists, otherwise updates.
  */
 export async function syncTaskToLinear(
@@ -129,7 +129,7 @@ export async function syncTaskToLinear(
 }
 
 /**
- * Syncs a Linear issue update to BlockBot task.
+ * Syncs a Linear issue update to OpenCaptain task.
  * Called from webhook handler. Uses last-write-wins for conflict resolution.
  */
 export async function syncFromLinear(
@@ -174,7 +174,7 @@ export async function syncFromLinear(
       return { success: true, action: 'skipped' };
     }
 
-    // Map Linear state back to BlockBot status
+    // Map Linear state back to OpenCaptain status
     const status = mapLinearStateToStatus(webhookData.state.name, statusMappings);
     const priority = LINEAR_TO_PRIORITY[webhookData.priority] as TaskForSync['priority'];
 
@@ -245,7 +245,7 @@ export async function getLinearSyncMetadata(taskId: string) {
 }
 
 /**
- * Maps BlockBot status to Linear state ID.
+ * Maps OpenCaptain status to Linear state ID.
  */
 function mapStatusToLinearState(
   status: 'todo' | 'in_progress' | 'done',
@@ -256,7 +256,7 @@ function mapStatusToLinearState(
 }
 
 /**
- * Maps Linear state name back to BlockBot status.
+ * Maps Linear state name back to OpenCaptain status.
  * Falls back to checking state type if no exact name match.
  */
 function mapLinearStateToStatus(

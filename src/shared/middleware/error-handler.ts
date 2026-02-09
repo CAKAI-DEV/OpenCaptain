@@ -21,7 +21,7 @@ export class ApiError extends Error {
 
   toProblemDetails(instance?: string): ProblemDetails {
     return {
-      type: `https://blockbot.dev/errors/${this.type}`,
+      type: `https://opencaptain.dev/errors/${this.type}`,
       title: this.title,
       status: this.status,
       detail: this.detail,
