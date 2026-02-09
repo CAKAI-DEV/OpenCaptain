@@ -1,4 +1,5 @@
 # OpenCaptain
+<img width="1500" height="500" alt="Banner" src="https://github.com/user-attachments/assets/1a1376b5-2351-4259-a932-ffd5fefe55c3" />
 
 **Your AI Project Manager That Actually Manages**
 
