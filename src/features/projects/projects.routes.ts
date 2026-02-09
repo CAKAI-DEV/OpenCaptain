@@ -3,6 +3,7 @@ import { Hono } from 'hono';
 import { z } from 'zod';
 import { ApiError } from '../../shared/middleware/error-handler';
 import { authMiddleware } from '../auth/auth.middleware';
+import { getSquadHierarchy } from '../teams/teams.service';
 import { visibilityMiddleware } from '../visibility/visibility.middleware';
 import { createProject, getProjectById, getProjectsByOrg } from './projects.service';
 
@@ -37,6 +38,14 @@ projects.get('/', async (c) => {
   const user = c.get('user');
   const projectList = await getProjectsByOrg(user.org);
   return c.json(projectList);
+});
+
+// GET /projects/:projectId/squads - Get squad hierarchy for project
+projects.get('/:projectId/squads', async (c) => {
+  const projectId = c.req.param('projectId');
+  const visibleSquadIds = c.get('visibleSquadIds');
+  const hierarchy = await getSquadHierarchy(projectId, visibleSquadIds);
+  return c.json(hierarchy);
 });
 
 // GET /projects/:id - Get project by ID

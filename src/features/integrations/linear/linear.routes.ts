@@ -10,11 +10,7 @@ import { logger } from '../../../shared/lib/logger';
 import { ApiError } from '../../../shared/middleware';
 import { authMiddleware } from '../../auth/auth.middleware';
 import { visibilityMiddleware } from '../../visibility/visibility.middleware';
-import {
-  createLinearClient,
-  getLinearTeams,
-  getLinearTeamStates,
-} from './linear.client';
+import { createLinearClient, getLinearTeamStates, getLinearTeams } from './linear.client';
 import { getLinearIntegration, getLinearSyncMetadata, syncTaskToLinear } from './linear.sync';
 import { handleLinearWebhook } from './linear.webhooks';
 
@@ -144,72 +140,66 @@ linearApiRoutes.post(
 );
 
 // GET /api/v1/projects/:projectId/integrations/linear - Get integration status
-linearApiRoutes.get(
-  '/projects/:projectId/integrations/linear',
-  async (c) => {
-    const projectId = c.req.param('projectId');
+linearApiRoutes.get('/projects/:projectId/integrations/linear', async (c) => {
+  const projectId = c.req.param('projectId');
 
-    const integration = await getLinearIntegration(projectId);
+  const integration = await getLinearIntegration(projectId);
 
-    if (!integration) {
-      return c.json({
-        configured: false,
-        enabled: false,
-      });
-    }
-
-    // Get team info
-    let teamName: string | undefined;
-    try {
-      const client = createLinearClient(integration.apiKeyEncrypted);
-      const teams = await getLinearTeams(client);
-      const team = teams.find((t) => t.id === integration.teamId);
-      teamName = team?.name;
-    } catch {
-      // API key might be invalid now
-      teamName = undefined;
-    }
-
+  if (!integration) {
     return c.json({
-      configured: true,
-      enabled: integration.enabled,
-      teamId: integration.teamId,
-      teamName,
-      statusMappings: integration.statusMappings,
-      createdAt: integration.createdAt,
-      updatedAt: integration.updatedAt,
+      configured: false,
+      enabled: false,
     });
   }
-);
+
+  // Get team info
+  let teamName: string | undefined;
+  try {
+    const client = createLinearClient(integration.apiKeyEncrypted);
+    const teams = await getLinearTeams(client);
+    const team = teams.find((t) => t.id === integration.teamId);
+    teamName = team?.name;
+  } catch {
+    // API key might be invalid now
+    teamName = undefined;
+  }
+
+  return c.json({
+    configured: true,
+    enabled: integration.enabled,
+    teamId: integration.teamId,
+    teamName,
+    statusMappings: integration.statusMappings,
+    createdAt: integration.createdAt,
+    updatedAt: integration.updatedAt,
+  });
+});
 
 // DELETE /api/v1/projects/:projectId/integrations/linear - Disable integration
-linearApiRoutes.delete(
-  '/projects/:projectId/integrations/linear',
-  async (c) => {
-    const projectId = c.req.param('projectId');
-    const user = c.get('user');
+linearApiRoutes.delete('/projects/:projectId/integrations/linear', async (c) => {
+  const projectId = c.req.param('projectId');
+  const user = c.get('user');
 
-    const integration = await getLinearIntegration(projectId);
+  const integration = await getLinearIntegration(projectId);
 
-    if (!integration) {
-      throw new ApiError(
-        404,
-        'linear/not-configured',
-        'Integration Not Configured',
-        'Linear integration is not configured for this project'
-      );
-    }
-
-    await db
-      .update(schema.linearIntegrations)
-      .set({ enabled: false, updatedAt: new Date() })
-      .where(eq(schema.linearIntegrations.projectId, projectId));
-
-    logger.info({ projectId, userId: user.sub }, 'Disabled Linear integration');
-
-    return c.json({ success: true, enabled: false });
+  if (!integration) {
+    throw new ApiError(
+      404,
+      'linear/not-configured',
+      'Integration Not Configured',
+      'Linear integration is not configured for this project'
+    );
   }
-);
+
+  await db
+    .update(schema.linearIntegrations)
+    .set({ enabled: false, updatedAt: new Date() })
+    .where(eq(schema.linearIntegrations.projectId, projectId));
+
+  logger.info({ projectId, userId: user.sub }, 'Disabled Linear integration');
+
+  return c.json({ success: true, enabled: false });
+});
 
 // POST /api/v1/tasks/:taskId/sync-linear - Manual sync trigger
 linearApiRoutes.post('/tasks/:taskId/sync-linear', async (c) => {
@@ -222,7 +212,12 @@ linearApiRoutes.post('/tasks/:taskId/sync-linear', async (c) => {
   });
 
   if (!task) {
-    throw new ApiError(404, 'tasks/not-found', 'Task Not Found', 'The specified task does not exist');
+    throw new ApiError(
+      404,
+      'tasks/not-found',
+      'Task Not Found',
+      'The specified task does not exist'
+    );
   }
 
   // Get integration for task's project
@@ -280,9 +275,11 @@ linearApiRoutes.get('/tasks/:taskId/linear-status', async (c) => {
 /**
  * Build default status mappings from Linear team states.
  */
-function buildDefaultMappings(
-  states: Array<{ id: string; name: string; type: string }>
-): Array<{ blockbotStatus: 'todo' | 'in_progress' | 'done'; linearStateId: string; linearStateName: string }> {
+function buildDefaultMappings(states: Array<{ id: string; name: string; type: string }>): Array<{
+  blockbotStatus: 'todo' | 'in_progress' | 'done';
+  linearStateId: string;
+  linearStateName: string;
+}> {
   const mappings: Array<{
     blockbotStatus: 'todo' | 'in_progress' | 'done';
     linearStateId: string;
@@ -291,14 +288,24 @@ function buildDefaultMappings(
 
   // Find best matches based on state type and name
   const backlog = states.find((s) => s.type === 'backlog' || s.name.toLowerCase() === 'backlog');
-  const inProgress = states.find((s) => s.type === 'started' || s.name.toLowerCase().includes('progress'));
+  const inProgress = states.find(
+    (s) => s.type === 'started' || s.name.toLowerCase().includes('progress')
+  );
   const done = states.find((s) => s.type === 'completed' || s.name.toLowerCase() === 'done');
 
   if (backlog) {
-    mappings.push({ blockbotStatus: 'todo', linearStateId: backlog.id, linearStateName: backlog.name });
+    mappings.push({
+      blockbotStatus: 'todo',
+      linearStateId: backlog.id,
+      linearStateName: backlog.name,
+    });
   }
   if (inProgress) {
-    mappings.push({ blockbotStatus: 'in_progress', linearStateId: inProgress.id, linearStateName: inProgress.name });
+    mappings.push({
+      blockbotStatus: 'in_progress',
+      linearStateId: inProgress.id,
+      linearStateName: inProgress.name,
+    });
   }
   if (done) {
     mappings.push({ blockbotStatus: 'done', linearStateId: done.id, linearStateName: done.name });

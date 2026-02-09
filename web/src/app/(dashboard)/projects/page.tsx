@@ -1,7 +1,5 @@
-import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { CreateProjectDialog } from '@/components/projects/create-project-dialog';
-import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { apiClient } from '@/lib/api.server';
 import type { Project } from '@/types/project';

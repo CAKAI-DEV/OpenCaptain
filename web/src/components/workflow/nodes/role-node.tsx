@@ -34,7 +34,7 @@ export function RoleNode({ data, selected }: NodeProps<RoleNodeType>) {
         </div>
         <div className="flex justify-between">
           <span>Capabilities:</span>
-          <span className="font-medium">{data.capabilities.length}</span>
+          <span className="font-medium">{(data.capabilities || []).length}</span>
         </div>
       </div>
       <Handle type="source" position={Position.Bottom} className="!bg-primary" />

@@ -1,3 +1,15 @@
+import {
+  BarChart3,
+  Bot,
+  Clock,
+  KanbanSquare,
+  Lightbulb,
+  Link2,
+  List,
+  Package,
+  Users,
+  Workflow,
+} from 'lucide-react';
 import Link from 'next/link';
 import { HealthCard } from '@/components/common/health-card';
 import { apiClient } from '@/lib/api.server';
@@ -5,7 +17,6 @@ import type { OutputMetrics, VelocityPeriod } from '@/types/analytics';
 import type { ApiResponse } from '@/types/api';
 import type { Project } from '@/types/project';
 
-// Helper to compute health level from metrics
 function computeHealth(current: number, previous: number): 'healthy' | 'warning' | 'critical' {
   if (previous === 0) return current > 0 ? 'healthy' : 'warning';
   const change = ((current - previous) / previous) * 100;
@@ -21,37 +32,109 @@ export default async function ProjectOverviewPage({
 }) {
   const { projectId } = await params;
 
-  // Fetch project and metrics in parallel
-  const [project, velocityResponse] = await Promise.all([
-    apiClient<Project>(`/projects/${projectId}`),
-    apiClient<ApiResponse<VelocityPeriod[]>>(
-      `/metrics/velocity?projectId=${projectId}&periodDays=7&numPeriods=4`
-    ),
-  ]);
+  let project: Project | null = null;
+  let currentVelocity = 0;
+  let previousVelocity = 0;
+  let totalCompleted = 0;
+  let activeSquads = 0;
+  let activeMembers = 0;
 
-  const velocity = velocityResponse.data;
-  const currentVelocity = velocity[velocity.length - 1]?.velocity ?? 0;
-  const previousVelocity = velocity[velocity.length - 2]?.velocity ?? 0;
+  try {
+    project = await apiClient<Project>(`/projects/${projectId}`);
+  } catch {
+    // Project fetch failed
+  }
+
+  try {
+    const velocityResponse = await apiClient<ApiResponse<VelocityPeriod[]>>(
+      `/metrics/velocity?projectId=${projectId}&periodDays=7&numPeriods=4`
+    );
+    const velocity = velocityResponse.data;
+    currentVelocity = velocity[velocity.length - 1]?.velocity ?? 0;
+    previousVelocity = velocity[velocity.length - 2]?.velocity ?? 0;
+  } catch {
+    // Velocity metrics not available
+  }
+
+  try {
+    const now = new Date();
+    const today = now.toISOString().split('T')[0];
+    const weekAgoDate = new Date(now);
+    weekAgoDate.setDate(weekAgoDate.getDate() - 7);
+    const weekAgo = weekAgoDate.toISOString().split('T')[0];
+
+    const outputResponse = await apiClient<ApiResponse<OutputMetrics>>(
+      `/metrics/output?projectId=${projectId}&startDate=${weekAgo}&endDate=${today}`
+    );
+    totalCompleted = outputResponse.data.totalCompleted;
+    activeSquads = outputResponse.data.bySquad.length;
+    activeMembers = outputResponse.data.byPerson.length;
+  } catch {
+    // Output metrics not available
+  }
+
   const velocityHealth = computeHealth(currentVelocity, previousVelocity);
 
-  // Get task counts for the past week
-  // Note: Date calculations in Server Components are evaluated at request time
-  const now = new Date();
-  const today = now.toISOString().split('T')[0];
-  const weekAgoDate = new Date(now);
-  weekAgoDate.setDate(weekAgoDate.getDate() - 7);
-  const weekAgo = weekAgoDate.toISOString().split('T')[0];
-
-  const outputResponse = await apiClient<ApiResponse<OutputMetrics>>(
-    `/metrics/output?projectId=${projectId}&startDate=${weekAgo}&endDate=${today}`
-  );
-  const output = outputResponse.data;
+  const quickLinks = [
+    {
+      name: 'Board',
+      href: `/projects/${projectId}/board`,
+      icon: KanbanSquare,
+      desc: 'Kanban board with drag-and-drop',
+    },
+    { name: 'List', href: `/projects/${projectId}/list`, icon: List, desc: 'Filterable task list' },
+    {
+      name: 'Deliverables',
+      href: `/projects/${projectId}/deliverables`,
+      icon: Package,
+      desc: 'Track deliverables',
+    },
+    {
+      name: 'Analytics',
+      href: `/projects/${projectId}/analytics`,
+      icon: BarChart3,
+      desc: 'Charts and metrics',
+    },
+    {
+      name: 'Team',
+      href: `/projects/${projectId}/team`,
+      icon: Users,
+      desc: 'Manage squads & members',
+    },
+    {
+      name: 'Workflows',
+      href: `/projects/${projectId}/workflows`,
+      icon: Workflow,
+      desc: 'Visual workflow editor',
+    },
+    {
+      name: 'Check-ins',
+      href: `/projects/${projectId}/checkins`,
+      icon: Clock,
+      desc: 'Automated check-ins',
+    },
+    {
+      name: 'Insights',
+      href: `/projects/${projectId}/insights`,
+      icon: Lightbulb,
+      desc: 'AI-powered insights',
+    },
+    {
+      name: 'Integrations',
+      href: `/projects/${projectId}/integrations`,
+      icon: Link2,
+      desc: 'Connect tools',
+    },
+    { name: 'AI Chat', href: '/chat', icon: Bot, desc: 'Talk to BlockBot' },
+  ];
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">{project.name}</h1>
-        {project.description && <p className="text-muted-foreground mt-1">{project.description}</p>}
+        <h1 className="text-3xl font-bold">{project?.name || 'Project'}</h1>
+        {project?.description && (
+          <p className="text-muted-foreground mt-1">{project.description}</p>
+        )}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -70,47 +153,44 @@ export default async function ProjectOverviewPage({
         />
         <HealthCard
           title="Completed"
-          value={output.totalCompleted}
-          health={output.totalCompleted > 0 ? 'healthy' : 'warning'}
+          value={totalCompleted}
+          health={totalCompleted > 0 ? 'healthy' : 'warning'}
           description="Last 7 days"
         />
         <HealthCard
           title="Active Squads"
-          value={output.bySquad.length}
-          health={output.bySquad.length > 0 ? 'healthy' : 'warning'}
+          value={activeSquads}
+          health={activeSquads > 0 ? 'healthy' : 'warning'}
           description="Squads with completions"
         />
         <HealthCard
           title="Active Members"
-          value={output.byPerson.length}
-          health={output.byPerson.length > 0 ? 'healthy' : 'warning'}
+          value={activeMembers}
+          health={activeMembers > 0 ? 'healthy' : 'warning'}
           description="Contributors this week"
         />
       </div>
 
-      {/* Quick links to views */}
-      <div className="grid gap-4 md:grid-cols-3">
-        <Link
-          href={`/projects/${projectId}/board`}
-          className="block p-4 border rounded-lg hover:border-primary transition-colors"
-        >
-          <h3 className="font-semibold">Board View</h3>
-          <p className="text-sm text-muted-foreground">Kanban board with drag-and-drop</p>
-        </Link>
-        <Link
-          href={`/projects/${projectId}/list`}
-          className="block p-4 border rounded-lg hover:border-primary transition-colors"
-        >
-          <h3 className="font-semibold">List View</h3>
-          <p className="text-sm text-muted-foreground">Filterable task list</p>
-        </Link>
-        <Link
-          href={`/projects/${projectId}/analytics`}
-          className="block p-4 border rounded-lg hover:border-primary transition-colors"
-        >
-          <h3 className="font-semibold">Analytics</h3>
-          <p className="text-sm text-muted-foreground">Charts and metrics</p>
-        </Link>
+      <div>
+        <h2 className="text-lg font-semibold mb-3">Quick Access</h2>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {quickLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary hover:bg-muted/50 transition-colors"
+              >
+                <Icon className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-medium text-sm">{link.name}</h3>
+                  <p className="text-xs text-muted-foreground">{link.desc}</p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

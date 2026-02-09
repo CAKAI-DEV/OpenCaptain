@@ -1,4 +1,4 @@
-import { afterAll, afterEach, beforeAll, describe, expect, test } from 'bun:test';
+import { afterAll, beforeAll, describe, expect, test } from 'bun:test';
 import { db, schema } from '../../../shared/db';
 import { connectRedis, disconnectRedis } from '../../../shared/lib/redis';
 import {
@@ -16,11 +16,7 @@ beforeAll(async () => {
   await connectRedis();
 });
 
-afterEach(async () => {
-  await db.delete(schema.refreshTokens);
-  await db.delete(schema.users);
-  await db.delete(schema.organizations);
-});
+// Teardown handled by global tests/setup.ts afterEach
 
 afterAll(async () => {
   await disconnectRedis();

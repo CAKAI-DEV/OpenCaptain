@@ -1,25 +1,13 @@
-import { afterAll, afterEach, beforeAll, describe, expect, test } from 'bun:test';
+import { afterAll, beforeAll, describe, expect, test } from 'bun:test';
 import { app } from '../../../index';
-import { db, schema } from '../../../shared/db';
-import { connectRedis, deleteKeys, disconnectRedis, findKeys } from '../../../shared/lib/redis';
+import { connectRedis, disconnectRedis } from '../../../shared/lib/redis';
 
 // Setup
 beforeAll(async () => {
   await connectRedis();
 });
 
-afterEach(async () => {
-  await db.delete(schema.magicLinks);
-  await db.delete(schema.refreshTokens);
-  await db.delete(schema.users);
-  await db.delete(schema.organizations);
-
-  // Clear rate limit keys
-  const keysResult = await findKeys('ratelimit:*');
-  if (keysResult.success && keysResult.data && keysResult.data.length > 0) {
-    await deleteKeys(keysResult.data);
-  }
-});
+// Teardown handled by global tests/setup.ts afterEach
 
 afterAll(async () => {
   await disconnectRedis();

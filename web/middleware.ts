@@ -25,9 +25,20 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Token exists - allow request
-  // Note: Full token validation happens on API calls, not in middleware
-  // This is intentional - middleware runs at edge and should be fast
+  // For API proxy requests, rewrite to the backend and inject the access token
+  // as Authorization header. We do this in middleware (not next.config.ts rewrites)
+  // because standalone builds bake config rewrites at build time, but middleware
+  // runs at runtime and can read runtime env vars like API_URL.
+  if (pathname.startsWith('/api/v1/')) {
+    const apiUrl = process.env.API_URL || 'http://localhost:3000';
+    const url = new URL(`${apiUrl}${pathname}${request.nextUrl.search}`);
+    const headers = new Headers(request.headers);
+    headers.set('Authorization', `Bearer ${token}`);
+    return NextResponse.rewrite(url, {
+      request: { headers },
+    });
+  }
+
   return NextResponse.next();
 }
 

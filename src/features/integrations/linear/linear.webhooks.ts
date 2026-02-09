@@ -173,7 +173,10 @@ async function handleIssueRemoved(
     })
     .where(eq(schema.tasks.id, syncMetadata.taskId));
 
-  logger.info({ ...logContext, taskId: syncMetadata.taskId, linearIssueId }, 'Archived task from Linear removal');
+  logger.info(
+    { ...logContext, taskId: syncMetadata.taskId, linearIssueId },
+    'Archived task from Linear removal'
+  );
 }
 
 /**

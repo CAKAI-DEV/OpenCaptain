@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -20,12 +20,14 @@ type LoginFormData = z.infer<typeof loginSchema>;
 
 interface LoginFormProps {
   callbackUrl?: string;
+  quickEmail?: string;
 }
 
-export function LoginForm({ callbackUrl = '/projects' }: LoginFormProps) {
+export function LoginForm({ callbackUrl = '/projects', quickEmail }: LoginFormProps) {
   const router = useRouter();
   const [magicLinkSent, setMagicLinkSent] = useState(false);
   const [magicLinkLoading, setMagicLinkLoading] = useState(false);
+  const [quickLogging, setQuickLogging] = useState(false);
 
   const {
     register,
@@ -37,6 +39,37 @@ export function LoginForm({ callbackUrl = '/projects' }: LoginFormProps) {
     resolver: zodResolver(loginSchema),
     defaultValues: { email: '', password: '' },
   });
+
+  useEffect(() => {
+    if (!quickEmail) return;
+    let cancelled = false;
+    setQuickLogging(true);
+    (async () => {
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: quickEmail, password: 'password123' }),
+        });
+        if (cancelled) return;
+        if (response.ok) {
+          router.push(callbackUrl);
+          router.refresh();
+        } else {
+          setError('root', { message: 'Quick login failed. Is the seed data loaded?' });
+          setQuickLogging(false);
+        }
+      } catch {
+        if (!cancelled) {
+          setError('root', { message: 'Quick login failed. Is the backend running?' });
+          setQuickLogging(false);
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [quickEmail, callbackUrl, router, setError]);
 
   const emailValue = watch('email');
 
@@ -101,6 +134,17 @@ export function LoginForm({ callbackUrl = '/projects' }: LoginFormProps) {
         <Button variant="ghost" onClick={() => setMagicLinkSent(false)}>
           Back to login
         </Button>
+      </div>
+    );
+  }
+
+  if (quickLogging) {
+    return (
+      <div className="flex flex-col items-center gap-3 py-8">
+        <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        <p className="text-sm text-muted-foreground">
+          Signing in as <strong>{quickEmail}</strong>...
+        </p>
       </div>
     );
   }

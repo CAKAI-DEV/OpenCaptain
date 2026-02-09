@@ -2,7 +2,7 @@ import { and, count, eq, isNull } from 'drizzle-orm';
 import { db, schema } from '../../shared/db';
 import { logger } from '../../shared/lib/logger';
 import { ApiError } from '../../shared/middleware/error-handler';
-import { createLinearClient, syncTaskToLinear, getLinearIntegration } from '../integrations/linear';
+import { createLinearClient, getLinearIntegration, syncTaskToLinear } from '../integrations/linear';
 import type {
   CreateTaskInput,
   PaginatedResult,

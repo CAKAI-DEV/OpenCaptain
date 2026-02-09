@@ -165,10 +165,10 @@ function EscalationProperties({ data, onUpdate }: EscalationPropertiesProps) {
       <div>
         <Label>Escalation Steps</Label>
         <div className="mt-2 space-y-2">
-          {data.steps.length === 0 ? (
+          {(data.steps || []).length === 0 ? (
             <p className="text-xs text-muted-foreground">No steps configured.</p>
           ) : (
-            data.steps.map((step, index) => (
+            (data.steps || []).map((step, index) => (
               <div key={step.id} className="text-xs p-2 rounded bg-muted">
                 Step {index + 1}: {step.action} to {step.targetRole} after {step.delayMinutes}m
               </div>
@@ -227,11 +227,10 @@ function RoleProperties({ data, onUpdate }: RolePropertiesProps) {
             <label key={cap} className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
-                checked={data.capabilities.includes(cap)}
+                checked={(data.capabilities || []).includes(cap)}
                 onChange={(e) => {
-                  const newCaps = e.target.checked
-                    ? [...data.capabilities, cap]
-                    : data.capabilities.filter((c) => c !== cap);
+                  const caps = data.capabilities || [];
+                  const newCaps = e.target.checked ? [...caps, cap] : caps.filter((c) => c !== cap);
                   onUpdate({ ...data, capabilities: newCaps });
                 }}
                 className="rounded border-input"
@@ -275,10 +274,10 @@ function VisibilityProperties({ data, onUpdate }: VisibilityPropertiesProps) {
         <div>
           <Label>Squad Grants</Label>
           <div className="mt-2 space-y-2">
-            {data.grants.length === 0 ? (
+            {(data.grants || []).length === 0 ? (
               <p className="text-xs text-muted-foreground">No grants configured.</p>
             ) : (
-              data.grants.map((grant) => (
+              (data.grants || []).map((grant) => (
                 <div key={grant.id} className="text-xs p-2 rounded bg-muted">
                   {grant.squadName}
                 </div>

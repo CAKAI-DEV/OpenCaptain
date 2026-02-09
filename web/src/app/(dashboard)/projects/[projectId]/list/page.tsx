@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { TaskFilters } from '@/components/list/task-filters';
 import { TaskList } from '@/components/list/task-list';
+import { CreateTaskDialog } from '@/components/tasks/create-task-dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { apiClient } from '@/lib/api.server';
 import type { PaginatedResponse } from '@/types/api';
@@ -26,21 +27,21 @@ async function TaskListContainer({
   priority?: TaskPriority;
   search?: string;
 }) {
-  // Build query params for API
-  const params = new URLSearchParams({
-    projectId,
-    limit: '100',
-    parentTaskId: 'null',
-  });
+  let tasks: Task[] = [];
+  try {
+    const params = new URLSearchParams({
+      projectId,
+      limit: '100',
+      parentTaskId: 'null',
+    });
 
-  if (status) params.set('status', status);
-  // Note: priority and search filtering handled client-side
-  // Backend doesn't support these filters yet
+    if (status) params.set('status', status);
 
-  const response = await apiClient<PaginatedResponse<Task>>(`/tasks?${params.toString()}`);
-
-  // Apply client-side filtering for priority and search
-  let tasks = response.data;
+    const response = await apiClient<PaginatedResponse<Task>>(`/tasks?${params.toString()}`);
+    tasks = response.data;
+  } catch {
+    // Will show empty list
+  }
 
   if (priority) {
     tasks = tasks.filter((task) => task.priority === priority);
@@ -62,11 +63,9 @@ export default async function ListPage({ params, searchParams }: ListPageProps) 
   const { projectId } = await params;
   const { status, priority, search } = await searchParams;
 
-  // Validate status if provided
   const validStatus =
     status && ['todo', 'in_progress', 'done'].includes(status) ? (status as TaskStatus) : undefined;
 
-  // Validate priority if provided
   const validPriority =
     priority && ['low', 'medium', 'high', 'urgent'].includes(priority)
       ? (priority as TaskPriority)
@@ -76,7 +75,7 @@ export default async function ListPage({ params, searchParams }: ListPageProps) 
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Tasks</h1>
-        {/* TODO: Add create task button */}
+        <CreateTaskDialog projectId={projectId} />
       </div>
 
       <Suspense fallback={<Skeleton className="h-10 w-full" />}>

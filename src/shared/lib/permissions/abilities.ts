@@ -1,10 +1,10 @@
-import { PureAbility, type SubjectRawRule } from '@casl/ability';
+import { createMongoAbility, type MongoAbility, type SubjectRawRule } from '@casl/ability';
 
 type Actions = 'create' | 'read' | 'update' | 'delete' | 'manage';
 type Subjects = 'Project' | 'Squad' | 'User' | 'WorkItem' | 'all';
 
-// Using PureAbility with generic conditions for flexibility
-export type AppAbility = PureAbility<[Actions, Subjects], { [key: string]: unknown }>;
+// Using MongoAbility which supports MongoDB-style conditions ($in, $eq, etc.)
+export type AppAbility = MongoAbility<[Actions, Subjects]>;
 
 export interface UserContext {
   id: string;
@@ -15,7 +15,7 @@ export interface UserContext {
   restrictedToSquad: boolean; // From user settings
 }
 
-type AppRawRule = SubjectRawRule<Actions, Subjects, { [key: string]: unknown }>;
+type AppRawRule = SubjectRawRule<Actions, Subjects, Record<string, unknown>>;
 
 export function defineAbilitiesFor(user: UserContext): AppAbility {
   const rules: AppRawRule[] = [];
@@ -24,7 +24,7 @@ export function defineAbilitiesFor(user: UserContext): AppAbility {
   const isOrgAdmin = user.projectRoles.some((pr) => pr.role === 'admin');
   if (isOrgAdmin) {
     rules.push({ action: 'manage', subject: 'all' });
-    return new PureAbility<[Actions, Subjects], { [key: string]: unknown }>(rules);
+    return createMongoAbility<[Actions, Subjects]>(rules);
   }
 
   // PM has project-wide visibility (per VISB-04)
@@ -95,5 +95,5 @@ export function defineAbilitiesFor(user: UserContext): AppAbility {
     rules.push({ action: 'update', subject: 'Squad', conditions: { id: { $in: leadSquadIds } } });
   }
 
-  return new PureAbility<[Actions, Subjects], { [key: string]: unknown }>(rules);
+  return createMongoAbility<[Actions, Subjects]>(rules);
 }

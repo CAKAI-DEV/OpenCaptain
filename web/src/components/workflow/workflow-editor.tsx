@@ -64,7 +64,7 @@ function WorkflowEditorContent({
   }, []);
 
   const handleDrop = useCallback(
-    (event: React.DragEvent) => {
+    async (event: React.DragEvent) => {
       event.preventDefault();
 
       const nodeType = event.dataTransfer.getData('application/reactflow') as WorkflowNodeType;
@@ -82,14 +82,11 @@ function WorkflowEditorContent({
         data: createNodeData(nodeType),
       };
 
-      setNodes((nds) => {
-        const updated = [...nds, newNode];
-        // Apply layout immediately with the new node
-        const { nodes: layoutedNodes } = getLayoutedElements(updated, edgesRef.current);
-        return layoutedNodes;
-      });
+      const updated = [...nodes, newNode];
+      const { nodes: layoutedNodes } = await getLayoutedElements(updated, edgesRef.current);
+      setNodes(layoutedNodes);
     },
-    [screenToFlowPosition]
+    [screenToFlowPosition, nodes]
   );
 
   const handleSave = useCallback(() => {

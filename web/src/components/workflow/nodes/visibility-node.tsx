@@ -34,7 +34,7 @@ export function VisibilityNode({ data, selected }: NodeProps<VisibilityNodeType>
           <span>Scope:</span>
           <span className="font-medium">{SCOPE_LABELS[data.scope] || data.scope}</span>
         </div>
-        {data.grants.length > 0 && (
+        {(data.grants || []).length > 0 && (
           <div className="flex justify-between">
             <span>Grants:</span>
             <span className="font-medium">{data.grants.length} squads</span>

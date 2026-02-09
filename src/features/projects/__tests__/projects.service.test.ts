@@ -1,4 +1,4 @@
-import { afterAll, afterEach, beforeAll, describe, expect, test } from 'bun:test';
+import { afterAll, beforeAll, describe, expect, test } from 'bun:test';
 import { db, schema } from '../../../shared/db';
 import { connectRedis, disconnectRedis } from '../../../shared/lib/redis';
 import { createProject, getProjectById, getProjectsByOrg } from '../projects.service';
@@ -8,20 +8,7 @@ beforeAll(async () => {
   await connectRedis();
 });
 
-afterEach(async () => {
-  // Delete in order: tables with FKs first, then parent tables
-  await db.delete(schema.invitations);
-  await db.delete(schema.inviteLinks);
-  await db.delete(schema.visibilityGrants);
-  await db.delete(schema.magicLinks);
-  await db.delete(schema.squadMembers);
-  await db.delete(schema.squads);
-  await db.delete(schema.projectMembers);
-  await db.delete(schema.projects);
-  await db.delete(schema.refreshTokens);
-  await db.delete(schema.users);
-  await db.delete(schema.organizations);
-});
+// Teardown handled by global tests/setup.ts afterEach
 
 afterAll(async () => {
   await disconnectRedis();

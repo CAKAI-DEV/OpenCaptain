@@ -18,28 +18,28 @@ const BLOCKS: BlockDefinition[] = [
     label: 'Check-in',
     description: 'Scheduled status updates',
     icon: Clock,
-    color: 'bg-blue-100 text-blue-600',
+    color: 'bg-blue-500/20 text-blue-600 dark:text-blue-400',
   },
   {
     type: 'escalation',
     label: 'Escalation',
     description: 'Automatic notifications',
     icon: AlertTriangle,
-    color: 'bg-orange-100 text-orange-600',
+    color: 'bg-orange-500/20 text-orange-600 dark:text-orange-400',
   },
   {
     type: 'role',
     label: 'Role',
     description: 'Team permissions',
     icon: Shield,
-    color: 'bg-purple-100 text-purple-600',
+    color: 'bg-purple-500/20 text-purple-600 dark:text-purple-400',
   },
   {
     type: 'visibility',
     label: 'Visibility',
     description: 'Access control',
     icon: Eye,
-    color: 'bg-green-100 text-green-600',
+    color: 'bg-green-500/20 text-green-600 dark:text-green-400',
   },
 ];
 

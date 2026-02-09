@@ -8,8 +8,8 @@ export {
   createLinearClient,
   createLinearIssue,
   getLinearIssue,
-  getLinearTeams,
   getLinearTeamStates,
+  getLinearTeams,
   LinearRateLimitError,
   updateLinearIssue,
 } from './linear.client';
@@ -21,10 +21,6 @@ export {
   syncFromLinear,
   syncTaskToLinear,
 } from './linear.sync';
-
-// Webhook handler
-export { handleLinearWebhook, verifyLinearWebhook } from './linear.webhooks';
-
 // Types
 export type {
   LinearConfig,
@@ -36,5 +32,6 @@ export type {
   SyncResult,
   SyncToLinearOptions,
 } from './linear.types';
-
 export { DEFAULT_STATUS_MAPPINGS, LINEAR_TO_PRIORITY, PRIORITY_TO_LINEAR } from './linear.types';
+// Webhook handler
+export { handleLinearWebhook, verifyLinearWebhook } from './linear.webhooks';

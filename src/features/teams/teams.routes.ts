@@ -8,7 +8,6 @@ import {
   createSquad,
   deleteSquad,
   getSquad,
-  getSquadHierarchy,
   getSquadMembers,
   removeSquadMember,
   updateSquad,
@@ -42,14 +41,6 @@ teams.post('/', zValidator('json', createSquadSchema), async (c) => {
   const input = c.req.valid('json');
   const squad = await createSquad(input);
   return c.json(squad, 201);
-});
-
-// GET /api/v1/projects/:projectId/squads - Get squad hierarchy for project
-teams.get('/projects/:projectId/squads', async (c) => {
-  const projectId = c.req.param('projectId');
-  const visibleSquadIds = c.get('visibleSquadIds');
-  const hierarchy = await getSquadHierarchy(projectId, visibleSquadIds);
-  return c.json(hierarchy);
 });
 
 // GET /api/v1/squads/:id - Get single squad

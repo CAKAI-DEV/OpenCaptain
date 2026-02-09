@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { LoginForm } from './login-form';
+import { Suspense } from 'react';
+import { LoginContent } from './login-content';
 
 export default async function LoginPage({
   searchParams,
@@ -18,7 +19,9 @@ export default async function LoginPage({
           <p className="text-sm text-green-600">Account created! Please sign in.</p>
         </div>
       )}
-      <LoginForm callbackUrl={params.callbackUrl} />
+      <Suspense>
+        <LoginContent callbackUrl={params.callbackUrl} />
+      </Suspense>
       <p className="text-center text-sm text-muted-foreground">
         Don&apos;t have an account?{' '}
         <Link

@@ -62,7 +62,7 @@ export function CreateProjectDialog() {
       reset();
       router.push(`/projects/${project.data?.id || project.id}`);
       router.refresh();
-    } catch (error) {
+    } catch (_error) {
       setError('root', { message: 'An error occurred. Please try again.' });
     }
   }

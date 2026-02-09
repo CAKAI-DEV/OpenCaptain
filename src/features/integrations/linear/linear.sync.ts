@@ -108,7 +108,10 @@ export async function syncTaskToLinear(
       lastLocalUpdatedAt: task.updatedAt,
     });
 
-    logger.info({ ...logContext, linearIssueId: issue.id, identifier: issue.identifier }, 'Created Linear issue from task');
+    logger.info(
+      { ...logContext, linearIssueId: issue.id, identifier: issue.identifier },
+      'Created Linear issue from task'
+    );
 
     return {
       success: true,

@@ -2,12 +2,25 @@
 
 import type { Edge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { WorkflowEditor } from '@/components/workflow';
 import { toast } from '@/hooks/use-toast';
 import { fetchWorkflow, saveWorkflow } from '@/lib/api/workflows';
 import type { WorkflowNode } from '@/lib/workflow/types';
+
+// Dynamic import with SSR disabled to avoid React Flow hydration issues
+const WorkflowEditor = dynamic(
+  () => import('@/components/workflow').then((mod) => mod.WorkflowEditor),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[calc(100vh-4rem)] flex items-center justify-center">
+        <div className="text-muted-foreground">Loading workflow editor...</div>
+      </div>
+    ),
+  }
+);
 
 export default function WorkflowsPage() {
   const params = useParams();

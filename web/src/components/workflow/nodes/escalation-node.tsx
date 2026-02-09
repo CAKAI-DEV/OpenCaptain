@@ -33,12 +33,12 @@ export function EscalationNode({ data, selected }: NodeProps<EscalationNodeType>
         <div className="flex justify-between">
           <span>Trigger:</span>
           <span className="font-medium">
-            {TRIGGER_LABELS[data.triggerType] || data.triggerType}
+            {TRIGGER_LABELS[data.triggerType] || data.triggerType || 'Not set'}
           </span>
         </div>
         <div className="flex justify-between">
           <span>Steps:</span>
-          <span className="font-medium">{data.steps.length} configured</span>
+          <span className="font-medium">{(data.steps || []).length} configured</span>
         </div>
       </div>
       <Handle type="source" position={Position.Bottom} className="!bg-primary" />

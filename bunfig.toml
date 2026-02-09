@@ -1,2 +1,6 @@
 [run]
 preload = ["./src/shared/lib/env.ts"]
+
+[test]
+preload = ["./src/shared/lib/env.ts", "./src/tests/setup.ts"]
+root = "./src"
